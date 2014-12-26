@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>71565e4a-58ba-4af0-9e76-e606d1333081</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Radical.Samples.Universal</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\InjectViewInRegionFacility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\DefaultDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\PresentationDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\ServicesDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\___UICompositionInstaller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NugetInfo.cs" />
+  </ItemGroup>
+</Project>
