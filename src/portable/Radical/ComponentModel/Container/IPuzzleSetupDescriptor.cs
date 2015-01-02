@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Topics.Radical.ComponentModel
+namespace Radical.ComponentModel
 {
 	public interface IPuzzleSetupDescriptor
 	{

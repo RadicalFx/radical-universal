@@ -1,11 +1,11 @@
-﻿namespace Topics.Radical.ChangeTracking
+﻿namespace Radical.ChangeTracking
 {
 	using System;
 	using System.Collections.Generic;
-	using Topics.Radical;
-	using Topics.Radical.Collections;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Validation;
+	using Radical;
+	using Radical.Collections;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Validation;
 
 	/// <summary>
 	/// Represents a change occurred to an object.

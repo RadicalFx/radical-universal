@@ -1,7 +1,7 @@
 ﻿//using System.Windows;
 //using Windows.UI.Xaml;
 
-//namespace Topics.Radical.Windows.Presentation
+//namespace Radical.Windows.Presentation
 //{
 //	/// <summary>
 //	/// Adds behaviors to the <see cref="DependencyObject"/> class.

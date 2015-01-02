@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.ChangeTracking.Specialized
+﻿namespace Radical.ChangeTracking.Specialized
 {
 	using System;
 

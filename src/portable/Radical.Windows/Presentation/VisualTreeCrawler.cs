@@ -1,9 +1,9 @@
 ﻿using System;
-using Topics.Radical.Validation;
+using Radical.Validation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
-namespace Topics.Radical.Windows
+namespace Radical.Windows
 {
 	/// <summary>
 	/// A helper calss for visual tree crawling.

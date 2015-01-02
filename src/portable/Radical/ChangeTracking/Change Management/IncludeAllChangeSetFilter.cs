@@ -1,7 +1,7 @@
-﻿namespace Topics.Radical.ChangeTracking
+﻿namespace Radical.ChangeTracking
 {
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Validation;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Validation;
 
 	/// <summary>
 	/// A base implamentation of the <see cref="IChangeSetFilter"/> interface that

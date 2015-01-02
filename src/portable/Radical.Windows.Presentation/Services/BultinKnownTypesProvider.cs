@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.Windows.Presentation.ComponentModel;
 
-namespace Topics.Radical.Windows.Presentation.Services
+namespace Radical.Windows.Presentation.Services
 {
 	class BultinKnownTypesProvider : IKnownTypesProvider
 	{

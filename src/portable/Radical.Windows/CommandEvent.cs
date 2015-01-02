@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Topics.Radical.Analytics;
+using Radical.Analytics;
 
-namespace Topics.Radical.Windows.Analytics
+namespace Radical.Windows.Analytics
 {
 	/// <summary>
 	/// TODO

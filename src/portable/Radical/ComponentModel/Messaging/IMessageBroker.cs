@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Topics.Radical.ComponentModel.Messaging
+namespace Radical.ComponentModel.Messaging
 {
     /// <summary>
     /// Defines the invocation model for the message subscription.

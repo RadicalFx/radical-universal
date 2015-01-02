@@ -1,7 +1,7 @@
-﻿using Topics.Radical.ComponentModel;
+﻿using Radical.ComponentModel;
 using Windows.UI.Core;
 
-namespace Topics.Radical.Observers
+namespace Radical.Observers
 {
     /// <summary>
     /// A base abstract observer, based on the IMonitor interface

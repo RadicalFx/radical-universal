@@ -1,9 +1,9 @@
-namespace Topics.Radical.Reflection
+namespace Radical.Reflection
 {
 	using System;
 	using System.Linq;
 	using System.Globalization;
-	using Topics.Radical.Validation;
+	using Radical.Validation;
 	using System.Text;
 	using System.Collections.Generic;
 	using System.Reflection;

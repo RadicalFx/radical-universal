@@ -1,9 +1,9 @@
-﻿namespace Topics.Radical.Collections
+﻿namespace Radical.Collections
 {
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
-	using Topics.Radical.ComponentModel;
+	using Radical.ComponentModel;
 
 	/// <summary>
 	/// A read-only collection of items.

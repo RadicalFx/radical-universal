@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using Topics.Radical.Linq;
-using Topics.Radical.Validation;
+using Radical.Linq;
+using Radical.Validation;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	public class PropertyMetadata<T> : PropertyMetadata
 	{

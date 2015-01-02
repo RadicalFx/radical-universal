@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical.ComponentModel.ChangeTracking
+namespace Radical.ComponentModel.ChangeTracking
 {
 	public interface IMementoPropertyMetadata
 	{

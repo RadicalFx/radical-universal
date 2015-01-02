@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows
+namespace Radical.Windows
 {
 	public sealed class LoadedWeakEventManager : WeakEventManager
 	{

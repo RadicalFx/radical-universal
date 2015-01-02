@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.Model
+﻿namespace Radical.Model
 {
 	public delegate void PropertyValueChanged<T>( PropertyValueChangedArgs<T> e );
 

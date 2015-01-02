@@ -40,14 +40,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using Topics.Radical.Linq;
-using Topics.Radical.Model;
-using Topics.Radical.Validation;
-using Topics.Radical.Windows.Presentation.ComponentModel;
-using Topics.Radical.ComponentModel.ChangeTracking;
+using Radical.Linq;
+using Radical.Model;
+using Radical.Validation;
+using Radical.Windows.Presentation.ComponentModel;
+using Radical.ComponentModel.ChangeTracking;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation
+namespace Radical.Windows.Presentation
 {
     /// <summary>
     /// A base abstract ViewModel with builtin support for validation, error notification and memento.

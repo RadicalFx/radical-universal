@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System;
 using System.Reflection;
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
 
 	/// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.ComponentModel.ChangeTracking
+﻿namespace Radical.ComponentModel.ChangeTracking
 {
 	/// <summary>
 	/// <c>IAdvisoryBuilder</c> interface is used by the change tracking service

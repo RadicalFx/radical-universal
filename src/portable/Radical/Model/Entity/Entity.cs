@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using Topics.Radical.Linq;
-using Topics.Radical.Validation;
+using Radical.Linq;
+using Radical.Validation;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 #if !SILVERLIGHT && !NETFX_CORE
 	[Serializable]

@@ -3,13 +3,13 @@ using System.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Topics.Radical.Linq;
-using Topics.Radical.Validation;
-using Topics.Radical.Conversions;
-using Topics.Radical.ComponentModel;
+using Radical.Linq;
+using Radical.Validation;
+using Radical.Conversions;
+using Radical.ComponentModel;
 using Windows.UI.Core;
 
-namespace Topics.Radical.Observers
+namespace Radical.Observers
 {
     /// <summary>
     /// A static entry to simplify the creation a PropertyChangedMonitor.

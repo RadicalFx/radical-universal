@@ -1,7 +1,7 @@
 ﻿using System;
-using Topics.Radical.Validation;
+using Radical.Validation;
 
-namespace Topics.Radical.Conversions
+namespace Radical.Conversions
 {
 	/// <summary>
 	/// Adds behaviors, in the cast/as space, to the base object class.

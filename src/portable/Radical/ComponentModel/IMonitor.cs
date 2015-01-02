@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical.ComponentModel
+namespace Radical.ComponentModel
 {
 	/// <summary>
 	/// IMonitor is the base contract to support Observer funtionalities,

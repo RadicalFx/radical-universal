@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel;
 
-namespace Topics.Radical.Windows
+namespace Radical.Windows
 {
 	/// <summary>
 	/// A WeakEventManager for the MontiorChanged event.

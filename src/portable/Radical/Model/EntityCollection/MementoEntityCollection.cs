@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Topics.Radical.ChangeTracking.Specialized;
-using Topics.Radical.ComponentModel.ChangeTracking;
-using Topics.Radical.Linq;
-using Topics.Radical.Validation;
+using Radical.ChangeTracking.Specialized;
+using Radical.ComponentModel.ChangeTracking;
+using Radical.Linq;
+using Radical.Validation;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2240:ImplementISerializableCorrectly" )]
 #if !SILVERLIGHT && !NETFX_CORE

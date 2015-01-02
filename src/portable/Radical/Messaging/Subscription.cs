@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Validation;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel.Messaging;
+using Radical.Validation;
+using Radical.ComponentModel;
 using Windows.UI.Core;
 
-namespace Topics.Radical.Messaging
+namespace Radical.Messaging
 {
 	interface ISubscription
 	{

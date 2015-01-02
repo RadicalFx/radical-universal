@@ -1,4 +1,4 @@
-namespace Topics.Radical.ComponentModel
+namespace Radical.ComponentModel
 {
 	/// <summary>
 	/// Extends the basic IMonitor interface adding support to

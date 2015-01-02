@@ -7,14 +7,14 @@ using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Windows.Presentation.Navigation.Hosts;
+using Radical.ComponentModel;
+using Radical.ComponentModel.Messaging;
+using Radical.Windows.Presentation.Navigation.Hosts;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation.Boot
+namespace Radical.Windows.Presentation.Boot
 {
 	public class PuzzleApplicationBootstrapper : ApplicationBootstrapper
 	{

@@ -3,10 +3,10 @@ using System.Net;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
-using Topics.Radical.ComponentModel;
-//using Topics.Radical.Reflection;
+using Radical.ComponentModel;
+//using Radical.Reflection;
 
-namespace Topics.Radical
+namespace Radical
 {
     /// <summary>
     /// Defines a facility that automatically boot a component at registration time.

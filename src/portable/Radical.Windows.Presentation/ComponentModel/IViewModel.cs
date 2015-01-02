@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation.ComponentModel
+namespace Radical.Windows.Presentation.ComponentModel
 {
 	/// <summary>
 	/// Defines the base contract that a Topics.Presentation

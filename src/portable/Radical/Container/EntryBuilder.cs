@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel;
 
-namespace Topics.Radical
+namespace Radical
 {
 	/// <summary>
 	/// Helper class to fluently create Puzzle container entries.

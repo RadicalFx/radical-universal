@@ -1,10 +1,10 @@
-﻿namespace Topics.Radical.ChangeTracking.Specialized
+﻿namespace Radical.ChangeTracking.Specialized
 {
 	using System;
 	using System.Collections.Generic;
-	using Topics.Radical.Collections;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Validation;
+	using Radical.Collections;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Validation;
 
 	/// <summary>
 	/// Identifies that an item in a collection has been removed.

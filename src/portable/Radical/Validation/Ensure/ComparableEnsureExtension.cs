@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
 	/// <summary>
 	/// Determines the equality behavior when comparing values.

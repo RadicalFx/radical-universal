@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.ComponentModel.ChangeTracking
+﻿namespace Radical.ComponentModel.ChangeTracking
 {
 	/// <summary>
 	/// Represents a change occurred to an object.

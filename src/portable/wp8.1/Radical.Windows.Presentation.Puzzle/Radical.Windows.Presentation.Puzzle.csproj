@@ -8,7 +8,7 @@
     <ProjectGuid>{5202AE37-AF57-448F-AE95-DD2BE774E58C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Topics.Radical.Windows.Presentation.Puzzle</RootNamespace>
+    <RootNamespace>Radical.Windows.Presentation.Puzzle</RootNamespace>
     <AssemblyName>Radical.Windows.Presentation.Puzzle</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

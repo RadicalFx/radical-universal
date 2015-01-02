@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Topics.Radical.Reflection;
+using Radical.Reflection;
 
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
 	/// <summary>
 	/// Extends the generic Ensure class to add behaviors when the inspected object

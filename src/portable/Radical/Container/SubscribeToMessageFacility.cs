@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Reflection;
+using Radical.ComponentModel.Messaging;
+using Radical.Reflection;
 using System.Collections.Generic;
-using Topics.Radical;
+using Radical;
 using System.Diagnostics;
-using Topics.Radical.Linq;
-using Topics.Radical.ComponentModel;
+using Radical.Linq;
+using Radical.ComponentModel;
 
-namespace Topics.Radical
+namespace Radical
 {
     public sealed class SubscribeToMessageFacility : IPuzzleContainerFacility
     {

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.Validation;
+using Radical.Validation;
 using Windows.Storage;
 
-namespace Topics.Radical.Windows.Services
+namespace Radical.Windows.Services
 {
 	class StorageSerializationHelpers
 	{

@@ -1,9 +1,9 @@
 ﻿using System;
-using Topics.Radical.Validation;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.Validation;
+using Radical.Windows.Presentation.ComponentModel;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation.Services
+namespace Radical.Windows.Presentation.Services
 {
 	/// <summary>
 	/// Resolves view automatically attaching view models by convention.

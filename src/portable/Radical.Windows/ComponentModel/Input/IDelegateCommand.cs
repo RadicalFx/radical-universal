@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
-using Topics.Radical.Helpers;
+using Radical.Helpers;
 
-namespace Topics.Radical.ComponentModel.Windows.Input
+namespace Radical.ComponentModel.Windows.Input
 {
 	/// <summary>
 	/// Defines an extended ICommand with support for bindings and triggers.

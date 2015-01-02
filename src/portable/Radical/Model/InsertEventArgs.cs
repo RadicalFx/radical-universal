@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.Model
+﻿namespace Radical.Model
 {
 	using System;
 	using System.ComponentModel;

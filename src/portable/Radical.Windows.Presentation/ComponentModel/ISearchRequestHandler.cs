@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Search;
 
-namespace Topics.Radical.Windows.Presentation.ComponentModel
+namespace Radical.Windows.Presentation.ComponentModel
 {
 	public interface ISearchRequestHandler
 	{

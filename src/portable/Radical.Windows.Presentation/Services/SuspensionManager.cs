@@ -5,12 +5,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.ComponentModel;
+using Radical.ComponentModel.Messaging;
+using Radical.Windows.Presentation.ComponentModel;
 using Windows.Storage;
 
-namespace Topics.Radical.Windows.Presentation.Services
+namespace Radical.Windows.Presentation.Services
 {
     class SuspensionManager : ISuspensionManager
     {

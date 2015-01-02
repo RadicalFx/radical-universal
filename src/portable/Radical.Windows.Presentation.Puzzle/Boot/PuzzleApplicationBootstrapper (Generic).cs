@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.Windows.Presentation.ComponentModel;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation.Boot
+namespace Radical.Windows.Presentation.Boot
 {
 	public class PuzzleApplicationBootstrapper<TShellView> : 
 		PuzzleApplicationBootstrapper 

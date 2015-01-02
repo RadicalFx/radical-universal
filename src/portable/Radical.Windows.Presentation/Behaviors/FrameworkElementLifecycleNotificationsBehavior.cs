@@ -1,12 +1,12 @@
 ﻿//using System.Windows;
-//using Topics.Radical.ComponentModel.Messaging;
-//using Topics.Radical.Reflection;
-//using Topics.Radical.Windows.Behaviors;
-//using Topics.Radical.Windows.Presentation.ComponentModel;
-//using Topics.Radical.Windows.Presentation.Messaging;
+//using Radical.ComponentModel.Messaging;
+//using Radical.Reflection;
+//using Radical.Windows.Behaviors;
+//using Radical.Windows.Presentation.ComponentModel;
+//using Radical.Windows.Presentation.Messaging;
 //using Windows.UI.Xaml;
 
-//namespace Topics.Radical.Windows.Presentation.Behaviors
+//namespace Radical.Windows.Presentation.Behaviors
 //{
 //    /// <summary>
 //    /// Wires the FrameworkElement lifecycle to a view model that requires lifecycle notifications.

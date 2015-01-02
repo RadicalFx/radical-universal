@@ -1,5 +1,5 @@
 ﻿
-namespace Topics.Radical.ComponentModel
+namespace Radical.ComponentModel
 {
 	/// <summary>
 	/// Determines the type of change(s) occurred in

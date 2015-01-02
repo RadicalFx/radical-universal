@@ -1,9 +1,9 @@
-﻿namespace Topics.Radical
+﻿namespace Radical
 {
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
-	using Topics.Radical.Validation;
+	using Radical.Validation;
 
 	sealed class ReferenceEqualityComparer<T> : IEqualityComparer, IEqualityComparer<T>
 		where T : class

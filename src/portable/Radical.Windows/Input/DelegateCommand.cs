@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
-using Topics.Radical.ComponentModel.Windows.Input;
-using Topics.Radical.Helpers;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel.Windows.Input;
+using Radical.Helpers;
+using Radical.ComponentModel;
 using System.Windows;
-using Topics.Radical.Validation;
+using Radical.Validation;
 
-namespace Topics.Radical.Windows.Input
+namespace Radical.Windows.Input
 {
 	/// <summary>
 	/// The default implementation of the IDelegateCommand interface.

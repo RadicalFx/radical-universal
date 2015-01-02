@@ -1,6 +1,6 @@
-﻿using Topics.Radical.ComponentModel.ChangeTracking;
+﻿using Radical.ComponentModel.ChangeTracking;
 
-namespace Topics.Radical.ComponentModel.Factories
+namespace Radical.ComponentModel.Factories
 {
 	/// <summary>
 	/// Provides a way to programmatically create

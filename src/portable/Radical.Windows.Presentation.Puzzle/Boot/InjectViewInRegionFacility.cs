@@ -4,11 +4,11 @@
 //using Castle.Core;
 //using Castle.Facilities;
 //using Castle.MicroKernel.Facilities;
-//using Topics.Radical.Reflection;
-//using Topics.Radical.Windows.Presentation.ComponentModel.Regions;
-//using Topics.Radical.Windows.Presentation.ComponentModel;
+//using Radical.Reflection;
+//using Radical.Windows.Presentation.ComponentModel.Regions;
+//using Radical.Windows.Presentation.ComponentModel;
 //using System;
-//using Topics.Radical.Windows.Presentation.Boot;
+//using Radical.Windows.Presentation.Boot;
 
 //namespace Castle.Facilities
 //{

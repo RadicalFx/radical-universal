@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Topics.Radical.ComponentModel
+namespace Radical.ComponentModel
 {
 	/// <summary>
 	/// Identifies a component the can be booted.

@@ -1,10 +1,10 @@
-﻿namespace Topics.Radical.ChangeTracking
+﻿namespace Radical.ChangeTracking
 {
 	using System;
 	using System.Collections.Generic;
-	using Topics.Radical.Collections;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Validation;
+	using Radical.Collections;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Validation;
 
 	/// <summary>
 	/// A bookmark is a placeholder to track a specific position in

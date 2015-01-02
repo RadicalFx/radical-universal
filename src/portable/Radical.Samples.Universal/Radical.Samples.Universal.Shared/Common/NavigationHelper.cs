@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using Windows.Foundation.Metadata;
+
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 
 namespace Radical.Samples.Universal.Common
 {
@@ -56,7 +63,8 @@ namespace Radical.Samples.Universal.Common
     ///     }
     /// </code>
     /// </example>
-    [Windows.Foundation.Metadata.WebHostHidden]
+    //[Windows.Foundation.Metadata.WebHostHidden]
+    [WebHostHidden]
     public class NavigationHelper : DependencyObject
     {
         private Page Page { get; set; }
@@ -78,7 +86,8 @@ namespace Radical.Samples.Universal.Common
             this.Page.Loaded += (sender, e) =>
             {
 #if WINDOWS_PHONE_APP
-                Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+                //Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #else
                 // Keyboard and mouse navigation only apply when occupying the entire window
                 if (this.Page.ActualHeight == Window.Current.Bounds.Height &&
@@ -97,7 +106,8 @@ namespace Radical.Samples.Universal.Common
             this.Page.Unloaded += (sender, e) =>
             {
 #if WINDOWS_PHONE_APP
-                Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+                //Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #else
                 Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated -=
                     CoreDispatcher_AcceleratorKeyActivated;
@@ -206,7 +216,8 @@ namespace Radical.Samples.Universal.Common
         /// </summary>
         /// <param name="sender">Instance that triggered the event.</param>
         /// <param name="e">Event data describing the conditions that led to the event.</param>
-        private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
+        //private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
+        private void HardwareButtons_BackPressed( object sender, BackPressedEventArgs e )
         {
             if (this.GoBackCommand.CanExecute(null))
             {

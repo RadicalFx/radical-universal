@@ -2,7 +2,7 @@
 using System.Windows;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation.ComponentModel
+namespace Radical.Windows.Presentation.ComponentModel
 {
 	/// <summary>
 	/// Handles Presentation conventions.

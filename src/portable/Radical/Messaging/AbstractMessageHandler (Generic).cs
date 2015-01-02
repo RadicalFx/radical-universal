@@ -1,8 +1,8 @@
-﻿using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Validation;
-using Topics.Radical.Reflection;
+﻿using Radical.ComponentModel.Messaging;
+using Radical.Validation;
+using Radical.Reflection;
 
-namespace Topics.Radical.Messaging
+namespace Radical.Messaging
 {
 	/// <summary>
     /// A base implementation of the IHandleMessage generic interface.

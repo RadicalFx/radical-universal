@@ -9,7 +9,7 @@
     <ProjectGuid>{471563FD-8737-458D-9A9B-31CECF479808}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Topics.Radical.Windows</RootNamespace>
+    <RootNamespace>Radical.Windows</RootNamespace>
     <AssemblyName>Radical.Windows</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -108,13 +108,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\Radical\Radical.csproj">
-      <Project>{53002372-02b3-4cea-be25-350fd8ffcd50}</Project>
-      <Name>Radical</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\..\..\lib\Radical.AssemblyInfo.cs">
       <Link>Properties\Radical.AssemblyInfo.cs</Link>
     </Compile>
@@ -139,6 +132,12 @@
   <ItemGroup>
     <TargetPlatform Include="Windows, Version=8.1" />
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Radical\Radical.csproj">
+      <Project>{53002372-02b3-4cea-be25-350fd8ffcd50}</Project>
+      <Name>Radical</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

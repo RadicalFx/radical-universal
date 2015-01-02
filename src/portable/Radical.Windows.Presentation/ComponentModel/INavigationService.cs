@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical.Windows.Presentation.ComponentModel
+namespace Radical.Windows.Presentation.ComponentModel
 {
 	public interface INavigationService
 	{

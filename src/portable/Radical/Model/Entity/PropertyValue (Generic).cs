@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.Model
+﻿namespace Radical.Model
 {
 	/// <summary>
 	/// Identifies a strongly-typed property value.

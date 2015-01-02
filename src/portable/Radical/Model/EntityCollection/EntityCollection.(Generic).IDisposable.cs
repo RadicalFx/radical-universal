@@ -7,12 +7,12 @@ using System.Globalization;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Linq;
-using Topics.Radical.Validation;
+using Radical.ComponentModel;
+using Radical.Linq;
+using Radical.Validation;
 using System.Linq.Expressions;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	partial class EntityCollection<T>
 	{

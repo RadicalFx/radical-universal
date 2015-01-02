@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical
+﻿namespace Radical
 {
 	using System;
 	using System.Collections.Generic;

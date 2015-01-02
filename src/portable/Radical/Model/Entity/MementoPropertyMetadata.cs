@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Topics.Radical.Linq;
-using Topics.Radical.ComponentModel.ChangeTracking;
+using Radical.Linq;
+using Radical.ComponentModel.ChangeTracking;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	//public static class MementoPropertyMetadataBuilder
 	//{

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Topics.Radical.Windows.Presentation.ComponentModel
+namespace Radical.Windows.Presentation.ComponentModel
 {
 	public interface INavigationScopedStorage
 	{
