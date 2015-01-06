@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.Model;
+using Radical.Model;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Behaviors
+namespace Radical.Windows.Behaviors
 {
     class RadicalBehaviorCollection : FrameworkElement, IList<RadicalBehavior>
     {

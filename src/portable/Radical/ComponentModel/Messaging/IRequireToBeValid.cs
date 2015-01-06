@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.ComponentModel.Messaging
+﻿namespace Radical.ComponentModel.Messaging
 {
 	/// <summary>
 	/// Identifies a message that has its own validation

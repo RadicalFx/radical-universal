@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Topics.Radical.ComponentModel.ChangeTracking;
-using Topics.Radical.Validation;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel.ChangeTracking;
+using Radical.Validation;
+using Radical.ComponentModel;
 using Windows.UI.Core;
 
-namespace Topics.Radical.Observers
+namespace Radical.Observers
 {
     public static class MementoObserver
     {

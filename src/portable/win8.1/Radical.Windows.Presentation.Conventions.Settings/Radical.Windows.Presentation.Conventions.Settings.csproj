@@ -114,10 +114,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Radical.Windows.Presentation\Radical.Windows.Presentation.csproj">
-      <Project>{00975b57-4823-4f0d-8e21-8c2e5270fd73}</Project>
-      <Name>Radical.Windows.Presentation</Name>
-    </ProjectReference>
+    <Reference Include="Callisto, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\packages\Callisto.1.4.0\lib\netcore451\Callisto.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Radical.Windows\Radical.Windows.csproj">
       <Project>{471563fd-8737-458d-9a9b-31cecf479808}</Project>
       <Name>Radical.Windows</Name>
@@ -126,15 +131,10 @@
       <Project>{53002372-02b3-4cea-be25-350fd8ffcd50}</Project>
       <Name>Radical</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Callisto, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\packages\Callisto.1.4.0\lib\netcore451\Callisto.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Radical.Windows.Presentation\Radical.Windows.Presentation.csproj">
+      <Project>{00975b57-4823-4f0d-8e21-8c2e5270fd73}</Project>
+      <Name>Radical.Windows.Presentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

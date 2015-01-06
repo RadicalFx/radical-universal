@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Composition;
 using System.Reflection;
 using System.Threading.Tasks;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Linq;
+using Radical.ComponentModel;
+using Radical.Linq;
 
-namespace Topics.Radical.Windows.Presentation.Boot.Installers
+namespace Radical.Windows.Presentation.Boot.Installers
 {
 	[Export( typeof( IPuzzleSetupDescriptor ) )]
 	public class ServicesDescriptor : IPuzzleSetupDescriptor

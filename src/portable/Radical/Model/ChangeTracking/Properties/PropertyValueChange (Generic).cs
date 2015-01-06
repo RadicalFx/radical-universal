@@ -1,9 +1,9 @@
-﻿namespace Topics.Radical.ChangeTracking.Specialized
+﻿namespace Radical.ChangeTracking.Specialized
 {
 	using System;
-	using Topics.Radical.ChangeTracking;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Validation;
+	using Radical.ChangeTracking;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Validation;
 
 	/// <summary>
 	/// Identifies a change specific for a property change.

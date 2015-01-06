@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.Validation;
-using Topics.Radical.Windows.Presentation.ComponentModel;
-using Topics.Radical.Windows.Presentation.Navigation.Hosts;
+using Radical.Validation;
+using Radical.Windows.Presentation.ComponentModel;
+using Radical.Windows.Presentation.Navigation.Hosts;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel;
 
-namespace Topics.Radical.Windows.Presentation.Services
+namespace Radical.Windows.Presentation.Services
 {
     class NavigationService : INavigationService
     {

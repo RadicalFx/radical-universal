@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Topics.Radical.Validation;
+using Radical.Validation;
 
-namespace Topics.Radical
+namespace Radical
 {
 	/// <summary>
 	/// Inherits the generic EqualityComparer in order to 

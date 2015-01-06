@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel;
 
-namespace Topics.Radical
+namespace Radical
 {
 	internal class PuzzleContainerEntry<T> : IPuzzleContainerEntry, IPuzzleContainerEntry<T>
 	{

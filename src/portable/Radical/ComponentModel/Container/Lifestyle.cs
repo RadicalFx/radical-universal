@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical.ComponentModel
+namespace Radical.ComponentModel
 {
 	/// <summary>
 	/// Defines the lifestyle of a component.

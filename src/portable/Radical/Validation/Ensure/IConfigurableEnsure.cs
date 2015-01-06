@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
 	/// <summary>
 	/// Defines an ensure ready to be configured.

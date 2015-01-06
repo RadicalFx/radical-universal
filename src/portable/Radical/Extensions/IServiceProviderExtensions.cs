@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical
+namespace Radical
 {
     /// <summary>
     /// Extension methods for IServiceProvider

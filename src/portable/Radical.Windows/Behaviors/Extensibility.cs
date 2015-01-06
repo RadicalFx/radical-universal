@@ -7,7 +7,7 @@ using Windows.UI.Xaml;
 using System.Reflection;
 using Windows.UI.Xaml.Data;
 
-namespace Topics.Radical.Windows.Behaviors
+namespace Radical.Windows.Behaviors
 {
     public class Extensibility : FrameworkElement
     {

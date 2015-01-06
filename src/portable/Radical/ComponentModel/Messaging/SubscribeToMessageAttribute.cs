@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Topics.Radical.ComponentModel.Messaging
+namespace Radical.ComponentModel.Messaging
 {
 	/// <summary>
 	/// The SubscribeToMessageAttribute is used to mark <c>IMessageHandler</c>s

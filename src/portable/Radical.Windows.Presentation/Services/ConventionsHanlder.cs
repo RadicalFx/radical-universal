@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Conversions;
-using Topics.Radical.Reflection;
-using Topics.Radical.Windows.Behaviors;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.ComponentModel.Messaging;
+using Radical.Conversions;
+using Radical.Reflection;
+using Radical.Windows.Behaviors;
+using Radical.Windows.Presentation.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Topics.Radical.Windows.Presentation.Services
+namespace Radical.Windows.Presentation.Services
 {
     /// <summary>
     /// Handles Presentation conventions.

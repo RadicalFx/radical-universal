@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-//using Topics.Radical.Validation;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Validation;
+//using Radical.Validation;
+using Radical.ComponentModel;
+using Radical.Validation;
 using System.Threading.Tasks;
-//using Topics.Radical.Linq;
+//using Radical.Linq;
 
-namespace Topics.Radical
+namespace Radical
 {
     /// <summary>
     /// The Puzzle inversion of control container.

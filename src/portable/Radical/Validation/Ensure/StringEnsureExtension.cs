@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
 	/// <summary>
 	/// Extends the generic Ensure class to add behaviors when the inspected object

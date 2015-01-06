@@ -1,10 +1,10 @@
-﻿namespace Topics.Radical.ChangeTracking
+﻿namespace Radical.ChangeTracking
 {
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Validation;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Validation;
 
 	/// <summary>
 	/// Offers a default implementation of the <see cref="IAdvisoryBuilder"/> interface.

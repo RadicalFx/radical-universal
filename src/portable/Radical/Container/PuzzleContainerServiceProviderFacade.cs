@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
-using Topics.Radical.ComponentModel;
+using Radical.ComponentModel;
 
-namespace Topics.Radical
+namespace Radical
 {
 	public class PuzzleContainerServiceProviderFacade : IServiceProvider
 	{

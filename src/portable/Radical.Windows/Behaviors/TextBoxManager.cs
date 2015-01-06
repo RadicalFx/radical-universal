@@ -7,7 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
-namespace Topics.Radical.Windows.Behaviors
+namespace Radical.Windows.Behaviors
 {
     public static class TextBoxManager
     {

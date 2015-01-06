@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.Windows.Behaviors;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.Windows.Behaviors;
+using Radical.Windows.Presentation.ComponentModel;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Topics.Radical.Windows.Presentation.Behaviors
+namespace Radical.Windows.Presentation.Behaviors
 {
     public class PageKeyboardMouseNavigationBehavior : RadicalBehavior<Page>
     {

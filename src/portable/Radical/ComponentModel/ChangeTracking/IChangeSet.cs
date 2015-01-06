@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-namespace Topics.Radical.ComponentModel.ChangeTracking
+namespace Radical.ComponentModel.ChangeTracking
 {
 
 	/// <summary>

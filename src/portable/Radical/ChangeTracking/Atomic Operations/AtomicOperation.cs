@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Topics.Radical.ComponentModel.ChangeTracking;
+using Radical.ComponentModel.ChangeTracking;
 
-namespace Topics.Radical.ChangeTracking
+namespace Radical.ChangeTracking
 {
 	sealed class AtomicOperation : IAtomicOperation
 	{

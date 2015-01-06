@@ -1,8 +1,8 @@
-﻿namespace Topics.Radical.ChangeTracking
+﻿namespace Radical.ChangeTracking
 {
 	using System.Collections.Generic;
-	using Topics.Radical.Collections;
-	using Topics.Radical.ComponentModel.ChangeTracking;
+	using Radical.Collections;
+	using Radical.ComponentModel.ChangeTracking;
 
 	/// <summary>
 	/// An advisory is a read-only list of <c>IAdvisedAction</c>(s) that describes

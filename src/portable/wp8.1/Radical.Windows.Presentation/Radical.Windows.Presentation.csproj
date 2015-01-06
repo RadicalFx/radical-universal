@@ -8,7 +8,7 @@
     <ProjectGuid>{F849F4E8-580F-4D8E-919E-B5545B9602D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Topics.Radical.Windows.Presentation</RootNamespace>
+    <RootNamespace>Radical.Windows.Presentation</RootNamespace>
     <AssemblyName>Radical.Windows.Presentation</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -34,17 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\..\Radical.Windows\Radical.Windows.csproj">
-      <Project>{471563fd-8737-458d-9a9b-31cecf479808}</Project>
-      <Name>Radical.Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Radical\Radical.csproj">
-      <Project>{53002372-02b3-4cea-be25-350fd8ffcd50}</Project>
-      <Name>Radical</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\..\..\..\lib\Radical.AssemblyInfo.cs">
       <Link>Properties\Radical.AssemblyInfo.cs</Link>
     </Compile>
@@ -69,6 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Radical.Windows\Radical.Windows.csproj">
+      <Project>{471563fd-8737-458d-9a9b-31cecf479808}</Project>
+      <Name>Radical.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Radical\Radical.csproj">
+      <Project>{53002372-02b3-4cea-be25-350fd8ffcd50}</Project>
+      <Name>Radical</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems" Label="Shared" Condition="Exists('..\..\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />

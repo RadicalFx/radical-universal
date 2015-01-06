@@ -1,7 +1,7 @@
-﻿namespace Topics.Radical.ChangeTracking.Specialized
+﻿namespace Radical.ChangeTracking.Specialized
 {
 	using System;
-	using Topics.Radical.ComponentModel.ChangeTracking;
+	using Radical.ComponentModel.ChangeTracking;
 
 	/// <summary>
 	/// A base, abstract, change class specific for a collection change.

@@ -1,8 +1,8 @@
 ﻿//using System;
 //using System.Reflection;
-//using Topics.Radical.Reflection;
+//using Radical.Reflection;
 
-//namespace Topics.Radical.Validation
+//namespace Radical.Validation
 //{
 //    /// <summary>
 //    /// Defines some extensions facilities for the <see cref="Ensure"/> class

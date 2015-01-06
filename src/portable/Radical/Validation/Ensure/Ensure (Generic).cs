@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
     /// <summary>
     /// Enusre is a simple, fluent based, engine usefull to validate

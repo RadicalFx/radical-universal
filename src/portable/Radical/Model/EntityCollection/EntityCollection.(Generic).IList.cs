@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	partial class EntityCollection<T>
 	{

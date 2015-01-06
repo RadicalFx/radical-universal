@@ -52,25 +52,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radical.Windows.Presentatio
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical.Windows.Presentation", "src\portable\Radical.Windows.Presentation\Radical.Windows.Presentation.shproj", "{27AA37DD-2B92-4C7E-82C6-DB1CDC8ED973}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical.Windows.Presentation.Puzzle", "src\portable\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.shproj", "{056F9185-F355-4CE5-BA11-E2C93E16C523}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radical.Windows.Presentation.Puzzle", "src\portable\wp8.1\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.csproj", "{5202AE37-AF57-448F-AE95-DD2BE774E58C}"
-EndProject
-Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Radical.Windows.Presentation.Puzzle", "src\nuget\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.nuproj", "{F7522545-ABF0-4F04-BEA3-97B200972D04}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wp8+win8", "wp8+win8", "{4DAB4692-B056-40A9-AEFC-4545F30AE33D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radical.Windows.Presentation.Conventions.Settings", "src\portable\win8.1\Radical.Windows.Presentation.Conventions.Settings\Radical.Windows.Presentation.Conventions.Settings.csproj", "{B4B63892-FC31-4FD1-B1D8-1C1762AB58BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Universal", "Universal", "{B5F8E2EA-6BBE-4630-A675-4093F90C86D4}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\portable\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.projitems*{516800de-361f-40cd-949b-edb990e500a9}*SharedItemsImports = 4
 		src\portable\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{00975b57-4823-4f0d-8e21-8c2e5270fd73}*SharedItemsImports = 4
 		src\portable\Radical.Samples.Universal\Radical.Samples.Universal.Shared\Radical.Samples.Universal.Shared.projitems*{71565e4a-58ba-4af0-9e76-e606d1333081}*SharedItemsImports = 13
 		src\portable\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{27aa37dd-2b92-4c7e-82c6-db1cdc8ed973}*SharedItemsImports = 13
-		src\portable\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.projitems*{056f9185-f355-4ce5-ba11-e2c93e16c523}*SharedItemsImports = 13
 		src\portable\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{f849f4e8-580f-4d8e-919e-b5545b9602d4}*SharedItemsImports = 4
-		src\portable\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.projitems*{5202ae37-af57-448f-ae95-dd2be774e58c}*SharedItemsImports = 4
 		src\portable\Radical.Samples.Universal\Radical.Samples.Universal.Shared\Radical.Samples.Universal.Shared.projitems*{5a46389b-c64a-4efd-9118-d34d31c681f3}*SharedItemsImports = 4
 		src\portable\Radical.Samples.Universal\Radical.Samples.Universal.Shared\Radical.Samples.Universal.Shared.projitems*{5e4c1bd2-34dd-4dcc-8414-0238d3f8f07c}*SharedItemsImports = 4
 	EndGlobalSection
@@ -243,16 +238,6 @@ Global
 		{5202AE37-AF57-448F-AE95-DD2BE774E58C}.Release|ARM.ActiveCfg = Release|Any CPU
 		{5202AE37-AF57-448F-AE95-DD2BE774E58C}.Release|x64.ActiveCfg = Release|Any CPU
 		{5202AE37-AF57-448F-AE95-DD2BE774E58C}.Release|x86.ActiveCfg = Release|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Release|ARM.ActiveCfg = Release|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Release|x64.ActiveCfg = Release|Any CPU
-		{F7522545-ABF0-4F04-BEA3-97B200972D04}.Release|x86.ActiveCfg = Release|Any CPU
 		{B4B63892-FC31-4FD1-B1D8-1C1762AB58BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4B63892-FC31-4FD1-B1D8-1C1762AB58BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4B63892-FC31-4FD1-B1D8-1C1762AB58BA}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -283,13 +268,14 @@ Global
 		{71565E4A-58BA-4AF0-9E76-E606D1333081} = {D8751E83-C3A4-4DED-9025-7CDD4D3BC9DF}
 		{5E4C1BD2-34DD-4DCC-8414-0238D3F8F07C} = {D8751E83-C3A4-4DED-9025-7CDD4D3BC9DF}
 		{5A46389B-C64A-4EFD-9118-D34D31C681F3} = {D8751E83-C3A4-4DED-9025-7CDD4D3BC9DF}
+		{596B10E0-47BF-4F26-8E67-628A4710C686} = {B5F8E2EA-6BBE-4630-A675-4093F90C86D4}
+		{FC891D35-BFD8-4B1F-B22C-DE20652758F2} = {B5F8E2EA-6BBE-4630-A675-4093F90C86D4}
 		{00975B57-4823-4F0D-8E21-8C2E5270FD73} = {596B10E0-47BF-4F26-8E67-628A4710C686}
 		{F849F4E8-580F-4D8E-919E-B5545B9602D4} = {FC891D35-BFD8-4B1F-B22C-DE20652758F2}
 		{516800DE-361F-40CD-949B-EDB990E500A9} = {596B10E0-47BF-4F26-8E67-628A4710C686}
 		{27AA37DD-2B92-4C7E-82C6-DB1CDC8ED973} = {4DAB4692-B056-40A9-AEFC-4545F30AE33D}
-		{056F9185-F355-4CE5-BA11-E2C93E16C523} = {4DAB4692-B056-40A9-AEFC-4545F30AE33D}
 		{5202AE37-AF57-448F-AE95-DD2BE774E58C} = {FC891D35-BFD8-4B1F-B22C-DE20652758F2}
-		{F7522545-ABF0-4F04-BEA3-97B200972D04} = {557CC2FF-843C-4096-B12B-6F9A8884FA3E}
+		{4DAB4692-B056-40A9-AEFC-4545F30AE33D} = {B5F8E2EA-6BBE-4630-A675-4093F90C86D4}
 		{B4B63892-FC31-4FD1-B1D8-1C1762AB58BA} = {596B10E0-47BF-4F26-8E67-628A4710C686}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

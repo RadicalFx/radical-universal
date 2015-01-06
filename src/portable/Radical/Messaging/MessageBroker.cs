@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.ComponentModel.Messaging;
+using Radical.ComponentModel;
+using Radical.ComponentModel.Messaging;
 using System.Reflection;
-using Topics.Radical.Validation;
-using Topics.Radical.Linq;
-using Topics.Radical.Reflection;
+using Radical.Validation;
+using Radical.Linq;
+using Radical.Reflection;
 using System.Diagnostics;
-using Topics.Radical.Conversions;
+using Radical.Conversions;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 
-namespace Topics.Radical.Messaging
+namespace Radical.Messaging
 {
     /// <summary>
     /// A message broker is a mediator used to dispatch and 

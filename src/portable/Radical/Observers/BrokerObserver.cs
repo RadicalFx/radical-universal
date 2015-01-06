@@ -1,8 +1,8 @@
 ﻿using System;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Validation;
+using Radical.ComponentModel.Messaging;
+using Radical.Validation;
 
-namespace Topics.Radical.Observers
+namespace Radical.Observers
 {
     /// <summary>
     /// A static entry to simplify the creation a <see cref="MessageBrokerMonitor"/>.

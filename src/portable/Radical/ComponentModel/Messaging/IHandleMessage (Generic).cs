@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.ComponentModel.Messaging
+﻿namespace Radical.ComponentModel.Messaging
 {
 	/// <summary>
     /// An <c>IHandleMessage</c> is a component spcialized

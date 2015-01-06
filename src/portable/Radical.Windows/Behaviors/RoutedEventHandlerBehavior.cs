@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Behaviors
+namespace Radical.Windows.Behaviors
 {
     public class Handle : RadicalBehavior<FrameworkElement>
     {

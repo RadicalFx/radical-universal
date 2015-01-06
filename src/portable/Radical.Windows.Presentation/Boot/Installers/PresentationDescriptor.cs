@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Composition;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Linq;
+using Radical.ComponentModel;
+using Radical.Linq;
 using System.Threading.Tasks;
 
-namespace Topics.Radical.Windows.Presentation.Boot.Installers
+namespace Radical.Windows.Presentation.Boot.Installers
 {
 	[Export( typeof( IPuzzleSetupDescriptor ) )]
 	public class PresentationDescriptor : IPuzzleSetupDescriptor

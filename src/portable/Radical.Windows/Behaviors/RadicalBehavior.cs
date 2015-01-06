@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.Validation;
-using Topics.Radical.Linq;
+using Radical.Validation;
+using Radical.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace Topics.Radical.Windows.Behaviors
+namespace Radical.Windows.Behaviors
 {
     public abstract class RadicalBehavior : FrameworkElement
     {

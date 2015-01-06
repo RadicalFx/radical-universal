@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Windows.Presentation.ComponentModel;
+using Radical.ComponentModel.Messaging;
+using Radical.Windows.Presentation.ComponentModel;
 using System.Reflection;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
@@ -15,15 +15,15 @@ using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel;
 using System.IO;
-using Topics.Radical.Windows.Presentation.Messaging;
-using Topics.Radical.Windows.Presentation.Navigation.Hosts;
+using Radical.Windows.Presentation.Messaging;
+using Radical.Windows.Presentation.Navigation.Hosts;
 using Windows.UI.Xaml.Media.Animation;
 #if WINDOWS_APP
 using Windows.ApplicationModel.Search;
 using Windows.UI.ApplicationSettings;
 #endif
 
-namespace Topics.Radical.Windows.Presentation.Boot
+namespace Radical.Windows.Presentation.Boot
 {
     /// <summary>
     /// The application bootstrapper. Provides a way to dramatically simplifly the

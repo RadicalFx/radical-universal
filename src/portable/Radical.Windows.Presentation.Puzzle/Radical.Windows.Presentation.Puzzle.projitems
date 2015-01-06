@@ -9,13 +9,6 @@
     <Import_RootNamespace>Radical.Samples.Universal</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\InjectViewInRegionFacility.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\DefaultDescriptor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\PresentationDescriptor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\ServicesDescriptor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\___UICompositionInstaller.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper (Generic).cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NugetInfo.cs" />
   </ItemGroup>
 </Project>

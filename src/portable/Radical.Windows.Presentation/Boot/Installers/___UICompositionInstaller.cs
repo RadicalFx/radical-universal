@@ -2,10 +2,10 @@
 //using Castle.Core;
 //using Castle.MicroKernel.Registration;
 //using Castle.Windsor;
-//using Topics.Radical.Windows.Presentation.ComponentModel;
-//using Topics.Radical.Windows.Presentation.Regions;
+//using Radical.Windows.Presentation.ComponentModel;
+//using Radical.Windows.Presentation.Regions;
 
-//namespace Topics.Radical.Windows.Presentation.Boot.Installers
+//namespace Radical.Windows.Presentation.Boot.Installers
 //{
 //	/// <summary>
 //	/// A Windsor installer.

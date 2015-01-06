@@ -8,7 +8,7 @@
     <ProjectGuid>{5202AE37-AF57-448F-AE95-DD2BE774E58C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Topics.Radical.Windows.Presentation.Puzzle</RootNamespace>
+    <RootNamespace>Radical.Windows.Presentation.Puzzle</RootNamespace>
     <AssemblyName>Radical.Windows.Presentation.Puzzle</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -73,7 +73,6 @@
       <Name>Radical.Windows.Presentation</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\..\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.projitems" Label="Shared" Condition="Exists('..\..\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wp8" md "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wp8"

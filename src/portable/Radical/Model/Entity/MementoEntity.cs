@@ -1,15 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
-using Topics.Radical.ChangeTracking.Specialized;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.ComponentModel.ChangeTracking;
-using Topics.Radical.Validation;
+using Radical.ChangeTracking.Specialized;
+using Radical.ComponentModel;
+using Radical.ComponentModel.ChangeTracking;
+using Radical.Validation;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Topics.Radical.Linq;
+using Radical.Linq;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	/// <summary>
 	/// The <c>MementoEntity</c> class provides full support for the change tracking

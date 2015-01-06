@@ -1,10 +1,10 @@
-﻿namespace Topics.Radical.ChangeTracking
+﻿namespace Radical.ChangeTracking
 {
 	using System.Linq;
 	using System.Collections;
 	using System.Collections.Generic;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.Linq;
+	using Radical.ComponentModel.ChangeTracking;
+	using Radical.Linq;
 
 	public class ChangeSetDistinctVisitor : IChangeSetDistinctVisitor
 	{

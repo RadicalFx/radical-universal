@@ -1,13 +1,13 @@
 ﻿using System;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Validation;
+using Radical.ComponentModel;
+using Radical.Validation;
 using System.Reflection;
 using System.ComponentModel;
-using Topics.Radical.Reflection;
+using Radical.Reflection;
 using System.Diagnostics;
 using Windows.UI.Core;
 
-namespace Topics.Radical.Observers
+namespace Radical.Observers
 {
     /// <summary>
     /// A base abstract observer, based on the IMonitor interface

@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Topics.Radical.Validation;
+using Radical.Validation;
 using System.Collections.Generic;
-using Topics.Radical.Collections;
+using Radical.Collections;
 using System.Reflection;
 
-namespace Topics.Radical
+namespace Radical
 {
 	/// <summary>
 	/// Adds behaviors to the <c>String</c> class.

@@ -1,9 +1,9 @@
 ﻿using System;
-using Topics.Radical.Validation;
-using Topics.Radical.ComponentModel.Factories;
-using Topics.Radical.ComponentModel.ChangeTracking;
+using Radical.Validation;
+using Radical.ComponentModel.Factories;
+using Radical.ComponentModel.ChangeTracking;
 
-namespace Topics.Radical.Model.Factories
+namespace Radical.Model.Factories
 {
 	public class ChangeTrackingServiceFactory : IChangeTrackingServiceFactory
 	{

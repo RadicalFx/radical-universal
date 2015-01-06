@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 
-namespace Topics.Radical
+namespace Radical
 {
 	namespace ComponentModel
 	{
@@ -22,13 +22,13 @@ namespace Topics.Radical
 		{
 			public void TrackUserActionAsync( Analytics.AnalyticsEvent action )
 			{
-				Topics.Radical.Analytics.AnalyticsServices.TrackUserActionAsync( action );
+				Radical.Analytics.AnalyticsServices.TrackUserActionAsync( action );
 			}
 
 			public bool IsEnabled
 			{
-				get { return Topics.Radical.Analytics.AnalyticsServices.IsEnabled; }
-				set { Topics.Radical.Analytics.AnalyticsServices.IsEnabled = value; }
+				get { return Radical.Analytics.AnalyticsServices.IsEnabled; }
+				set { Radical.Analytics.AnalyticsServices.IsEnabled = value; }
 			}
 		}
 	}

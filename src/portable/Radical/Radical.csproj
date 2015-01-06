@@ -9,7 +9,7 @@
     <ProjectGuid>{53002372-02B3-4CEA-BE25-350FD8FFCD50}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Topics.Radical</RootNamespace>
+    <RootNamespace>Radical</RootNamespace>
     <AssemblyName>Radical</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

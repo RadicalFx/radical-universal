@@ -1,11 +1,11 @@
-﻿namespace Topics.Radical.Reflection
+﻿namespace Radical.Reflection
 {
 	using System;
 	using System.Linq;
 	using System.ComponentModel;
 	using System.Linq.Expressions;
 	using System.Reflection;
-	using Topics.Radical.Linq;
+	using Radical.Linq;
 	using System.Collections.Generic;
 
 	///// <summary>

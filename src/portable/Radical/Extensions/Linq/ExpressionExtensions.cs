@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Topics.Radical.Linq
+namespace Radical.Linq
 {
 	/// <summary>
 	/// Extends the expression class.

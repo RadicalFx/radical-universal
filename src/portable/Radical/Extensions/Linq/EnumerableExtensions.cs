@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Topics.Radical.Validation;
-using Topics.Radical;
+using Radical.Validation;
+using Radical;
 using System.Collections;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Collections;
+using Radical.ComponentModel;
+using Radical.Collections;
 
-namespace Topics.Radical.Linq
+namespace Radical.Linq
 {
 	/// <summary>
 	/// Adds behaviors to the generic <c>IEnumerable</c> interface.

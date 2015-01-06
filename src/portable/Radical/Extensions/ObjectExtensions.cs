@@ -1,8 +1,8 @@
 ﻿using System;
-using Topics.Radical.Validation;
-using Topics.Radical.Conversions;
+using Radical.Validation;
+using Radical.Conversions;
 
-namespace Topics.Radical
+namespace Radical
 {
 	/// <summary>
 	/// Adds behaviors to the base object class.

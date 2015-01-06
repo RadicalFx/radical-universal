@@ -1,10 +1,10 @@
 ﻿#if WINDOWS_APP
-using Topics.Radical.Windows.Behaviors;
+using Radical.Windows.Behaviors;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Topics.Radical.Windows.Presentation.Behaviors
+namespace Radical.Windows.Presentation.Behaviors
 {
     public class ControlLayoutUpdatesBehavior : RadicalBehavior<Control>
     {

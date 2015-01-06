@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 
-namespace Topics.Radical.Windows.Presentation.Navigation.Hosts
+namespace Radical.Windows.Presentation.Navigation.Hosts
 {
 	public abstract class NavigationHost
 	{

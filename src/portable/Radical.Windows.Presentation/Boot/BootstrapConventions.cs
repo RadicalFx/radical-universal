@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Topics.Radical.Reflection;
-using Topics.Radical;
-using Topics.Radical.ComponentModel;
-//using Topics.Radical.Windows.Presentation.ComponentModel.Regions;
-using Topics.Radical.ComponentModel.Messaging;
+using Radical.Reflection;
+using Radical;
+using Radical.ComponentModel;
+//using Radical.Windows.Presentation.ComponentModel.Regions;
+using Radical.ComponentModel.Messaging;
 
-namespace Topics.Radical.Windows.Presentation.Boot
+namespace Radical.Windows.Presentation.Boot
 {
     public class BootstrapConventions
     {

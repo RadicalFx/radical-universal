@@ -6,15 +6,15 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.ComponentModel.Messaging;
-using Topics.Radical.Messaging;
+using Radical.ComponentModel;
+using Radical.ComponentModel.Messaging;
+using Radical.Messaging;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Topics.Radical.Linq;
+using Radical.Linq;
 
-namespace Topics.Radical.Windows.Presentation.Boot.Installers
+namespace Radical.Windows.Presentation.Boot.Installers
 {
 	[Export( typeof( IPuzzleSetupDescriptor ) )]
 	public class DefaultDescriptor : IPuzzleSetupDescriptor

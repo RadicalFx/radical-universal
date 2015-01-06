@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Radical.Samples.Universal.Common;
-using Topics.Radical.Windows.Presentation.Boot;
+using Radical.Windows.Presentation.Boot;
 
 // The Universal Hub Application project template is documented at http://go.microsoft.com/fwlink/?LinkID=391955
 

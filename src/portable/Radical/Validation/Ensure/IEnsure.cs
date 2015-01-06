@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Topics.Radical.Validation
+namespace Radical.Validation
 {
 	/// <summary>
 	/// Defines an ensure configured and attached on a type.

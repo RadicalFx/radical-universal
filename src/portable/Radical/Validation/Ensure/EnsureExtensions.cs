@@ -1,4 +1,4 @@
-﻿namespace Topics.Radical.Validation
+﻿namespace Radical.Validation
 {
 	using System;
 

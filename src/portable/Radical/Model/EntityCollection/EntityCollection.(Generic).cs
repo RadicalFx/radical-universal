@@ -6,12 +6,12 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Topics.Radical.ComponentModel;
-using Topics.Radical.Linq;
-using Topics.Radical.Validation;
+using Radical.ComponentModel;
+using Radical.Linq;
+using Radical.Validation;
 using System.Linq.Expressions;
 
-namespace Topics.Radical.Model
+namespace Radical.Model
 {
 	[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2240:ImplementISerializableCorrectly" )]
 	public partial class EntityCollection<T> :
