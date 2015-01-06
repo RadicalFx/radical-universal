@@ -16,6 +16,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\PageKeyboardMouseNavigationBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\ApplicationBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\BootstrapConventions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\InjectViewInRegionFacility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\DefaultDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\PresentationDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\ServicesDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\___UICompositionInstaller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IConventionsHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IExpectNavigatedAwayCallback.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IExpectNavigatedToCallback.cs" />
