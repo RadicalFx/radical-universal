@@ -72,11 +72,11 @@
   <Import Project="..\..\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems" Label="Shared" Condition="Exists('..\..\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wp8" md "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wp8"
+    <PostBuildEvent>if not exist "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wpa8" md "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wpa8"
 
-copy "$(TargetDir)$(TargetName).*" "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wp8\$(TargetName).*" /B /Y
+copy "$(TargetDir)$(TargetName).*" "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wpa8\$(TargetName).*" /B /Y
 
-del "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wp8\$(TargetFileName).config"</PostBuildEvent>
+del "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-wpa8\$(TargetFileName).config"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
