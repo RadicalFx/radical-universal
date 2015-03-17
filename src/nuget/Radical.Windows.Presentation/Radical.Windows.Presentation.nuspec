@@ -15,10 +15,8 @@
     <language>en-US</language>
     <tags>Radical.Universal Radical.Windows.Universal</tags>
     <dependencies>
-      <group targetFramework="wpa81">
-        <dependency id="Microsoft.Composition" version="1.0.27" />
-        <dependency id="Radical.Windows.Universal" version="0.0.0.1-Alfa" />
-      </group>
+      <dependency id="Microsoft.Composition" version="1.0.27" />
+      <dependency id="Radical.Windows.Universal" version="0.0.0.1-Alfa" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework=".NETFramework4.0" />

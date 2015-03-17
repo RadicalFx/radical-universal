@@ -30,6 +30,7 @@ EndProject
 Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Radical.Windows.Presentation", "src\nuget\Radical.Windows.Presentation\Radical.Windows.Presentation.nuproj", "{14EF774C-241F-45AA-B625-4598D6C3133E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{00975B57-4823-4F0D-8E21-8C2E5270FD73} = {00975B57-4823-4F0D-8E21-8C2E5270FD73}
+		{F849F4E8-580F-4D8E-919E-B5545B9602D4} = {F849F4E8-580F-4D8E-919E-B5545B9602D4}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Radical.Samples.Universal", "Radical.Samples.Universal", "{D8751E83-C3A4-4DED-9025-7CDD4D3BC9DF}"
