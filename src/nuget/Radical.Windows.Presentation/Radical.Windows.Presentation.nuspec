@@ -3,7 +3,7 @@
   <metadata>
     <id>Radical.Windows.Presentation.Universal</id>
     <title>Radical Windows Presentation</title>
-    <version>0.0.0.1-Alfa</version>
+    <version>0.0.0.2-Alfa</version>
     <authors>Mauro Servienti, Enos Recanati, Michael Denny</authors>
     <owners>radical,mauroservienti</owners>
     <licenseUrl>https://github.com/RadicalFx/radical/blob/develop/license.md</licenseUrl>
@@ -16,7 +16,7 @@
     <tags>Radical.Universal Radical.Windows.Universal</tags>
     <dependencies>
       <dependency id="Microsoft.Composition" version="1.0.27" />
-      <dependency id="Radical.Windows.Universal" version="0.0.0.1-Alfa" />
+      <dependency id="Radical.Windows.Universal" version="0.0.0.2-Alfa" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework=".NETFramework4.0" />

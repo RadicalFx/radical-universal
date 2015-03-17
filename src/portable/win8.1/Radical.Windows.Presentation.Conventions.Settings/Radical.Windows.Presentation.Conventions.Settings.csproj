@@ -142,11 +142,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- <Import Project="$(SolutionDir)\.nuget\nuget.targets" /> -->
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-win8" md "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-win8"
+    <PostBuildEvent>if not exist "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\win8" md "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\win8"
 
-copy "$(TargetDir)$(TargetName).*" "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-win8\$(TargetName).*" /B /Y
+copy "$(TargetDir)$(TargetName).*" "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\win8\$(TargetName).*" /B /Y
 
-del "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\portable-win8\$(TargetFileName).config"</PostBuildEvent>
+del "$(SolutionDir)build\$(ConfigurationName)\$(ProjectName)\lib\win8\$(TargetFileName).config"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -156,10 +156,6 @@
       <Project>{53002372-02b3-4cea-be25-350fd8ffcd50}</Project>
       <Name>Radical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\wp8.1\Radical.Windows.Presentation.Puzzle\Radical.Windows.Presentation.Puzzle.csproj">
-      <Project>{5202ae37-af57-448f-ae95-dd2be774e58c}</Project>
-      <Name>Radical.Windows.Presentation.Puzzle</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\wp8.1\Radical.Windows.Presentation\Radical.Windows.Presentation.csproj">
       <Project>{f849f4e8-580f-4d8e-919e-b5545b9602d4}</Project>
       <Name>Radical.Windows.Presentation</Name>

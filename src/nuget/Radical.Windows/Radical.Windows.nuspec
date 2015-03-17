@@ -3,7 +3,7 @@
   <metadata>
     <id>Radical.Windows.Universal</id>
     <title>Radical Windows</title>
-    <version>0.0.0.1-Alfa</version>
+    <version>0.0.0.2-Alfa</version>
     <authors>Mauro Servienti, Enos Recanati, Michael Denny</authors>
     <owners>radical,mauroservienti</owners>
     <licenseUrl>https://github.com/RadicalFx/radical/blob/develop/license.md</licenseUrl>
@@ -15,7 +15,7 @@
     <language>en-US</language>
     <tags>Radical.Universal Radical.Windows.Universal</tags>
     <dependencies>
-      <dependency id="Radical.Universal" version="0.0.0.1-Alfa" />
+      <dependency id="Radical.Universal" version="0.0.0.2-Alfa" />
     </dependencies>
   </metadata>
   <files>
