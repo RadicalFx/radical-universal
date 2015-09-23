@@ -1,5 +1,4 @@
 ﻿using Radical.ComponentModel;
-using Windows.UI.Core;
 
 namespace Radical.Observers
 {
@@ -24,7 +23,7 @@ namespace Radical.Observers
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="dispatcher">The dispatcher.</param>
-        protected AbstractMonitor( T source, CoreDispatcher dispatcher )
+        protected AbstractMonitor( T source, IDispatcher dispatcher )
             : base( source, dispatcher )
         {
 
@@ -43,7 +42,7 @@ namespace Radical.Observers
         /// Initializes a new instance of the <see cref="AbstractMonitor&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="dispatcher">The dispatcher.</param>
-        protected AbstractMonitor( CoreDispatcher dispatcher )
+        protected AbstractMonitor( IDispatcher dispatcher )
             : base( dispatcher )
         {
 

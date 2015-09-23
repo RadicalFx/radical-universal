@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Radical.ComponentModel.ChangeTracking;
-using Radical.Validation;
 using Radical.ComponentModel;
-using Windows.UI.Core;
 
 namespace Radical.Observers
 {
@@ -16,7 +11,7 @@ namespace Radical.Observers
             return new MementoMonitor( source );
         }
 
-        public static MementoMonitor Monitor( IChangeTrackingService source, CoreDispatcher dispatcher )
+        public static MementoMonitor Monitor( IChangeTrackingService source, IDispatcher dispatcher )
         {
             return new MementoMonitor( source, dispatcher );
         }
@@ -32,7 +27,7 @@ namespace Radical.Observers
 
         }
 
-        public MementoMonitor( IChangeTrackingService source, CoreDispatcher dispatcher )
+        public MementoMonitor( IChangeTrackingService source, IDispatcher dispatcher )
             : base( source, dispatcher )
         {
             handler = ( s, e ) => this.OnChanged();

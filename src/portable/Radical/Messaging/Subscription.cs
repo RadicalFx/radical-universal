@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Radical.ComponentModel;
 using Radical.ComponentModel.Messaging;
 using Radical.Validation;
-using Radical.ComponentModel;
-using Windows.UI.Core;
 
 namespace Radical.Messaging
 {
 	interface ISubscription
 	{
-		Object Subscriber { get; }
-		Object Sender { get; }
+		object Subscriber { get; }
+		object Sender { get; }
 
 		InvocationModel InvocationModel { get; }
 
@@ -21,79 +17,17 @@ namespace Radical.Messaging
 		/// <summary>
 		/// The subscriber invocation model is based on the <see cref="InvocationModel"/> property.
 		/// </summary>
+		/// <param name="sender">The message sender.</param>
 		/// <param name="message">The message.</param>
-		void Invoke( Object sender, Object message );
+		void Invoke( object sender, object message );
 	}
-
-    //class Subscription<T> : ISubscription where T : class
-    //{
-    //    readonly CoreDispatcher dispatcher;
-    //    readonly Action<object, T> action;
-
-    //    public Subscription( Object subscriber, Action<object, T> action, InvocationModel invocationModel, CoreDispatcher dispatcher )
-    //    {
-    //        Ensure.That( subscriber ).Named( () => subscriber ).IsNotNull();
-    //        Ensure.That( action ).Named( () => action ).IsNotNull();
-    //        Ensure.That( dispatcher ).Named( () => dispatcher ).IsNotNull();
-
-    //        this.Subscriber = subscriber;
-    //        this.action = action;
-    //        this.Sender = null;
-    //        this.InvocationModel = invocationModel;
-    //        this.dispatcher = dispatcher;
-    //    }
-
-    //    public Subscription( Object subscriber, Object sender, Action<object, T> action, InvocationModel invocationModel, CoreDispatcher dispatcher )
-    //    {
-    //        Ensure.That( subscriber ).Named( () => subscriber ).IsNotNull();
-    //        Ensure.That( sender ).Named( () => sender ).IsNotNull();
-    //        Ensure.That( action ).Named( () => action ).IsNotNull();
-    //        Ensure.That( dispatcher ).Named( () => dispatcher ).IsNotNull();
-
-    //        this.Subscriber = subscriber;
-    //        this.action = action;
-    //        this.Sender = sender;
-    //        this.InvocationModel = invocationModel;
-    //        this.dispatcher = dispatcher;
-    //    }
-
-    //    public Delegate GetAction()
-    //    {
-    //        return this.action;
-    //    }
-
-    //    public Object Subscriber { get; private set; }
-
-    //    public Object Sender { get; private set; }
-
-    //    public InvocationModel InvocationModel { get; private set; }
-
-    //    public void Invoke( Object sender, Object message )
-    //    {
-    //        InvokeCore( this.dispatcher, this.action, sender, ( T )message, this.InvocationModel );
-    //    }
-
-    //    static void InvokeCore( CoreDispatcher dispatcher, Action<object, T> action, object sender, T message, InvocationModel type )
-    //    {
-    //        if( type == InvocationModel.Safe && !dispatcher.HasThreadAccess )
-    //        {
-    //            dispatcher.RunAsync( CoreDispatcherPriority.Normal, () => action( sender, message ) )
-    //                .AsTask()
-    //                .Wait();
-    //        }
-    //        else
-    //        {
-    //            action( sender, ( T )message );
-    //        }
-    //    }
-    //}
 
     class Subscription : ISubscription
     {
-        readonly CoreDispatcher dispatcher;
+        readonly IDispatcher dispatcher;
         readonly Delegate action;
 
-        public Subscription( Object subscriber, Delegate action, InvocationModel invocationModel, CoreDispatcher dispatcher )
+        public Subscription( object subscriber, Delegate action, InvocationModel invocationModel, IDispatcher dispatcher )
         {
             Ensure.That( subscriber ).Named( () => subscriber ).IsNotNull();
             Ensure.That( action ).Named( () => action ).IsNotNull();
@@ -106,7 +40,7 @@ namespace Radical.Messaging
             this.dispatcher = dispatcher;
         }
 
-        public Subscription( Object subscriber, Object sender, Delegate action, InvocationModel invocationModel, CoreDispatcher dispatcher )
+        public Subscription( object subscriber, object sender, Delegate action, InvocationModel invocationModel, IDispatcher dispatcher )
         {
             Ensure.That( subscriber ).Named( () => subscriber ).IsNotNull();
             Ensure.That( sender ).Named( () => sender ).IsNotNull();
@@ -125,19 +59,20 @@ namespace Radical.Messaging
             return this.action;
         }
 
-        public Object Subscriber { get; private set; }
+        public object Subscriber { get; private set; }
 
-        public Object Sender { get; private set; }
+        public object Sender { get; private set; }
 
         public InvocationModel InvocationModel { get; private set; }
 
-        public void Invoke( Object sender, Object message )
+        public void Invoke( object sender, object message )
         {
-            if ( this.InvocationModel == InvocationModel.Safe && !dispatcher.HasThreadAccess )
+            if ( this.InvocationModel == InvocationModel.Safe && !dispatcher.IsSafe )
             {
-                dispatcher.RunAsync( CoreDispatcherPriority.Normal, () => this.action.DynamicInvoke( sender, message ) )
-                    .AsTask()
-                    .Wait();
+                //dispatcher.RunAsync( CoreDispatcherPriority.Normal, () => this.action.DynamicInvoke( sender, message ) )
+                //    .AsTask()
+                //    .Wait();
+	            dispatcher.Dispatch(() => this.action.DynamicInvoke(sender, message));
             }
             else
             {

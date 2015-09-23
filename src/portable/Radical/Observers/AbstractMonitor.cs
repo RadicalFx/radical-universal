@@ -5,7 +5,6 @@ using System.Reflection;
 using System.ComponentModel;
 using Radical.Reflection;
 using System.Diagnostics;
-using Windows.UI.Core;
 
 namespace Radical.Observers
 {
@@ -24,9 +23,10 @@ namespace Radical.Observers
         /// </summary>
         protected virtual void OnChanged()
         {
-            if ( this.Dispatcher != null && !this.Dispatcher.HasThreadAccess )
+            if ( this.Dispatcher != null && !this.Dispatcher.IsSafe )
             {
-                this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => this.OnChanged() );
+                //this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => this.OnChanged() );
+				this.Dispatcher.Dispatch(() => this.OnChanged());
             }
             else
             {
@@ -42,7 +42,7 @@ namespace Radical.Observers
         /// Gets the dispatcher.
         /// </summary>
         /// <value>The dispatcher.</value>
-        protected CoreDispatcher Dispatcher { get; private set; }
+        protected IDispatcher Dispatcher { get; private set; }
 
         /// <summary>
         /// Asks this monitor to raise a change notification in order
@@ -65,7 +65,7 @@ namespace Radical.Observers
         /// Initializes a new instance of the <see cref="AbstractMonitor"/> class.
         /// </summary>
         /// <param name="dispatcher">The dispatcher.</param>
-        protected AbstractMonitor( CoreDispatcher dispatcher )
+        protected AbstractMonitor( IDispatcher dispatcher )
         {
             this.Dispatcher = dispatcher;
         }
@@ -86,7 +86,7 @@ namespace Radical.Observers
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="dispatcher">The dispatcher.</param>
-        protected AbstractMonitor( Object source, CoreDispatcher dispatcher )
+        protected AbstractMonitor( Object source, IDispatcher dispatcher )
             : this( source )
         {
             this.Dispatcher = dispatcher;

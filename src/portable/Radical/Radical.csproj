@@ -18,9 +18,9 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -112,11 +112,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <TargetPlatform Include="Windows, Version=8.1" />
-    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\..\..\lib\Radical.AssemblyInfo.cs">
       <Link>Properties\Radical.AssemblyInfo.cs</Link>
     </Compile>
@@ -165,6 +160,7 @@
     <Compile Include="ComponentModel\Container\IPuzzleContainerFacility.cs" />
     <Compile Include="ComponentModel\Container\IPuzzleSetupDescriptor.cs" />
     <Compile Include="ComponentModel\Container\Lifestyle.cs" />
+    <Compile Include="ComponentModel\IDispatcher.cs" />
     <Compile Include="ComponentModel\Messaging\IHandleMessage %28Generic%29.cs" />
     <Compile Include="ComponentModel\Messaging\IHandleMessage.cs" />
     <Compile Include="Container\PuzzleContainerServiceProviderFacade.cs" />
@@ -243,7 +239,8 @@
     <Compile Include="Observers\MementoObserver.cs" />
     <Compile Include="Observers\PropertyObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\ComponentModel\EventHandlerList.WinRT.cs" />
+    <Compile Include="System\ComponentModel\EventHandlerList.Universal.cs" />
+    <Compile Include="Threading\NullDispatcher.cs" />
     <Compile Include="Validation\Ensure\ArrayEnsureExtension.cs" />
     <Compile Include="Validation\Ensure\ComparableEnsureExtension.cs" />
     <Compile Include="Validation\Ensure\Ensure %28Generic%29.cs" />
@@ -255,6 +252,9 @@
     <Compile Include="Validation\Ensure\IEnsure.cs" />
     <Compile Include="Validation\Ensure\StringEnsureExtension.cs" />
     <Compile Include="Validation\Ensure\TypeEnsureExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

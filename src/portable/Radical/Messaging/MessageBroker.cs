@@ -11,7 +11,6 @@ using Radical.Reflection;
 using System.Diagnostics;
 using Radical.Conversions;
 using System.Threading.Tasks;
-using Windows.UI.Core;
 
 namespace Radical.Messaging
 {
@@ -27,12 +26,12 @@ namespace Radical.Messaging
         /// </summary>
         readonly IDictionary<Type, IList<ISubscription>> msgSubsIndex = null;
 
-        readonly CoreDispatcher dispatcher;
+        readonly IDispatcher dispatcher;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageBroker"/> class.
         /// </summary>
-        public MessageBroker( CoreDispatcher dispatcher )
+        public MessageBroker( IDispatcher dispatcher )
         {
             this.dispatcher = dispatcher;
             this.msgSubsIndex = new Dictionary<Type, IList<ISubscription>>();
