@@ -159,3 +159,5 @@ $RECYCLE.BIN/
 *.DotSettings
 Windows Azure Subscriptions.xml
 /.vs/config
+*.shproj~HEAD
+*.shproj~develop
