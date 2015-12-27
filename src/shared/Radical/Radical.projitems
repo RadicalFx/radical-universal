@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>387a69a1-b49d-4877-9a6e-1c1365f813e1</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Radical</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AnalyticsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Advisory\AdvisedAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Advisory\Advisory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Advisory\AdvisoryBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Advisory\ChangeSetDistinctVisitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Atomic Operations\AtomicChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Atomic Operations\AtomicOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Change Management\Bookmark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Change Management\Change.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Change Management\ChangeSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\Change Management\IncludeAllChangeSetFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChangeTracking\ChangeTrackingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\ReadOnlyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\AddChangeBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Advisory\IAdvisedAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Advisory\IAdvisory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Advisory\IAdvisoryBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Advisory\IChangeSetDistinctVisitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Advisory\ProposedActions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\ChangeCommittedEventArgs (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\ChangeEventArgs (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\ChangeRejectedEventArgs (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\Commit, Reject Reason(s).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\CommittedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\Delegates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\Change Rejected, Committed Args\RejectedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\EntityTrackingStates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IAtomicOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IBookmark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IChangeSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IChangeSetFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IChangeTrackingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IMemento.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IMementoPropertyMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\ComponentRegisteredEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IBootable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IContainerEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IPuzzleContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IPuzzleContainerEntry (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IPuzzleContainerEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IPuzzleContainerFacility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IPuzzleSetupDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\Lifestyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ContractAttribute\ContractAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Factories\IChangeTrackingServiceFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IMonitor (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Messaging\IHandleMessage (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Messaging\IHandleMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Messaging\IMessageBroker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Messaging\INeedSafeSubscription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Messaging\IRequireToBeValid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Messaging\SubscribeToMessageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Model\CollectionChangedEventArgs (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Model\CollectionChangeType enum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Model\IEntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\BootableFacility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\EntryBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\PuzzleContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\PuzzleContainerEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\PuzzleContainerServiceProviderFacade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\SubscribeToMessageFacility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\EnumValueOutOfRangeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\SuspendedChangeTrackingServiceException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Conversions\CastExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\IServiceProviderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Linq\EnumerableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Linq\ExpressionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObjectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\AssemblyExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\TypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DelegateComparer (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DelegateEqualityComparer (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\KnownRegex.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObjectReferenceEqualityComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ReferenceEqualityComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\AbstractMessageHandler (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\MessageBroker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Messaging\Subscription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\AddRangeCollectionChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\CollectionChange (Abstract, Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\CollectionClearedChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\Descriptors\CollectionChangeDescriptor (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\Descriptors\CollectionRangeDescriptor (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\Descriptors\ItemChangedDescriptor (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\Descriptors\ItemMovedDescriptor (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\Descriptors\ItemReplacedDescriptor (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\ItemChangedCollectionChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\ItemMovedCollectionChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\ItemRemovedCollectionChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Collection Changes\ItemReplacedCollectionChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ChangeTracking\Properties\PropertyValueChange (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityCollection\EntityCollection.(Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityCollection\EntityCollection.(Generic).ICollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityCollection\EntityCollection.(Generic).IComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityCollection\EntityCollection.(Generic).IDisposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityCollection\EntityCollection.(Generic).IList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityCollection\MementoEntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\MementoEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\MementoPropertyMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\PropertyMetadata (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\PropertyMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\PropertyValue (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\PropertyValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entity\PropertyValueChanged (delegate).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Factories\ChangeTrackingServiceFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\InsertEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SetValueAtEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observers\AbstractMonitor %28Generic%29.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observers\AbstractMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observers\BrokerObserver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observers\PropertyObserver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ComponentModel\EventHandlerList.Universal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\ArrayEnsureExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\ComparableEnsureExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\Ensure (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\Ensure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\EnsureExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\EnumEnsureExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\GuidEnsureExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\IConfigurableEnsure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\IEnsure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\StringEnsureExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\TypeEnsureExtension.cs" />
+  </ItemGroup>
+</Project>

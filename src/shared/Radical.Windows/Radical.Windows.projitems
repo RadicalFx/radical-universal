@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>05926e12-54d4-4912-8254-16ed6e219147</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Radical.Windows</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\Extensibility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RadicalBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RadicalBehaviorCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\RoutedEventHandlerBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\TextBoxManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommandEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Input\CommandDescriptionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Input\IDelegateCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\DelegateCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\VisualTreeCrawler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\StorageSerializationHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\IWeakEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\WeakEventManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WeakEvent Managers\LoadedWeakEventManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WeakEvent Managers\MonitorChangedWeakEventManager.cs" />
+  </ItemGroup>
+</Project>

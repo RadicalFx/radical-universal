@@ -158,3 +158,4 @@ $RECYCLE.BIN/
 # Resharper files
 *.DotSettings
 Windows Azure Subscriptions.xml
+/.vs/config
