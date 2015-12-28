@@ -52,5 +52,12 @@ namespace Radical.ComponentModel
         /// This entry instance.
         /// </returns>
         IPuzzleContainerEntry<T> Overridable();
-	}
+
+        /// <summary>
+        /// Forwards this instance.
+        /// </summary>
+        /// <typeparam name="TForwarded">The type of the forwarded.</typeparam>
+        /// <returns></returns>
+        IPuzzleContainerEntry<T> Forward<TForwarded>();
+    }
 }

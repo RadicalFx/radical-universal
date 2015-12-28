@@ -18,7 +18,7 @@ namespace Radical
 		{
 			if( type.IsInterface )
 			{
-				return new PuzzleContainerEntry<Object>() { Service = type };
+				return new PuzzleContainerEntry<Object>().AddService( type );
 			}
 			else
 			{
@@ -38,7 +38,7 @@ namespace Radical
 			var type = typeof( T ).GetTypeInfo();
 			if( type.IsInterface )
 			{
-				return new PuzzleContainerEntry<T>() { Service = type };
+				return new PuzzleContainerEntry<T>().AddService( type );
 			}
 			else
 			{

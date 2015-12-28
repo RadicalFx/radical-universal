@@ -17,17 +17,19 @@ namespace Radical.ComponentModel
 		/// <value>The component type.</value>
 		TypeInfo Component { get; }
 
-		/// <summary>
-		/// Gets the service type.
-		/// </summary>
-		/// <value>The service type.</value>
-        TypeInfo Service { get; }
+        /// <summary>
+        /// Gets the service types.
+        /// </summary>
+        /// <value>
+        /// The service types.
+        /// </value>
+        IEnumerable<TypeInfo> Services { get; }
 
-		/// <summary>
-		/// Gets the factory used to build up a concrete type.
-		/// </summary>
-		/// <value>The factory.</value>
-		Delegate Factory { get; }
+        /// <summary>
+        /// Gets the factory used to build up a concrete type.
+        /// </summary>
+        /// <value>The factory.</value>
+        Delegate Factory { get; }
 
 		/// <summary>
 		/// Gets the lifestyle of this component.

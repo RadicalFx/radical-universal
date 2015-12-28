@@ -16,29 +16,29 @@ namespace Radical
         List<Tuple<String, IContainerEntry>> buffer = new List<Tuple<String, IContainerEntry>>();
         Boolean isMessageBrokerRegistered = false;
 
-        void Attach( IPuzzleContainer container, String key, IContainerEntry entry )
+        void Attach(IPuzzleContainer container, String key, IContainerEntry entry)
         {
             var invocationModel = entry.Component.Is<INeedSafeSubscription>() ?
                 InvocationModel.Safe :
                 InvocationModel.Default;
 
             entry.Component.GetCustomAttributes<SubscribeToMessageAttribute>()
-                .Return( attributes =>
-                {
-                    return attributes.Select( a => typeof( IHandleMessage<> ).MakeGenericType( a.MessageType ) )
-                                        .Where( gh => this.IsInterestingHandler( entry, gh.GetTypeInfo() ) );
-                }, () =>
-                {
-                    return entry.Component.ImplementedInterfaces
-                                        .Where( i => i.Is<IHandleMessage>() && i.GetTypeInfo().IsGenericType );
-                }, attributes =>
-                {
-                    return !attributes.Any();
-                } )
-                .ForEach( t => this.Subscribe( container, key, entry, t, invocationModel ) );
+                .Return(attributes =>
+               {
+                   return attributes.Select(a => typeof(IHandleMessage<>).MakeGenericType(a.MessageType))
+                                       .Where(gh => this.IsInterestingHandler(entry, gh.GetTypeInfo()));
+               }, () =>
+               {
+                   return entry.Component.ImplementedInterfaces
+                                       .Where(i => i.Is<IHandleMessage>() && i.GetTypeInfo().IsGenericType);
+               }, attributes =>
+               {
+                   return !attributes.Any();
+               })
+                .ForEach(t => this.Subscribe(container, key, entry, t, invocationModel));
         }
 
-        void Subscribe( IPuzzleContainer container, String key, IContainerEntry entry, Type genericHandler, InvocationModel invocationModel )
+        void Subscribe(IPuzzleContainer container, String key, IContainerEntry entry, Type genericHandler, InvocationModel invocationModel)
         {
             /*
              * Qui abbiamo un problema di questo tipo: quando in Castle viene
@@ -62,9 +62,9 @@ namespace Radical
             //	messageType.ToString( "SN" )
             //);
 
-            broker.Subscribe( this, messageType, invocationModel, ( sender, msg ) =>
-            {
-                var handler = container.Resolve( key, entry.Service ) as IHandleMessage;
+            broker.Subscribe(this, messageType, invocationModel, (sender, msg) =>
+           {
+               var handler = container.Resolve(key, entry.Services.First()) as IHandleMessage;
 
                 //logger.Verbose
                 //(
@@ -73,43 +73,43 @@ namespace Radical
                 //	handler.GetType().ToString( "SN" )
                 //);
 
-                if ( handler.ShouldHandle( sender, msg ) )
-                {
-                    handler.Handle( sender, msg );
-                }
-            } );
+                if(handler.ShouldHandle(sender, msg))
+               {
+                   handler.Handle(sender, msg);
+               }
+           });
         }
 
-        Boolean IsInterestingHandler( IContainerEntry entry, TypeInfo t )
+        Boolean IsInterestingHandler(IContainerEntry entry, TypeInfo t)
         {
-            return entry.Service.Is( t ) || entry.Component.Is( t );
+            return entry.Services.Any(svc=>svc.Is(t)) || entry.Component.Is(t);
         }
 
-        public void Initialize( IPuzzleContainer container )
+        public void Initialize(IPuzzleContainer container)
         {
-            container.ComponentRegistered += ( s, e ) =>
+            container.ComponentRegistered += (s, e) =>
             {
-                if ( e.Entry.Service.Is<IMessageBroker>() )
+                if(e.Entry.Services.Any(svc => svc.Is<IMessageBroker>()))
                 {
                     //logger.Verbose( "Registered component is IMessageBroker. Ready to empty the buffer." );
 
                     this.isMessageBrokerRegistered = true;
 
-                    if ( this.buffer.Any() )
+                    if(this.buffer.Any())
                     {
-                        for ( var i = buffer.Count; i > 0; i-- )
+                        for(var i = buffer.Count; i > 0; i--)
                         {
                             var cmp = this.buffer[ i - 1 ];
-                            this.Attach( container, cmp.Item1, cmp.Item2 );
-                            this.buffer.Remove( cmp );
+                            this.Attach(container, cmp.Item1, cmp.Item2);
+                            this.buffer.Remove(cmp);
                         }
 
                         //logger.Verbose( "All handlers in the buffer attached." );
                     }
                 }
-                else if ( this.IsInterestingHandler( e.Entry, typeof( IHandleMessage ).GetTypeInfo() ) )
+                else if(this.IsInterestingHandler(e.Entry, typeof(IHandleMessage).GetTypeInfo()))
                 {
-                    if ( !this.isMessageBrokerRegistered )
+                    if(!this.isMessageBrokerRegistered)
                     {
                         //logger.Verbose
                         //(
@@ -118,7 +118,7 @@ namespace Radical
                         //	h.ComponentModel.Implementation.ToString( "SN" )
                         //);
 
-                        this.buffer.Add( new Tuple<String, IContainerEntry>( e.Entry.Key, e.Entry ) );
+                        this.buffer.Add(new Tuple<String, IContainerEntry>(e.Entry.Key, e.Entry));
                     }
                     else
                     {
@@ -129,13 +129,13 @@ namespace Radical
                         //	h.ComponentModel.Implementation.ToString( "SN" )
                         //);
 
-                        this.Attach( container, e.Entry.Key, e.Entry );
+                        this.Attach(container, e.Entry.Key, e.Entry);
                     }
                 }
             };
         }
 
-        public void Teardown( IPuzzleContainer container )
+        public void Teardown(IPuzzleContainer container)
         {
 
         }

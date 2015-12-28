@@ -9,10 +9,12 @@ namespace Radical
 {
 	internal class PuzzleContainerEntry<T> : IPuzzleContainerEntry, IPuzzleContainerEntry<T>
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="PuzzleContainerEntry&lt;T&gt;"/> class.
-		/// </summary>
-		internal PuzzleContainerEntry()
+        Dictionary<Int32, TypeInfo> services = new Dictionary<Int32, TypeInfo>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PuzzleContainerEntry&lt;T&gt;"/> class.
+        /// </summary>
+        internal PuzzleContainerEntry()
 		{
 			this.Key = Guid.NewGuid().ToString();
 			this.Parameters = new Dictionary<String, Object>();
@@ -44,21 +46,33 @@ namespace Radical
 			private set;
 		}
 
-		/// <summary>
-		/// Gets the service type.
-		/// </summary>
-		/// <value>The service type.</value>
-		public TypeInfo Service
-		{
-			get;
-			internal set;
-		}
+        /// <summary>
+        /// Gets the service types.
+        /// </summary>
+        /// <value>
+        /// The service types.
+        /// </value>
+        public IEnumerable<TypeInfo> Services
+        {
+            get { return this.services.Values.Cast<TypeInfo>(); }
+        }
 
-		/// <summary>
-		/// Gets the component type.
-		/// </summary>
-		/// <value>The component type.</value>
-		public TypeInfo Component
+        internal PuzzleContainerEntry<T> AddService(TypeInfo type)
+        {
+            var hash = type.GetHashCode();
+            if(!services.ContainsKey(hash))
+            {
+                this.services.Add(hash, type);
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the component type.
+        /// </summary>
+        /// <value>The component type.</value>
+        public TypeInfo Component
 		{
 			get;
 			internal set;
@@ -189,6 +203,20 @@ namespace Radical
         IPuzzleContainerEntry<T> IPuzzleContainerEntry<T>.Overridable()
         {
             this.IsOverridable = true;
+
+            return this;
+        }
+
+        IPuzzleContainerEntry<T> IPuzzleContainerEntry<T>.Forward<TForwarded>()
+        {
+            this.AddService(typeof(TForwarded).GetTypeInfo());
+
+            return this;
+        }
+
+        IPuzzleContainerEntry IPuzzleContainerEntry.Forward(TypeInfo forwardedType)
+        {
+            this.AddService(forwardedType);
 
             return this;
         }
