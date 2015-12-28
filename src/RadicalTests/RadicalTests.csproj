@@ -124,7 +124,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Radical\Radical.csproj">
+    <ProjectReference Include="..\Radical\Radical.csproj">
       <Project>{2cd0f290-3f4c-48c8-92f5-fca1f913038e}</Project>
       <Name>Radical</Name>
     </ProjectReference>
