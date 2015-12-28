@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Net;
 using System.Reflection;
-using System.Windows;
-using System.Windows.Input;
+using System.Linq;
 using Radical.ComponentModel;
-//using Radical.Reflection;
 
 namespace Radical
 {
@@ -32,7 +29,7 @@ namespace Radical
 
         void OnComponentRegistered(object sender, ComponentRegisteredEventArgs e)
         {
-            if (this.IsBootable(e.Entry.Service) || this.IsBootable(e.Entry.Component))
+            if (e.Entry.Services.Any(svc=> this.IsBootable(svc)) || this.IsBootable(e.Entry.Component))
             {
                 var t = this.GetTypeToResolve(e.Entry);
                 var svc = (IBootable)this.container.Resolve(t);
@@ -42,7 +39,9 @@ namespace Radical
 
         TypeInfo GetTypeToResolve(IContainerEntry entry)
         {
-            return entry.Service ?? entry.Component;
+            return entry.Services.Any()
+                 ? entry.Services.First()
+                 : entry.Component;
         }
 
         /// <summary>

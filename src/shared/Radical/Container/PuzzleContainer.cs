@@ -234,7 +234,7 @@ namespace Radical
                 {
                     return x.Component == type ||
                     (
-                        x.Service == type &&
+                        x.Services.Any(s => s == type) &&
                         (
                             x.Component != null ||
                             x.Factory != null
@@ -264,7 +264,7 @@ namespace Radical
             {
                 return x.Component == type ||
                 (
-                    x.Service == type &&
+                    x.Services.Any(s => s == type) &&
                     (
                         x.Component != null ||
                         x.Factory != null
@@ -277,7 +277,7 @@ namespace Radical
         {
             return this.allEntries.FirstOrDefault( x =>
             {
-                return x.Key == key && x.Service == type;
+                return x.Key == key && x.Services.Any(s => s == type);
             } );
         }
 
