@@ -13,11 +13,7 @@ The Radical framework is not tied to WPF but some part of it can be freely used,
 
 ### Release
 
-The latest release can be found on NuGet: http://www.nuget.org/profiles/radical
-
-Development feed is available at: 
-* NuGet V3 feed URL: https://www.myget.org/F/radical-unstable/api/v3/index.json
-* NuGet V2 feed URL: https://www.myget.org/F/radical-unstable/api/v2
+A public release is not yet available.
 
 ### Q&A
 
