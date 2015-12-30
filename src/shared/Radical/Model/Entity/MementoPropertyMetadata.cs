@@ -1,71 +1,75 @@
 ﻿using System;
+using System.Reflection;
 using System.Linq.Expressions;
 using Radical.Linq;
+using Radical.Reflection;
 using Radical.ComponentModel.ChangeTracking;
 
 namespace Radical.Model
 {
-	//public static class MementoPropertyMetadataBuilder
-	//{
-	//    public class TypedMementoPropertyMetadataBuilder<T>
-	//    {
-	//        public MementoPropertyMetadata<TValue> And<TValue>( Expression<Func<T, TValue>> property )
-	//        {
-	//            var name = property.GetMemberName();
-	//            return new MementoPropertyMetadata<TValue>( name );
-	//        }
-	//    }
+    public static class MementoPropertyMetadata
+    {
+        public static MementoPropertyMetadata<T> Create<T>(Object propertyOwner, Expression<Func<T>> property)
+        {
+            return new MementoPropertyMetadata<T>(propertyOwner, property);
+        }
 
-	//    public static TypedMementoPropertyMetadataBuilder<T> For<T>()
-	//    {
-	//        return new TypedMementoPropertyMetadataBuilder<T>();
-	//    }
-	//}
+        public static MementoPropertyMetadata<T> Create<T>(Object propertyOwner, String propertyName)
+        {
+            return new MementoPropertyMetadata<T>(propertyOwner, propertyName);
+        }
+    }
 
-	public static class MementoPropertyMetadata 
-	{
-		public static MementoPropertyMetadata<T> Create<T>( Expression<Func<T>> property ) 
-		{
-			return new MementoPropertyMetadata<T>( property );
-		}
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T">The type of the property.</typeparam>
+    public class MementoPropertyMetadata<T> : PropertyMetadata<T>,
+        IMementoPropertyMetadata
+    {
+        public MementoPropertyMetadata(Object propertyOwner, String propertyName)
+            : base(propertyOwner, propertyName)
+        {
+            if(this.Property.IsAttributeDefined<MementoPropertyMetadataAttribute>())
+            {
+                var attribute = this.Property.GetCustomAttribute<MementoPropertyMetadataAttribute>();
+                this.TrackChanges = attribute.TrackChanges;
+            }
+            else
+            {
+                this.TrackChanges = true;
+            }
+        }
 
-		public static MementoPropertyMetadata<T> Create<T>( String propertyName )
-		{
-			return new MementoPropertyMetadata<T>( propertyName );
-		}
-	}
+        public MementoPropertyMetadata(Object propertyOwner, Expression<Func<T>> property)
+            : this(propertyOwner, property.GetMemberName())
+        {
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <typeparam name="T">The type of the property.</typeparam>
-	public class MementoPropertyMetadata<T> : PropertyMetadata<T>, 
-		IMementoPropertyMetadata
-	{
-		public MementoPropertyMetadata( String propertyName )
-			: base( propertyName )
-		{
-			this.TrackChanges = true;
-		}
+        }
 
-		public MementoPropertyMetadata( Expression<Func<T>> property )
-			: this( property.GetMemberName() )
-		{
+        public Boolean TrackChanges { get; set; }
 
-		}
+        public MementoPropertyMetadata<T> DisableChangesTracking()
+        {
+            this.TrackChanges = false;
+            return this;
+        }
 
-		public Boolean TrackChanges { get; set; }
+        public MementoPropertyMetadata<T> EnableChangesTracking()
+        {
+            this.TrackChanges = true;
+            return this;
+        }
+    }
 
-		public MementoPropertyMetadata<T> DisableChangesTracking()
-		{
-			this.TrackChanges = false;
-			return this;
-		}
+    [AttributeUsage(AttributeTargets.Property)]
+    public class MementoPropertyMetadataAttribute : PropertyMetadataAttribute
+    {
+        public MementoPropertyMetadataAttribute()
+        {
+            this.TrackChanges = true;
+        }
 
-		public MementoPropertyMetadata<T> EnableChangesTracking()
-		{
-			this.TrackChanges = true;
-			return this;
-		}
-	}
+        public Boolean TrackChanges { get; set; }
+    }
 }

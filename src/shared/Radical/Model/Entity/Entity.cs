@@ -7,422 +7,485 @@ using Radical.Validation;
 
 namespace Radical.Model
 {
-#if !SILVERLIGHT && !NETFX_CORE
-	[Serializable]
-#endif
-	public abstract class Entity :
-		INotifyPropertyChanged,
-		IDisposable
-	{
-		#region IDisposable Members
+    public abstract class Entity :
+        INotifyPropertyChanged,
+        IDisposable
+    {
+        #region IDisposable Members
 
-		/// <summary>
-		/// Releases unmanaged resources and performs other cleanup operations before the
-		/// <see cref="Entity"/> is reclaimed by garbage collection.
-		/// </summary>
-		~Entity()
-		{
-			this.Dispose( false );
-		}
+        /// <summary>
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// <see cref="Entity"/> is reclaimed by garbage collection.
+        /// </summary>
+        ~Entity()
+        {
+            this.Dispose(false);
+        }
 
-		private Boolean isDisposed;
+        private Boolean isDisposed;
 
-		/// <summary>
-		/// Releases unmanaged and - optionally - managed resources
-		/// </summary>
-		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-		protected virtual void Dispose( Boolean disposing )
-		{
-			if( disposing )
-			{
-				/*
-				 * Se disposing è 'true' significa che dispose
-				 * è stato invocato direttamentente dall'utente
-				 * è quindi lecito accedere ai 'field' e ad 
-				 * eventuali reference perchè sicuramente Finalize
-				 * non è ancora stato chiamato su questi oggetti
-				 */
-				if( this._events != null )
-				{
-					this.Events.Dispose();
-				}
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(Boolean disposing)
+        {
+            if(disposing)
+            {
+                /*
+                 * Se disposing è 'true' significa che dispose
+                 * è stato invocato direttamentente dall'utente
+                 * è quindi lecito accedere ai 'field' e ad 
+                 * eventuali reference perchè sicuramente Finalize
+                 * non è ancora stato chiamato su questi oggetti
+                 */
+                if(this._events != null)
+                {
+                    this.Events.Dispose();
+                }
 
-				this.valuesBag.Clear();
-				//this.initialValuesBag.Clear();
-				this.propertiesMetadata.Clear();
-			}
+                this.valuesBag.Clear();
 
-			//this._dataContext = null;
-			this._events = null;
+                foreach(var item in this.propertiesMetadata.Values)
+                {
+                    item.Dispose();
+                }
 
-			//Set isDisposed flag
-			this.isDisposed = true;
-		}
+                this.propertiesMetadata.Clear();
+            }
 
-		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-		/// </summary>
-		public void Dispose()
-		{
-			this.Dispose( true );
-			GC.SuppressFinalize( this );
-		}
+            //this._dataContext = null;
+            this._events = null;
 
-		/// <summary>
-		/// Verifies that this instance is not disposed, throwing an
-		/// <see cref="ObjectDisposedException"/> if this instance has
-		/// been already disposed.
-		/// </summary>
-		protected virtual void EnsureNotDisposed()
-		{
-			if( this.isDisposed )
-			{
-				throw new ObjectDisposedException( this.GetType().FullName );
-			}
-		}
+            //Set isDisposed flag
+            this.isDisposed = true;
+        }
 
-		#endregion
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		#region EventHandlerList
+        /// <summary>
+        /// Verifies that this instance is not disposed, throwing an
+        /// <see cref="ObjectDisposedException"/> if this instance has
+        /// been already disposed.
+        /// </summary>
+        protected virtual void EnsureNotDisposed()
+        {
+            if(this.isDisposed)
+            {
+                throw new ObjectDisposedException(this.GetType().FullName);
+            }
+        }
 
-		private EventHandlerList _events;
+        #endregion
 
-		/// <summary>
-		/// Gets the events.
-		/// </summary>
-		/// <item>The events.</item>
-		protected EventHandlerList Events
-		{
-			get
-			{
-				if( this._events == null )
-				{
-					this._events = new EventHandlerList();
-				}
+        #region EventHandlerList
 
-				return this._events;
-			}
-		}
+        private EventHandlerList _events;
 
-		#endregion
+        /// <summary>
+        /// Gets the events.
+        /// </summary>
+        /// <item>The events.</item>
+        protected EventHandlerList Events
+        {
+            get
+            {
+                if(this._events == null)
+                {
+                    this._events = new EventHandlerList();
+                }
 
-		#region INotifyPropertyChanged Members
+                return this._events;
+            }
+        }
 
-		private static readonly Object propertyChangedEventKey = new Object();
-		public event PropertyChangedEventHandler PropertyChanged
-		{
-			add { this.Events.AddHandler( propertyChangedEventKey, value ); }
-			remove { this.Events.RemoveHandler( propertyChangedEventKey, value ); }
-		}
+        #endregion
 
-		protected virtual void OnPropertyChanged( PropertyChangedEventArgs e )
-		{
-			this.EnsureNotDisposed();
+        #region INotifyPropertyChanged Members
 
-			PropertyChangedEventHandler h = this.Events[ propertyChangedEventKey ] as PropertyChangedEventHandler;
-			if( h != null )
-			{
-				h( this, e );
-			}
-		}
+        private static readonly Object propertyChangedEventKey = new Object();
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add { this.Events.AddHandler(propertyChangedEventKey, value); }
+            remove { this.Events.RemoveHandler(propertyChangedEventKey, value); }
+        }
 
-		protected void OnPropertyChanged( String propertyName )
-		{
-			this.OnPropertyChanged( new PropertyChangedEventArgs( propertyName ) );
-		}
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            this.EnsureNotDisposed();
 
-		protected void OnPropertyChanged<T>( Expression<Func<T>> property )
-		{
-			this.EnsureNotDisposed();
+            PropertyChangedEventHandler h = this.Events[ propertyChangedEventKey ] as PropertyChangedEventHandler;
+            if(h != null)
+            {
+                h(this, e);
+            }
+        }
 
-			PropertyChangedEventHandler h = this.Events[ propertyChangedEventKey ] as PropertyChangedEventHandler;
-			if( h != null )
-			{
-				this.OnPropertyChanged( new PropertyChangedEventArgs( property.GetMemberName() ) );
-			}
-		}
+        protected void OnPropertyChanged(String propertyName)
+        {
+            this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
 
-		#endregion
+        protected void OnPropertyChanged<T>(Expression<Func<T>> property)
+        {
+            this.OnPropertyChanged(new PropertyChangedEventArgs(property.GetMemberName()));
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Entity"/> class.
-		/// </summary>
-		protected Entity()
-		{
-			
-		}
+        #endregion
 
-		/// <summary>
-		/// Sets the initial property value building default 
-		/// metadata for the given property and setting the default
-		/// value in the built metadata.
-		/// </summary>
-		/// <remarks>
-		/// This method is a shortcut for the GetMetadata method, in order
-		/// to fine customize property metadata use the GetMetadata method.
-		/// The main difference between SetInitialPropertyValue and SetPropertyValue 
-		/// is that SetInitialPropertyValue does not raise a property change notification.
-		/// </remarks>
-		/// <typeparam name="T">The property type</typeparam>
-		/// <param name="property">The property.</param>
-		/// <param name="value">The default value.</param>
-		protected PropertyMetadata<T> SetInitialPropertyValue<T>( Expression<Func<T>> property, T value )
-		{
-			return this.SetInitialPropertyValue<T>( property.GetMemberName(), value );
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Entity"/> class.
+        /// </summary>
+        protected Entity()
+        {
 
-		/// <summary>
-		/// Sets the initial property value building default 
-		/// metadata for the given property and setting the default
-		/// value in the built metadata.
-		/// </summary>
-		/// <remarks>
-		/// This method is a shortcut for the GetMetadata method, in order
-		/// to fine customize property metadata use the GetMetadata method.
-		/// The main difference between SetInitialPropertyValue and SetPropertyValue 
-		/// is that SetInitialPropertyValue does not raise a property change notification.
-		/// </remarks>
-		/// <typeparam name="T">The property type</typeparam>
-		/// <param name="property">The property.</param>
-		/// <param name="value">The default value.</param>
-		protected PropertyMetadata<T> SetInitialPropertyValue<T>( String property, T value )
-		{
-			var metadata = this.GetPropertyMetadata<T>( property );
-			metadata.DefaultValue = value;
+        }
 
-			return metadata;
-		}
+        /// <summary>
+        /// Sets the initial property value building default
+        /// metadata for the given property and setting the default
+        /// value in the built metadata.
+        /// </summary>
+        /// <typeparam name="T">The property type</typeparam>
+        /// <param name="property">The property.</param>
+        /// <param name="value">The default value.</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// This method is a shortcut for the GetMetadata method, in order
+        /// to fine customize property metadata use the GetMetadata method.
+        /// The main difference between SetInitialPropertyValue and SetPropertyValue
+        /// is that SetInitialPropertyValue does not raise a property change notification.
+        /// </remarks>
+        protected PropertyMetadata<T> SetInitialPropertyValue<T>(Expression<Func<T>> property, T value)
+        {
+            return this.SetInitialPropertyValue<T>(property.GetMemberName(), value);
+        }
 
-		readonly IDictionary<String, PropertyMetadata> propertiesMetadata = new Dictionary<String, PropertyMetadata>();
+        /// <summary>
+        /// Sets the initial property value building default
+        /// metadata for the given property and setting the default
+        /// value in the built metadata. With this overload the default
+        /// value is lazily evaluated only when requested by the infrastructure.
+        /// </summary>
+        /// <typeparam name="T">The property type</typeparam>
+        /// <param name="property">The property.</param>
+        /// <param name="lazyValue">The lazy value.</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// This method is a shortcut for the GetMetadata method, in order
+        /// to fine customize property metadata use the GetMetadata method.
+        /// The main difference between SetInitialPropertyValue and SetPropertyValue
+        /// is that SetInitialPropertyValue does not raise a property change notification.
+        /// </remarks>
+        protected PropertyMetadata<T> SetInitialPropertyValue<T>(Expression<Func<T>> property, Func<T> lazyValue)
+        {
+            var metadata = this.GetPropertyMetadata<T>(property)
+                .WithDefaultValue(lazyValue);
 
-		/// <summary>
-		/// Gets the property metadata.
-		/// </summary>
-		/// <typeparam name="T">The type of the property.</typeparam>
-		/// <param name="property">The property.</param>
-		/// <returns>
-		/// An instance of the requested property metadata.
-		/// </returns>
-		protected PropertyMetadata<T> GetPropertyMetadata<T>( Expression<Func<T>> property )
-		{
-			Ensure.That( property ).Named( () => property ).IsNotNull();
+            return metadata;
+        }
 
-			return ( PropertyMetadata<T> )this.GetPropertyMetadata<T>( property.GetMemberName() );
-		}
+        /// <summary>
+        /// Sets the initial property value building default 
+        /// metadata for the given property and setting the default
+        /// value in the built metadata.
+        /// </summary>
+        /// <remarks>
+        /// This method is a shortcut for the GetMetadata method, in order
+        /// to fine customize property metadata use the GetMetadata method.
+        /// The main difference between SetInitialPropertyValue and SetPropertyValue 
+        /// is that SetInitialPropertyValue does not raise a property change notification.
+        /// </remarks>
+        /// <typeparam name="T">The property type</typeparam>
+        /// <param name="property">The property.</param>
+        /// <param name="value">The default value.</param>
+        protected PropertyMetadata<T> SetInitialPropertyValue<T>(String property, T value)
+        {
+            var metadata = this.GetPropertyMetadata<T>(property)
+                .WithDefaultValue(value);
 
-		/// <summary>
-		/// Gets the property metadata.
-		/// </summary>
-		/// <typeparam name="T">The type of the property.</typeparam>
-		/// <param name="propertyName">Name of the property.</param>
-		/// <returns>An instance of the requested property metadata.</returns>
-		protected PropertyMetadata<T> GetPropertyMetadata<T>( String propertyName )
-		{
-			Ensure.That( propertyName ).Named( () => propertyName ).IsNotNullNorEmpty();
+            return metadata;
+        }
 
-			//return ( PropertyMetadata<T> )this.GetPropertyMetadata( propertyName, typeof( T ) );
+        readonly IDictionary<String, PropertyMetadata> propertiesMetadata = new Dictionary<String, PropertyMetadata>();
 
-			PropertyMetadata md;
-			if( !this.propertiesMetadata.TryGetValue( propertyName, out md ) )
-			{
-				md = this.GetDefaultMetadata<T>( propertyName );
-				this.propertiesMetadata.Add( propertyName, md );
-			}
+        /// <summary>
+        /// Gets the property metadata.
+        /// </summary>
+        /// <typeparam name="T">The type of the property.</typeparam>
+        /// <param name="property">The property.</param>
+        /// <returns>
+        /// An instance of the requested property metadata.
+        /// </returns>
+        protected PropertyMetadata<T> GetPropertyMetadata<T>(Expression<Func<T>> property)
+        {
+            Ensure.That(property).Named("property").IsNotNull();
 
-			return ( PropertyMetadata<T> )md;
-		}
+            return (PropertyMetadata<T>)this.GetPropertyMetadata<T>(property.GetMemberName());
+        }
 
-		///// <summary>
-		///// Gets the property metadata.
-		///// </summary>
-		///// <param name="propertyName">Name of the property.</param>
-		///// <param name="propertyType">Type of the property.</param>
-		///// <returns>An instance of the requested property metadata.</returns>
-		//protected PropertyMetadata GetPropertyMetadata( String propertyName, Type propertyType )
-		//{
-		//    PropertyMetadata md;
-		//    if( !this.propertiesMetadata.TryGetValue( propertyName, out md ) )
-		//    {
-		//        md = this.GetDefaultMetadata( propertyName, propertyType );
-		//        this.propertiesMetadata.Add( propertyName, md );
-		//    }
+        /// <summary>
+        /// Gets the property metadata.
+        /// </summary>
+        /// <typeparam name="T">The type of the property.</typeparam>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns>An instance of the requested property metadata.</returns>
+        protected PropertyMetadata<T> GetPropertyMetadata<T>(String propertyName)
+        {
+            Ensure.That(propertyName).Named("propertyName").IsNotNullNorEmpty();
 
-		//    return md;
-		//}
+            //return ( PropertyMetadata<T> )this.GetPropertyMetadata( propertyName, typeof( T ) );
 
-		/// <summary>
-		/// Gets the default property metadata.
-		/// </summary>
-		/// <typeparam name="T">Type of the property.</typeparam>
-		/// <param name="propertyName">Name of the property.</param>
-		/// <returns>An instance of the requested default property metadata.</returns>
-		protected virtual PropertyMetadata<T> GetDefaultMetadata<T>( String propertyName )
-		{
-			return PropertyMetadata.Create<T>( propertyName );
+            PropertyMetadata md;
+            if(!this.propertiesMetadata.TryGetValue(propertyName, out md))
+            {
+                md = this.GetDefaultMetadata<T>(propertyName);
+                this.propertiesMetadata.Add(propertyName, md);
+            }
 
-			//return ( PropertyMetadata<T> )this.GetDefaultMetadata( propertyName, typeof( T ) );
-		}
+            return (PropertyMetadata<T>)md;
+        }
 
-		///// <summary>
-		///// Gets the default property metadata.
-		///// </summary>
-		///// <param name="propertyName">Name of the property.</param>
-		///// <param name="propertyType">Type of the property.</param>
-		///// <returns>
-		///// An instance of the requested default property metadata.
-		///// </returns>
-		//protected virtual PropertyMetadata GetDefaultMetadata( String propertyName, Type propertyType )
-		//{
-		//    var type = typeof( PropertyMetadata<> ).MakeGenericType( propertyType );
+        ///// <summary>
+        ///// Gets the property metadata.
+        ///// </summary>
+        ///// <param name="propertyName">Name of the property.</param>
+        ///// <param name="propertyType">Type of the property.</param>
+        ///// <returns>An instance of the requested property metadata.</returns>
+        //protected PropertyMetadata GetPropertyMetadata( String propertyName, Type propertyType )
+        //{
+        //    PropertyMetadata md;
+        //    if( !this.propertiesMetadata.TryGetValue( propertyName, out md ) )
+        //    {
+        //        md = this.GetDefaultMetadata( propertyName, propertyType );
+        //        this.propertiesMetadata.Add( propertyName, md );
+        //    }
 
-		//    return ( PropertyMetadata )Activator.CreateInstance( type, new Object[] { propertyName } );
-		//}
+        //    return md;
+        //}
 
-		/// <summary>
-		/// Sets the property metadata.
-		/// </summary>
-		/// <param name="metadata">The property metadata.</param>
-		protected virtual void SetPropertyMetadata<T>( PropertyMetadata<T> metadata )
-		{
-			Ensure.That( metadata ).Named( "metadata" ).IsNotNull();
+        /// <summary>
+        /// Gets the default property metadata.
+        /// </summary>
+        /// <typeparam name="T">Type of the property.</typeparam>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns>An instance of the requested default property metadata.</returns>
+        protected virtual PropertyMetadata<T> GetDefaultMetadata<T>(String propertyName)
+        {
+            return PropertyMetadata.Create<T>(this, propertyName);
 
-			Ensure.That( propertiesMetadata )
-				.WithMessage( "Metadata for the supplied property ({0}) has already been set.", metadata.PropertyName )
-				.IsFalse( d => d.ContainsKey( metadata.PropertyName ) );
+            //return ( PropertyMetadata<T> )this.GetDefaultMetadata( propertyName, typeof( T ) );
+        }
 
-			propertiesMetadata.Add( metadata.PropertyName, metadata );
-		}
+        ///// <summary>
+        ///// Gets the default property metadata.
+        ///// </summary>
+        ///// <param name="propertyName">Name of the property.</param>
+        ///// <param name="propertyType">Type of the property.</param>
+        ///// <returns>
+        ///// An instance of the requested default property metadata.
+        ///// </returns>
+        //protected virtual PropertyMetadata GetDefaultMetadata( String propertyName, Type propertyType )
+        //{
+        //    var type = typeof( PropertyMetadata<> ).MakeGenericType( propertyType );
 
-		//protected virtual void AddMetadata<T>( Expression<Func<T>> property, Action<PropertyMetadata<T>> interceptor )
-		//{
-		//    var md = this.GetDefaultMetadata<T>( property.GetMemberName() );
-		//    interceptor( md );
+        //    return ( PropertyMetadata )Activator.CreateInstance( type, new Object[] { propertyName } );
+        //}
 
-		//    this.SetPropertyMetadata( md );
-		//}
+        /// <summary>
+        /// Sets the property metadata.
+        /// </summary>
+        /// <param name="metadata">The property metadata.</param>
+        protected virtual void SetPropertyMetadata<T>(PropertyMetadata<T> metadata)
+        {
+            Ensure.That(metadata).Named("metadata").IsNotNull();
 
-		/// <summary>
-		/// Determines whether metadata for the specified property has been set.
-		/// </summary>
-		/// <typeparam name="T">The property type.</typeparam>
-		/// <param name="property">The property.</param>
-		/// <returns>
-		/// 	<c>true</c> if metadata for the specified property has been set; otherwise, <c>false</c>.
-		/// </returns>
-		protected virtual Boolean HasMetadata<T>( Expression<Func<T>> property )
-		{
-			return this.propertiesMetadata.ContainsKey( property.GetMemberName() );
-		}
+            Ensure.That(propertiesMetadata)
+                .WithMessage("Metadata for the supplied property ({0}) has already been set.", metadata.PropertyName)
+                .IsFalse(d => d.ContainsKey(metadata.PropertyName));
 
-		readonly IDictionary<String, PropertyValue> valuesBag = new Dictionary<String, PropertyValue>();
+            propertiesMetadata.Add(metadata.PropertyName, metadata);
+        }
 
-		protected void SetPropertyValueCore<T>( String propertyName, T data, PropertyValueChanged<T> pvc )
-		{
-			var oldValue = this.GetPropertyValue<T>( propertyName );
+        class NotificationSuspension<T> : IDisposable
+        {
+            public void Dispose()
+            {
+                this.Property.EnableChangesNotifications();
+            }
 
-			if( !Object.Equals( oldValue, data ) )
-			{
-				if( this.valuesBag.ContainsKey( propertyName ) )
-				{
-					this.valuesBag[ propertyName ] = new PropertyValue<T>( data );
-				}
-				else
-				{
-					this.valuesBag.Add( propertyName, new PropertyValue<T>( data ) );
-				}
+            public PropertyMetadata<T> Property { get; set; }
+        }
 
-				var args = new PropertyValueChangedArgs<T>( data, oldValue );
-				if( pvc != null )
-				{
-					pvc( args );
-				}
+        /// <summary>
+        /// Suspends notifications for the given property.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property">The property.</param>
+        /// <returns></returns>
+        protected IDisposable SuspendNotificationsOf<T>(Expression<Func<T>> property)
+        {
+            var md = this.GetPropertyMetadata(property);
+            md.DisableChangesNotifications();
 
-				var metadata = this.GetPropertyMetadata<T>( propertyName );
-				if( metadata.NotifyChanges )
-				{
-					this.OnPropertyChanged( propertyName );
+            return new NotificationSuspension<T>()
+            {
+                Property = md
+            };
+        }
 
-					metadata
-						.NotifyChanged( args )
-						.GetCascadeChangeNotifications()
-						.ForEach( s =>
-						{
-							this.OnPropertyChanged( s );
-						} );
-				}
-			}
-		}
+        /// <summary>
+        /// Resumes notifications for the given property.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property">The property.</param>
+        protected void ResumeNotificationsFor<T>(Expression<Func<T>> property)
+        {
+            var md = this.GetPropertyMetadata(property);
+            md.EnableChangesNotifications();
+        }
 
-		protected void SetPropertyValue<T>( Expression<Func<T>> property, T data )
-		{
-			var propertyName = property.GetMemberName();
+        //protected IDisposable SuspendNotificationsOf( String property ) { }
 
-			this.SetPropertyValue( propertyName, data, null );
-		}
+        //protected void ResumeNotificationsFor<T>( String property ) { }
 
-		protected void SetPropertyValue<T>( Expression<Func<T>> property, T data, PropertyValueChanged<T> pvc )
-		{
-			var propertyName = property.GetMemberName();
+        //protected virtual void AddMetadata<T>( Expression<Func<T>> property, Action<PropertyMetadata<T>> interceptor )
+        //{
+        //    var md = this.GetDefaultMetadata<T>( property.GetMemberName() );
+        //    interceptor( md );
 
-			this.SetPropertyValue( propertyName, data, pvc );
-		}
+        //    this.SetPropertyMetadata( md );
+        //}
 
-		protected void SetPropertyValue<T>( String propertyName, T data )
-		{
-			this.SetPropertyValue( propertyName, data, null );
-		}
+        /// <summary>
+        /// Determines whether metadata for the specified property has been set.
+        /// </summary>
+        /// <typeparam name="T">The property type.</typeparam>
+        /// <param name="property">The property.</param>
+        /// <returns>
+        /// 	<c>true</c> if metadata for the specified property has been set; otherwise, <c>false</c>.
+        /// </returns>
+        protected virtual Boolean HasMetadata<T>(Expression<Func<T>> property)
+        {
+            return this.propertiesMetadata.ContainsKey(property.GetMemberName());
+        }
 
-		protected virtual void SetPropertyValue<T>( String propertyName, T data, PropertyValueChanged<T> pvc )
-		{
-			this.SetPropertyValueCore( propertyName, data, pvc );
-		}
+        readonly IDictionary<String, PropertyValue> valuesBag = new Dictionary<String, PropertyValue>();
 
-		/// <summary>
-		/// Gets the property value.
-		/// </summary>
-		/// <typeparam name="T">The property value type.</typeparam>
-		/// <param name="property">A Lambda Expressione representing the property.</param>
-		/// <returns>The requested property value.</returns>
-		protected T GetPropertyValue<T>( Expression<Func<T>> property )
-		{
-			return this.GetPropertyValue<T>( property.GetMemberName() );
-		}
+        protected void SetPropertyValueCore<T>(String propertyName, T data, PropertyValueChanged<T> pvc)
+        {
+            var oldValue = this.GetPropertyValue<T>(propertyName);
 
-		/// <summary>
-		/// Gets the property value.
-		/// </summary>
-		/// <typeparam name="T">The property value type.</typeparam>
-		/// <param name="property">A Lambda Expressione representing the property.</param>
-		/// <param name="initialValueSetter">The initial value setter.</param>
-		/// <returns>The requested property value.</returns>
-		protected T GetPropertyValue<T>( Expression<Func<T>> property, Func<T> initialValueSetter )
-		{
-			if( !this.HasMetadata( property ) && initialValueSetter != null )
-			{
-				var initialValue = initialValueSetter();
+            if(!Object.Equals(oldValue, data))
+            {
+                if(this.valuesBag.ContainsKey(propertyName))
+                {
+                    this.valuesBag[ propertyName ] = new PropertyValue<T>(data);
+                }
+                else
+                {
+                    this.valuesBag.Add(propertyName, new PropertyValue<T>(data));
+                }
 
-				this.SetInitialPropertyValue( property, initialValue );
-			}
+                var args = new PropertyValueChangedArgs<T>(data, oldValue);
+                if(pvc != null)
+                {
+                    pvc(args);
+                }
 
-			return this.GetPropertyValue<T>( property.GetMemberName() );
-		}
+                var metadata = this.GetPropertyMetadata<T>(propertyName);
+                if(metadata.NotifyChanges)
+                {
+                    this.OnPropertyChanged(propertyName);
 
-		/// <summary>
-		/// Gets the property value.
-		/// </summary>
-		/// <typeparam name="T">The property value type.</typeparam>
-		/// <param name="propertyName">The name of the property.</param>
-		/// <returns>The requested property value.</returns>
-		protected virtual T GetPropertyValue<T>( String propertyName )
-		{
-			PropertyValue actual;
-			if( this.valuesBag.TryGetValue( propertyName, out actual ) )
-			{
-				return ( ( PropertyValue<T> )actual ).Value;
-			}
+                    metadata
+                        .NotifyChanged(args)
+                        .GetCascadeChangeNotifications()
+                        .ForEach(s =>
+                        {
+                            this.OnPropertyChanged(s);
+                        });
+                }
+            }
+        }
 
-			var metadata = this.GetPropertyMetadata<T>( propertyName );
-			return metadata.DefaultValue;
-		}
-	}
+        protected void SetPropertyValue<T>(Expression<Func<T>> property, T data)
+        {
+            var propertyName = property.GetMemberName();
+
+            this.SetPropertyValue(propertyName, data, null);
+        }
+
+        protected void SetPropertyValue<T>(Expression<Func<T>> property, T data, PropertyValueChanged<T> pvc)
+        {
+            var propertyName = property.GetMemberName();
+
+            this.SetPropertyValue(propertyName, data, pvc);
+        }
+
+        protected void SetPropertyValue<T>(String propertyName, T data)
+        {
+            this.SetPropertyValue(propertyName, data, null);
+        }
+
+        protected virtual void SetPropertyValue<T>(String propertyName, T data, PropertyValueChanged<T> pvc)
+        {
+            this.SetPropertyValueCore(propertyName, data, pvc);
+        }
+
+        /// <summary>
+        /// Gets the property value.
+        /// </summary>
+        /// <typeparam name="T">The property value type.</typeparam>
+        /// <param name="property">A Lambda Expressione representing the property.</param>
+        /// <returns>The requested property value.</returns>
+        protected T GetPropertyValue<T>(Expression<Func<T>> property)
+        {
+            return this.GetPropertyValue<T>(property.GetMemberName());
+        }
+
+        /// <summary>
+        /// Gets the property value.
+        /// </summary>
+        /// <typeparam name="T">The property value type.</typeparam>
+        /// <param name="property">A Lambda Expressione representing the property.</param>
+        /// <param name="initialValueSetter">The initial value setter.</param>
+        /// <returns>The requested property value.</returns>
+        protected T GetPropertyValue<T>(Expression<Func<T>> property, Func<T> initialValueSetter)
+        {
+            if(!this.HasMetadata(property) && initialValueSetter != null)
+            {
+                var initialValue = initialValueSetter();
+
+                this.SetInitialPropertyValue(property, initialValue);
+            }
+
+            return this.GetPropertyValue<T>(property.GetMemberName());
+        }
+
+        /// <summary>
+        /// Gets the property value.
+        /// </summary>
+        /// <typeparam name="T">The property value type.</typeparam>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <returns>The requested property value.</returns>
+        protected virtual T GetPropertyValue<T>(String propertyName)
+        {
+            PropertyValue actual;
+            if(this.valuesBag.TryGetValue(propertyName, out actual))
+            {
+                return ((PropertyValue<T>)actual).Value;
+            }
+
+            var metadata = this.GetPropertyMetadata<T>(propertyName);
+            return metadata.DefaultValue;
+        }
+    }
 }

@@ -4,141 +4,189 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using Radical.Linq;
 using Radical.Validation;
+using System.Reflection;
 
 namespace Radical.Model
 {
-	//public static class PropertyMetadataBuilder
-	//{
-	//    public class TypedPropertyMetadataBuilder<T>
-	//    {
-	//        public PropertyMetadata<TValue> And<TValue>( Expression<Func<T, TValue>> property )
-	//        {
-	//            var name = property.GetMemberName();
-	//            return new PropertyMetadata<TValue>( name );
-	//        }
-	//    }
+    public abstract class PropertyMetadata : IDisposable
+    {
+        #region IDisposable Members
 
-	//    public static TypedPropertyMetadataBuilder<T> For<T>()
-	//    {
-	//        return new TypedPropertyMetadataBuilder<T>();
-	//    }
-	//}
+        /// <summary>
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// <see cref="PropertyMetadata"/> is reclaimed by garbage collection.
+        /// </summary>
+        ~PropertyMetadata()
+        {
+            this.Dispose(false);
+        }
 
-	public abstract class PropertyMetadata
-	{
-		/// <summary>
-		/// Creates the metadata for specified property.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="property">The property.</param>
-		/// <returns>An instance of the property metadata.</returns>
-		public static PropertyMetadata<T> Create<T>( Expression<Func<T>> property )
-		{
-			var name = property.GetMemberName();
-			return PropertyMetadata.Create<T>( name );
-		}
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(Boolean disposing)
+        {
+            if(disposing)
+            {
+                this.cascadeChangeNotifications.Clear();
+            }
+        }
 
-		/// <summary>
-		/// Creates the metadata for specified property.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="propertyName">Name of the property.</param>
-		/// <returns>
-		/// An instance of the property metadata.
-		/// </returns>
-		public static PropertyMetadata<T> Create<T>( String propertyName )
-		{
-			return new PropertyMetadata<T>( propertyName );
-		}
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-#if WINDOWS_PHONE
-		readonly List<String> cascadeChangeNotifications = new List<String>();
-#else
-		readonly HashSet<String> cascadeChangeNotifications = new HashSet<String>();
-#endif
+        #endregion
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="PropertyMetadata"/> class.
-		/// </summary>
-		/// <param name="propertyName">Name of the property.</param>
-		protected PropertyMetadata( String propertyName )
-		{
-			Ensure.That( propertyName ).Named( "propertyName" ).IsNotNullNorEmpty();
+        /// <summary>
+        /// Creates the metadata for specified property.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="propertyOwner">The property owner.</param>
+        /// <param name="property">The property.</param>
+        /// <returns>
+        /// An instance of the property metadata.
+        /// </returns>
+        public static PropertyMetadata<T> Create<T>(Object propertyOwner, Expression<Func<T>> property)
+        {
+            var name = property.GetMemberName();
+            return PropertyMetadata.Create<T>(propertyOwner, name);
+        }
 
-			this.PropertyName = propertyName;
-			this.NotifyChanges = true;
-		}
+        /// <summary>
+        /// Creates the metadata for specified property.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="propertyOwner">The property owner.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns>
+        /// An instance of the property metadata.
+        /// </returns>
+        public static PropertyMetadata<T> Create<T>(Object propertyOwner, String propertyName)
+        {
+            return new PropertyMetadata<T>(propertyOwner, propertyName);
+        }
 
-		/// <summary>
-		/// Gets the name of the property.
-		/// </summary>
-		/// <value>
-		/// The name of the property.
-		/// </value>
-		public String PropertyName { get; private set; }
+        readonly HashSet<String> cascadeChangeNotifications = new HashSet<String>();
+        readonly Object propertyOwner;
+        PropertyInfo _property;
 
-		/// <summary>
-		/// Gets or sets a value indicating whether the property represented by this metadata should notify changes.
-		/// </summary>
-		/// <value>
-		///   <c>true</c> if the property should notify changes; otherwise, <c>false</c>.
-		/// </value>
-		public Boolean NotifyChanges { get; set; }
+        protected PropertyInfo Property
+        {
+            get
+            {
+                if(this._property == null)
+                {
+                    this._property = this.propertyOwner
+                        .GetType()
+                        .GetProperty(this.PropertyName);
+                }
 
-		/// <summary>
-		/// Disables changes notifications for this property.
-		/// </summary>
-		/// <returns>This metadata instance.</returns>
-		public PropertyMetadata DisableChangesNotifications()
-		{
-			this.NotifyChanges = false;
-			return this;
-		}
+                return this._property;
+            }
+        }
 
-		/// <summary>
-		/// Enables changes notifications for this property.
-		/// </summary>
-		/// <returns>This metadata instance.</returns>
-		public PropertyMetadata EnableChangesNotifications()
-		{
-			this.NotifyChanges = true;
-			return this;
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PropertyMetadata" /> class.
+        /// </summary>
+        /// <param name="propertyOwner">The property owner.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        protected PropertyMetadata(Object propertyOwner, String propertyName)
+        {
+            Ensure.That(propertyOwner).Named("propertyOwner").IsNotNull();
+            Ensure.That(propertyName).Named("propertyName").IsNotNullNorEmpty();
 
-		public PropertyMetadata AddCascadeChangeNotifications<T>( Expression<Func<T>> property )
-		{
-			return this.AddCascadeChangeNotifications( property.GetMemberName() );
-		}
+            this.propertyOwner = propertyOwner;
+            this.PropertyName = propertyName;
+            this.NotifyChanges = true;
+        }
 
-		public PropertyMetadata AddCascadeChangeNotifications( String property )
-		{
-			this.cascadeChangeNotifications.Add( property );
+        /// <summary>
+        /// Gets the name of the property.
+        /// </summary>
+        /// <value>
+        /// The name of the property.
+        /// </value>
+        public String PropertyName { get; private set; }
 
-			return this;
-		}
+        /// <summary>
+        /// Gets or sets a value indicating whether the property represented by this metadata should notify changes.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the property should notify changes; otherwise, <c>false</c>.
+        /// </value>
+        public Boolean NotifyChanges { get; set; }
 
-		public PropertyMetadata RemoveCascadeChangeNotifications<T>( Expression<Func<T>> property )
-		{
-			return this.RemoveCascadeChangeNotifications( property.GetMemberName() );
-		}
+        /// <summary>
+        /// Disables changes notifications for this property.
+        /// </summary>
+        /// <returns>This metadata instance.</returns>
+        public PropertyMetadata DisableChangesNotifications()
+        {
+            this.NotifyChanges = false;
+            return this;
+        }
 
-		public PropertyMetadata RemoveCascadeChangeNotifications( String property )
-		{
-			if( this.cascadeChangeNotifications.Contains( property ) )
-			{
-				this.cascadeChangeNotifications.Remove( property );
-			}
+        /// <summary>
+        /// Enables changes notifications for this property.
+        /// </summary>
+        /// <returns>This metadata instance.</returns>
+        public PropertyMetadata EnableChangesNotifications()
+        {
+            this.NotifyChanges = true;
+            return this;
+        }
 
-			return this;
-		}
+        public PropertyMetadata AddCascadeChangeNotifications<T>(Expression<Func<T>> property)
+        {
+            return this.AddCascadeChangeNotifications(property.GetMemberName());
+        }
 
-		public IEnumerable<String> GetCascadeChangeNotifications()
-		{
-			return this.cascadeChangeNotifications;
-		}
+        public PropertyMetadata AddCascadeChangeNotifications(String property)
+        {
+            this.cascadeChangeNotifications.Add(property);
 
-		public abstract void SetDefaultValue( PropertyValue value );
+            return this;
+        }
 
-		public abstract PropertyValue GetDefaultValue();
-	}
+        public PropertyMetadata RemoveCascadeChangeNotifications<T>(Expression<Func<T>> property)
+        {
+            return this.RemoveCascadeChangeNotifications(property.GetMemberName());
+        }
+
+        public PropertyMetadata RemoveCascadeChangeNotifications(String property)
+        {
+            if(this.cascadeChangeNotifications.Contains(property))
+            {
+                this.cascadeChangeNotifications.Remove(property);
+            }
+
+            return this;
+        }
+
+        public IEnumerable<String> GetCascadeChangeNotifications()
+        {
+            return this.cascadeChangeNotifications;
+        }
+
+        public abstract void SetDefaultValue(PropertyValue value);
+
+        public abstract PropertyValue GetDefaultValue();
+
+        //public void AddCustomMetadata<T>( String key, T value ) 
+        //{
+
+        //}
+
+        //public T GetCustomMetadata<T>( String key )
+        //{
+
+        //}
+    }
 }

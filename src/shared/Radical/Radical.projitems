@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IChangeTrackingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IMemento.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IMementoPropertyMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ChangeTracking\IPropertyValueChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\ComponentRegisteredEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IBootable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Container\IContainerEntry.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Linq\ExpressionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\AssemblyExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\MemberInfoExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\TypeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DelegateComparer (Generic).cs" />
@@ -128,6 +130,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Observers\AbstractMonitor %28Generic%29.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\AbstractMonitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\BrokerObserver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observers\MementoObserver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\PropertyObserver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ComponentModel\EventHandlerList.Universal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\ArrayEnsureExtension.cs" />

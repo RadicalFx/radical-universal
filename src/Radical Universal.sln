@@ -5,33 +5,33 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A821787E-5D2A-4097-9F73-F8D445189AD1}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical", "src\shared\Radical\Radical.shproj", "{387A69A1-B49D-4877-9A6E-1C1365F813E1}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical", "shared\Radical\Radical.shproj", "{387A69A1-B49D-4877-9A6E-1C1365F813E1}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical.Windows", "src\shared\Radical.Windows\Radical.Windows.shproj", "{05926E12-54D4-4912-8254-16ED6E219147}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical.Windows", "shared\Radical.Windows\Radical.Windows.shproj", "{05926E12-54D4-4912-8254-16ED6E219147}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B8391155-041F-4BFC-867F-53CE473D9390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radical", "src\Radical\Radical.csproj", "{2CD0F290-3F4C-48C8-92F5-FCA1F913038E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radical", "Radical\Radical.csproj", "{2CD0F290-3F4C-48C8-92F5-FCA1F913038E}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical.Windows.Presentation", "src\shared\Radical.Windows.Presentation\Radical.Windows.Presentation.shproj", "{27AA37DD-2B92-4C7E-82C6-DB1CDC8ED973}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Radical.Windows.Presentation", "shared\Radical.Windows.Presentation\Radical.Windows.Presentation.shproj", "{27AA37DD-2B92-4C7E-82C6-DB1CDC8ED973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalSample", "src\Samples\UniversalSample\UniversalSample.csproj", "{50154B9D-6A8E-44F2-90C6-2F916B577C2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalSample", "Samples\UniversalSample\UniversalSample.csproj", "{50154B9D-6A8E-44F2-90C6-2F916B577C2A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C6DF90E-F215-4F5B-A4E0-AAF087F0484F}"
 	ProjectSection(SolutionItems) = preProject
-		src\Radical.nuspec = src\Radical.nuspec
+		Radical.nuspec = Radical.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadicalTests", "src\RadicalTests\RadicalTests.csproj", "{8102C79D-AFC9-4425-BDFB-2326543AB589}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadicalTests", "RadicalTests\RadicalTests.csproj", "{8102C79D-AFC9-4425-BDFB-2326543AB589}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\shared\Radical\Radical.projitems*{387a69a1-b49d-4877-9a6e-1c1365f813e1}*SharedItemsImports = 13
-		src\shared\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{27aa37dd-2b92-4c7e-82c6-db1cdc8ed973}*SharedItemsImports = 13
-		src\shared\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{2cd0f290-3f4c-48c8-92f5-fca1f913038e}*SharedItemsImports = 4
-		src\shared\Radical\Radical.projitems*{2cd0f290-3f4c-48c8-92f5-fca1f913038e}*SharedItemsImports = 4
-		src\shared\Radical.Windows\Radical.Windows.projitems*{2cd0f290-3f4c-48c8-92f5-fca1f913038e}*SharedItemsImports = 4
-		src\shared\Radical.Windows\Radical.Windows.projitems*{05926e12-54d4-4912-8254-16ed6e219147}*SharedItemsImports = 13
+		shared\Radical\Radical.projitems*{387a69a1-b49d-4877-9a6e-1c1365f813e1}*SharedItemsImports = 13
+		shared\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{27aa37dd-2b92-4c7e-82c6-db1cdc8ed973}*SharedItemsImports = 13
+		shared\Radical.Windows\Radical.Windows.projitems*{2cd0f290-3f4c-48c8-92f5-fca1f913038e}*SharedItemsImports = 4
+		shared\Radical\Radical.projitems*{2cd0f290-3f4c-48c8-92f5-fca1f913038e}*SharedItemsImports = 4
+		shared\Radical.Windows.Presentation\Radical.Windows.Presentation.projitems*{2cd0f290-3f4c-48c8-92f5-fca1f913038e}*SharedItemsImports = 4
+		shared\Radical.Windows\Radical.Windows.projitems*{05926e12-54d4-4912-8254-16ed6e219147}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +83,7 @@ Global
 		{50154B9D-6A8E-44F2-90C6-2F916B577C2A}.Release|x86.Build.0 = Release|x86
 		{50154B9D-6A8E-44F2-90C6-2F916B577C2A}.Release|x86.Deploy.0 = Release|x86
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|Any CPU.Build.0 = Debug|x86
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|ARM.ActiveCfg = Debug|ARM
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|ARM.Build.0 = Debug|ARM
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -93,6 +94,7 @@ Global
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|x86.Build.0 = Debug|x86
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Debug|x86.Deploy.0 = Debug|x86
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Release|Any CPU.ActiveCfg = Release|x86
+		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Release|Any CPU.Build.0 = Release|x86
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Release|ARM.ActiveCfg = Release|ARM
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Release|ARM.Build.0 = Release|ARM
 		{8102C79D-AFC9-4425-BDFB-2326543AB589}.Release|ARM.Deploy.0 = Release|ARM
