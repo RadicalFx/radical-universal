@@ -83,6 +83,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\AssemblyExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\MemberInfoExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\ObjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Reflection\TypeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DelegateComparer (Generic).cs" />

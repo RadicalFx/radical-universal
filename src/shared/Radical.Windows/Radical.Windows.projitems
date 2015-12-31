@@ -18,6 +18,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Input\CommandDescriptionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Input\IDelegateCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\DelegateCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\Behaviors\DesignTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\CommandBuilders\BehaviorDelegateCommandBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\CommandBuilders\BooleanFact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\CommandBuilders\CommandData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\CommandBuilders\DelegateCommandBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\CommandBuilders\MethodInfoExtensions (Fast Delegate Factory).cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Presentation\Extensions\DelegateCommandExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Presentation\VisualTreeCrawler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\StorageSerializationHelpers.cs" />
