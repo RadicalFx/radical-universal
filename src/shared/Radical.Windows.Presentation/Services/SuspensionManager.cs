@@ -139,7 +139,7 @@ namespace Radical.Windows.Presentation.Services
 
             this.navigation.Resume( this );
 
-            this.broker.Broadcast( this, new Messaging.ApplicationResumed( this ) );
+            await this.broker.BroadcastAsync( this, new Messaging.ApplicationResumed( this ) );
         }
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="Tests\ContractAttributeTest.cs" />
     <Compile Include="Tests\DelegateCommandBuilderTests.cs" />
     <Compile Include="Tests\DelegateCommandTests.cs" />
+    <Compile Include="Tests\Messaging\MessageBrokerTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityMementoTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityMementoTrackingFeaturesTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityPropertyChangedEventsTests.cs" />

@@ -80,18 +80,16 @@ namespace Radical.ComponentModel.Messaging
         /// <param name="subscriber">The subscriber.</param>
         /// <param name="callback">The callback to unsubscribe.</param>
         void Unsubscribe<T>( Object subscriber, Action<object, T> callback ) where T : class;
-        
+
         /// <summary>
-        /// Broadcasts the specified message in an asynchronus manner without
-        /// waiting for the execution of the subscribers.
+        /// Broadcasts the specified message in an asynchronus manner using a Task per subscriber.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="message">The message.</param>
-        void Broadcast( object sender, object message );
+        Task BroadcastAsync( object sender, object message );
 
         /// <summary>
-        /// Dispatches the specified message in a synchronus manner waiting for 
-        /// the execution of all the subscribers.
+        /// Dispatches the specified message in an asynchronus manner using a single Task for all the subscribers.
         /// </summary>
         /// <typeparam name="T">The type of the message.</typeparam>
         /// <param name="message">The message.</param>
