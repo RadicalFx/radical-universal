@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\DelegateCommandTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityMementoTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityMementoTrackingFeaturesTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityPropertyChangedEventsTests.cs" />
