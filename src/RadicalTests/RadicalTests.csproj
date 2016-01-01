@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\AbstractValidationServiceTests.cs" />
     <Compile Include="Tests\ContractAttributeTest.cs" />
     <Compile Include="Tests\DelegateCommandBuilderTests.cs" />
     <Compile Include="Tests\DelegateCommandTests.cs" />

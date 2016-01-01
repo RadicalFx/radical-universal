@@ -73,7 +73,7 @@ namespace Radical
         /// <summary>
         /// Raises the <see cref="E:ComponentRegistered"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="Topics.Radical.ComponentModel.ComponentRegisteredEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="Radical.ComponentModel.ComponentRegisteredEventArgs"/> instance containing the event data.</param>
         protected virtual void OnComponentRegistered( ComponentRegisteredEventArgs e )
         {
             var h = this.ComponentRegistered;

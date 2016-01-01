@@ -38,6 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ISettingsCommandsRequestHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IShareRequestHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ISuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IValidationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IViewResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IWantConventionsPreview.cs" />
@@ -57,6 +58,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\ConventionsHanlder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Validation\AbstractValidationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Validation\DataAnnotationValidationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Validation\NullValidationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ViewResolver.cs" />
   </ItemGroup>
 </Project>

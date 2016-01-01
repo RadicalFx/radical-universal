@@ -127,7 +127,7 @@ namespace Radical.Model
 		/// <summary>
 		/// Raises the <see cref="E:CollectionChanged"/> event.
 		/// </summary>
-		/// <param name="e">The <see cref="Topics.Radical.ComponentModel.CollectionChangedEventArgs&lt;T&gt;"/> instance containing the event data.</param>
+		/// <param name="e">The <see cref="Radical.ComponentModel.CollectionChangedEventArgs&lt;T&gt;"/> instance containing the event data.</param>
 		protected virtual void OnCollectionChanged( CollectionChangedEventArgs<T> e )
 		{
 			this.EnsureNotDisposed();
@@ -231,7 +231,7 @@ namespace Radical.Model
 		/// <summary>
 		/// Called just before the set operation.
 		/// </summary>
-		/// <param name="e">The <see cref="Topics.Radical.Model.SetValueAtEventArgs&lt;T&gt;"/> instance containing the event data.</param>
+		/// <param name="e">The <see cref="Radical.Model.SetValueAtEventArgs&lt;T&gt;"/> instance containing the event data.</param>
 		protected virtual void OnSetValueAt( SetValueAtEventArgs<T> e )
 		{
 			this.EnsureNotDisposed();
@@ -468,7 +468,7 @@ namespace Radical.Model
 		/// <summary>
 		/// Called just before the Insert
 		/// </summary>
-		/// <param name="e">The <see cref="Topics.Radical.Model.InsertEventArgs&lt;T&gt;"/> instance containing additional data.</param>
+		/// <param name="e">The <see cref="Radical.Model.InsertEventArgs&lt;T&gt;"/> instance containing additional data.</param>
 		protected virtual void OnInsert( InsertEventArgs<T> e )
 		{
 			this.EnsureNotDisposed();

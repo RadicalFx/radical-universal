@@ -68,6 +68,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Model\CollectionChangedEventArgs (Generic).cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Model\CollectionChangeType enum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Model\IEntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Validation Facade\IRequireValidationCallback %28Generic%29.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Validation Facade\IValidator %28Generic%29.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Validation Facade\IValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\Validation Facade\IValidatorFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\BootableFacility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\EntryBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\PuzzleContainer.cs" />
@@ -145,5 +149,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\IEnsure.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\StringEnsureExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\TypeEnsureExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationContext (Generic).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationErrors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationResults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidatorBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidatorBaseFactory.cs" />
   </ItemGroup>
 </Project>
