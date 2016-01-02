@@ -25,7 +25,7 @@ namespace Radical.Windows.Presentation.Boot
 		/// </summary>
 		protected PuzzleApplicationBootstrapper()
 		{
-            this.UsingAsNavigationHost( new WindowNavigationHost( Window.Current ) );
+
 		}
 
 		protected override IServiceProvider CreateServiceProvider()
@@ -55,15 +55,6 @@ namespace Radical.Windows.Presentation.Boot
 			return facade;
 		}
 
-        NavigationHost host;
-
-        public override ApplicationBootstrapper UsingAsNavigationHost( NavigationHost host )
-        {
-            this.host = host;
-
-            return this;
-        }
-
 		[ImportMany]
 		public IEnumerable<IPuzzleSetupDescriptor> Installers { get; set; }
 
@@ -75,11 +66,11 @@ namespace Radical.Windows.Presentation.Boot
 
 			await this.container.SetupWith( this.BoottimeTypesProvider, toInstall );
 
-            if ( !this.container.IsRegistered<NavigationHost>() && this.host != null ) 
+            if ( !this.container.IsRegistered<NavigationHost>() && this.Host != null ) 
             {
                 this.container.Register(
                     EntryBuilder.For<NavigationHost>()
-                        .UsingInstance( this.host )
+                        .UsingInstance( this.Host )
                         .WithLifestyle( Lifestyle.Singleton )
                 );
             }

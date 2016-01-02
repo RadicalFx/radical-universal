@@ -47,6 +47,8 @@ namespace Radical.Windows.Presentation.Boot
 
             CoreApplication.Suspending += OnSuspending;
             CoreApplication.Resuming += OnResuming;
+
+            this.UsingAsNavigationHost(new WindowNavigationHost(Window.Current));
         }
 
         async void OnResuming( object sender, object e )
@@ -421,7 +423,14 @@ namespace Radical.Windows.Presentation.Boot
             ns.Navigate( homeViewType );
         }
 
-        public abstract ApplicationBootstrapper UsingAsNavigationHost( NavigationHost host );
+        protected NavigationHost Host { get; private set; }
+
+        public virtual ApplicationBootstrapper UsingAsNavigationHost(NavigationHost host)
+        {
+            this.Host = host;
+
+            return this;
+        }
 
         /// <summary>
         /// Creates the IoC service provider.
