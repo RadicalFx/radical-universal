@@ -8,13 +8,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Topics.Radical.ChangeTracking;
-using Topics.Radical.ComponentModel.ChangeTracking;
-using Topics.Radical.ComponentModel.Validation;
-using Topics.Radical.Validation;
-using Topics.Radical.Windows.Presentation;
-using Topics.Radical.Windows.Presentation.ComponentModel;
-using Topics.Radical.Windows.Presentation.Services.Validation;
+using Radical.ChangeTracking;
+using Radical.ComponentModel.ChangeTracking;
+using Radical.ComponentModel.Validation;
+using Radical.Validation;
+using Radical.Windows.Presentation;
+using Radical.Windows.Presentation.ComponentModel;
+using Radical.Windows.Presentation.Services.Validation;
 
 namespace RadicalTests.Windows.Presentation
 {
@@ -114,17 +114,6 @@ namespace RadicalTests.Windows.Presentation
             {
                 this.Test_OnValidate( context );
             }
-        }
-
-
-        class ImplementsIDataErrorInfo : TestViewModel, IDataErrorInfo
-        {
-
-        }
-
-        class ImplementsICanBeValidated : TestViewModel, ICanBeValidated
-        {
-
         }
 
         class ImplementsINotifyDataErrorInfo : TestViewModel, INotifyDataErrorInfo
@@ -241,22 +230,6 @@ namespace RadicalTests.Windows.Presentation
         public void AbstractMementoViewModel_INotifyDataErrorInfo_IsValidationEnabled_should_be_true()
         {
             var sut = new ImplementsINotifyDataErrorInfo();
-            Assert.IsTrue( sut.Test_IsValidationEnabled );
-        }
-
-        [TestMethod]
-        [TestCategory( "AbstractMementoViewModel" ), TestCategory( "Validation" )]
-        public void AbstractMementoViewModel_IDataErrorInfo_IsValidationEnabled_should_be_true()
-        {
-            var sut = new ImplementsIDataErrorInfo();
-            Assert.IsTrue( sut.Test_IsValidationEnabled );
-        }
-
-        [TestMethod]
-        [TestCategory( "AbstractMementoViewModel" ), TestCategory( "Validation" )]
-        public void AbstractMementoViewModel_ICanBeValidated_IsValidationEnabled_should_be_true()
-        {
-            var sut = new ImplementsICanBeValidated();
             Assert.IsTrue( sut.Test_IsValidationEnabled );
         }
 

@@ -132,6 +132,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Factories\ChangeTrackingServiceFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\InsertEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SetValueAtEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SkipPropertyValidationAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\AbstractMonitor %28Generic%29.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\AbstractMonitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\BrokerObserver.cs" />

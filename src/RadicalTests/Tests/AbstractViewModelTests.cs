@@ -102,16 +102,6 @@ namespace RadicalTests.Windows.Presentation
             }
         }
 
-        class ImplementsIDataErrorInfo : TestViewModel, IDataErrorInfo
-        {
-
-        }
-
-        class ImplementsICanBeValidated : TestViewModel, ICanBeValidated
-        {
-
-        }
-
         class ImplementsINotifyDataErrorInfo : TestViewModel, INotifyDataErrorInfo
         {
 
@@ -227,22 +217,6 @@ namespace RadicalTests.Windows.Presentation
         public void AbstractViewModel_INotifyDataErrorInfo_IsValidationEnabled_should_be_true()
         {
             var sut = new ImplementsINotifyDataErrorInfo();
-            Assert.IsTrue( sut.Test_IsValidationEnabled );
-        }
-
-        [TestMethod]
-        [TestCategory( "AbstractViewModel" ), TestCategory( "Validation" )]
-        public void AbstractViewModel_IDataErrorInfo_IsValidationEnabled_should_be_true()
-        {
-            var sut = new ImplementsIDataErrorInfo();
-            Assert.IsTrue( sut.Test_IsValidationEnabled );
-        }
-
-        [TestMethod]
-        [TestCategory( "AbstractViewModel" ), TestCategory( "Validation" )]
-        public void AbstractViewModel_ICanBeValidated_IsValidationEnabled_should_be_true()
-        {
-            var sut = new ImplementsICanBeValidated();
             Assert.IsTrue( sut.Test_IsValidationEnabled );
         }
 

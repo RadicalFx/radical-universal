@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\INavigationScopedStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\INavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IProtocolRequestHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IRequireValidation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ISearchRequestHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ISettingsCommandsRequestHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IShareRequestHandler.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\NavigationMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\StorageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\StorageLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ValidationBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DependencyObjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\ApplicationBootCompleted.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\ApplicationResumed.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NavigationEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\Hosts\NavigationHost.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\Hosts\WindowNavigationHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertyValidationState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BultinKnownTypesProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ConventionsHanlder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />

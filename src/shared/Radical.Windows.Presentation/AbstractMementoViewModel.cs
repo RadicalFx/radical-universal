@@ -1,50 +1,16 @@
-﻿#region Funambol License
-// 
-// Funambol is a mobile platform developed by Funambol, Inc.
-// Copyright (C) 2012 Funambol, Inc.
-// 
-// This program is a free software; you can redistribute it and/or modify it pursuant to
-// the terms of the GNU Affero General Public License version 3 as published by
-// the Free Software Foundation with the addition of the following provision
-// added to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED
-// WORK IN WHICH THE COPYRIGHT IS OWNED BY FUNAMBOL, FUNAMBOL DISCLAIMS THE
-// WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
-// 
-// This program is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; INCLUDING ANY WARRANTY OF MERCHANTABILITY OR FITNESS
-// FOR A PARTICULAR PURPOSE, TITLE, INTERFERENCE WITH QUITE ENJOYMENT. THE PROGRAM
-// IS PROVIDED “AS IS” WITH ALL FAULTS. Refer to the GNU General Public License for more
-// details.
-// 
-// You should have received a copy of the GNU Affero General Public License
-// along with this program; if not, see http://www.gnu.org/licenses or write to
-// the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-// MA 02110-1301 USA.
-// 
-// You can contact Funambol, Inc. headquarters at 1065 East Hillsdale Blvd., Suite
-// 400, Foster City, CA 94404, USA, or at email address info@funambol.com.
-// 
-// The interactive user interfaces in modified source and object code versions
-// of this program must display Appropriate Legal Notices, pursuant to
-// Section 5 of the GNU Affero General Public License version 3.
-// 
-// In accordance with Section 7(b) of the GNU Affero General Public License
-// version 3, these Appropriate Legal Notices must retain the display of the
-// "Powered by Funambol" logo. If the display of the logo is not reasonably
-// feasible for technical reasons, the Appropriate Legal Notices must display
-// the words "Powered by Funambol".
-// 
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using Radical.Linq;
 using Radical.Model;
 using Radical.Validation;
+using Radical.Reflection;
 using Radical.Windows.Presentation.ComponentModel;
+using Radical.Windows.Presentation.Services.Validation;
 using Radical.ComponentModel.ChangeTracking;
+using System.Linq.Expressions;
 using Windows.UI.Xaml;
 
 namespace Radical.Windows.Presentation
@@ -64,232 +30,433 @@ namespace Radical.Windows.Presentation
         /// <value>
         /// The view.
         /// </value>
+        [SkipPropertyValidation]
         DependencyObject IViewModel.View { get; set; }
 
-		//IValidationService _validationService;
+        /// <summary>
+        /// Raises the <see cref="E:PropertyChanged" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if(this.IsValidationEnabled
+                && this.RunValidationOnPropertyChanged
+                && !this.IsResettingValidation
+                && !this.IsTriggeringValidation
+                && !SkipPropertyValidation(e.PropertyName)
+                && !this.validationState.IsValidatingProperty(e.PropertyName))
+            {
+                this.ValidateProperty(e.PropertyName);
+            }
 
-		///// <summary>
-		///// Gets the validation service.
-		///// </summary>
-		///// <value>The validation service.</value>
-		//protected IValidationService ValidationService
-		//{
-		//	get
-		//	{
-		//		if( this._validationService == null )
-		//		{
-		//			this._validationService = this.GetValidationService();
-		//			this._validationService.StatusChanged += ( s, e ) =>
-		//			{
-		//				this.ValidationErrors.Clear();
-		//				foreach( var error in this._validationService.ValidationErrors )
-		//				{
-		//					this.ValidationErrors.Add( error );
-		//				}
-		//			};
+            base.OnPropertyChanged(e);
+        }
 
-		//			this._validationService.Resetted += ( s, e ) =>
-		//			{
-		//				this.ValidationErrors.Clear();
-		//				this.GetType()
-		//					.GetProperties()
-		//					.Select( p => p.Name )
-		//					.ForEach( p => this.OnPropertyChanged( p ) );
-		//			};
-		//		}
+        /// <summary>
+        /// Determines if property validation should be skipped for the given property.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns></returns>
+        protected virtual Boolean SkipPropertyValidation(String propertyName)
+        {
+            var pi = this.GetType().GetProperty(propertyName);
+            if(pi == null)
+            {
+                return true;
+            }
 
-		//		return this._validationService;
-		//	}
-		//}
+            if(pi != null)
+            {
+                return pi.IsAttributeDefined<SkipPropertyValidationAttribute>();
+            }
 
-		///// <summary>
-		///// Gets the validation service, this method is called once the first time
-		///// the validation service is accessed, inheritors should override this method
-		///// in order to provide an <see cref="IValidationService"/> implementation.
-		///// </summary>
-		///// <returns>The validation service to use to validate this view model.</returns>
-		//protected virtual IValidationService GetValidationService()
-		//{
-		//	return NullValidationService.Instance;
-		//}
+            return false;
+        }
 
-		///// <summary>
-		///// Initializes a new instance of the <see cref="AbstractMementoViewModel"/> class.
-		///// </summary>
-		//protected AbstractMementoViewModel()
-		//{
-		//	this.ValidationErrors = new ObservableCollection<ValidationError>();
-		//}
+        /// <summary>
+        /// Gets a value indication if validation is enabled or not.
+        /// </summary>
+        [SkipPropertyValidation]
+        protected virtual Boolean IsValidationEnabled
+        {
+            get { return this is INotifyDataErrorInfo || this is IRequireValidation; }
+        }
 
-		///// <summary>
-		///// Gets the error.
-		///// </summary>
-		///// <value>The error.</value>
-		///// <remarks>Used only in order to satisfy IDataErrorInfo interface implementation, the default implementation always returns null.</remarks>
-		//public virtual String Error
-		//{
-		//	get { return null; }
-		//}
+        IValidationService _validationService;
 
-		///// <summary>
-		///// Gets the error message, if any, for the property with the given name.
-		///// </summary>
-		//public virtual String this[ String propertyName ]
-		//{
-		//	get
-		//	{
-		//		var wasValid = this.IsValid;
+        /// <summary>
+        /// Gets the validation service.
+        /// </summary>
+        /// <value>The validation service.</value>
+        [SkipPropertyValidation]
+        protected IValidationService ValidationService
+        {
+            get
+            {
+                if(this._validationService == null)
+                {
+                    this._validationService = this.GetValidationService();
+                    this._validationService.StatusChanged += (s, e) =>
+                    {
+                        this.ValidationErrors.Clear();
+                        foreach(var error in this._validationService.ValidationErrors)
+                        {
+                            this.ValidationErrors.Add(error);
+                        }
 
-		//		var error = this.ValidationService.Validate( propertyName );
+                        this.OnErrorsChanged(null);
+                        this.OnPropertyChanged(() => this.HasErrors);
+                    };
 
-		//		if( this.IsValid != wasValid )
-		//		{
-		//			this.OnPropertyChanged( () => this.IsValid );
-		//		}
+                    this._validationService.ValidationReset += (s, e) =>
+                    {
+                        var shouldSetStatus = !this.IsResettingValidation;
+                        if(shouldSetStatus)
+                        {
+                            this.IsResettingValidation = true;
+                        }
 
-		//		this.OnValidated();
+                        this.ValidationErrors.Clear();
+                        this.GetType()
+                            .GetProperties()
+                            .Where(p => !SkipPropertyValidation(p.Name))
+                            .Select(p => p.Name)
+                            .ForEach(p => this.OnPropertyChanged(p));
 
-		//		return error;
-		//	}
-		//}
 
-		///// <summary>
-		///// Gets a value indicating whether this instance is valid.
-		///// </summary>
-		///// <value><c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
-		//public virtual Boolean IsValid
-		//{
-		//	get { return this.ValidationService.IsValid; }
-		//}
+                        this.OnErrorsChanged(null);
+                        this.OnPropertyChanged(() => this.HasErrors);
 
-		///// <summary>
-		///// Gets the validation errors if any.
-		///// </summary>
-		///// <value>The validation errors.</value>
-		//public virtual ObservableCollection<ValidationError> ValidationErrors
-		//{
-		//	get;
-		//	private set;
-		//}
+                        if(shouldSetStatus)
+                        {
+                            this.IsResettingValidation = false;
+                        }
+                    };
+                }
 
-		///// <summary>
-		///// Validates this instance.
-		///// </summary>
-		///// <returns><c>True</c> if this instance is valid; otherwise <c>false</c>.</returns>
-		//public Boolean Validate()
-		//{
-		//	return this.Validate( null, ValidationBehavior.Default );
-		//}
+                return this._validationService;
+            }
+        }
 
-		///// <summary>
-		///// Validates this instance.
-		///// </summary>
-		///// <param name="behavior">The behavior.</param>
-		///// <returns>
-		/////   <c>True</c> if this instance is valid; otherwise <c>false</c>.
-		///// </returns>
-		//public Boolean Validate( ValidationBehavior behavior )
-		//{
-		//	return this.Validate( null, behavior );
-		//}
+        /// <summary>
+        /// Gets the validation service, this method is called once the first time
+        /// the validation service is accessed, inheritors should override this method
+        /// in order to provide an <see cref="IValidationService"/> implementation.
+        /// </summary>
+        /// <returns>The validation service to use to validate this view model.</returns>
+        protected virtual IValidationService GetValidationService()
+        {
+            return NullValidationService.Instance;
+        }
 
-		///// <summary>
-		///// Validates this instance.
-		///// </summary>
-		///// <param name="ruleSet">The rule set.</param>
-		///// <param name="behavior">The behavior.</param>
-		///// <returns>
-		/////   <c>True</c> if this instance is valid; otherwise <c>false</c>.
-		///// </returns>
-		//public virtual Boolean Validate( String ruleSet, ValidationBehavior behavior )
-		//{
-		//	this.ValidationService.ValidateRuleSet( ruleSet );
-		//	this.OnValidated();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractMementoViewModel"/> class.
+        /// </summary>
+        protected AbstractMementoViewModel()
+            : base(ChangeTrackingRegistration.AsTransient)
+        {
+            this.ValidationErrors = new ObservableCollection<ValidationError>();
+            this.RunValidationOnPropertyChanged = true;
+        }
 
-		//	if( behavior == ValidationBehavior.TriggerValidationErrorsOnFailure && !this.ValidationService.IsValid )
-		//	{
-		//		this.TriggerValidation();
-		//	}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractMementoViewModel" /> class.
+        /// </summary>
+        /// <param name="registration">The registration.</param>
+        protected AbstractMementoViewModel(ChangeTrackingRegistration registration)
+            : base(registration)
+        {
+            this.ValidationErrors = new ObservableCollection<ValidationError>();
+            this.RunValidationOnPropertyChanged = true;
+        }
 
-		//	return this.ValidationService.IsValid;
-		//}
+        /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>The error.</value>
+        /// <remarks>Used only in order to satisfy IDataErrorInfo interface implementation, the default implementation always returns null.</remarks>
+        
+        [SkipPropertyValidation]
+        public virtual String Error
+        {
+            get { return null; }
+        }
 
-		///// <summary>
-		///// Occurs when the validation process terminates.
-		///// </summary>
-		//public event EventHandler Validated;
+        /// <summary>
+        /// Gets the error message, if any, for the property with the given name.
+        /// </summary>
+        
+        [SkipPropertyValidation]
+        public virtual String this[ String propertyName ]
+        {
+            get
+            {
+                var error = this.ValidationErrors
+                    .Where(e => e.Key == propertyName)
+                    .Select(err => err.ToString())
+                    .FirstOrDefault();
 
-		///// <summary>
-		///// Raises the Validated event.
-		///// </summary>
-		//protected virtual void OnValidated()
-		//{
-		//	if( this.Validated != null )
-		//	{
-		//		this.Validated( this, EventArgs.Empty );
-		//	}
-		//}
+                return error;
+            }
+        }
 
-		///// <summary>
-		///// Triggers the validation.
-		///// </summary>
-		//public virtual void TriggerValidation()
-		//{
-		//	if( !this.IsTriggeringValidation )
-		//	{
-		//		this.IsTriggeringValidation = true;
+        /// <summary>
+        /// Validates the given property.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns>
+        /// The first validation error, if any; Otherwise <c>null</c>.
+        /// </returns>
+        protected String ValidateProperty(String propertyName)
+        {
+            return this.ValidateProperty(propertyName, ValidationBehavior.Default);
+        }
 
-		//		foreach( var invalid in this.ValidationService.GetInvalidProperties() )
-		//		{
-		//			this.OnPropertyChanged( invalid );
-		//		}
+        PropertyValidationState validationState = new PropertyValidationState();
 
-		//		this.IsTriggeringValidation = false;
-		//	}
-		//}
+        /// <summary>
+        /// Validates the given property.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="behavior">The behavior.</param>
+        /// <returns>
+        /// The first validation error, if any; Otherwise <c>null</c>.
+        /// </returns>
+        protected virtual String ValidateProperty(String propertyName, ValidationBehavior behavior)
+        {
+            String error = null;
 
-		///// <summary>
-		///// Gets or sets a value indicating whether this instance is triggering validation.
-		///// </summary>
-		///// <value>
-		///// 	<c>true</c> if this instance is triggering validation; otherwise, <c>false</c>.
-		///// </value>
-		//protected virtual Boolean IsTriggeringValidation
-		//{
-		//	get;
-		//	private set;
-		//}
+            if(this.ValidationService.IsValidationSuspended)
+            {
+                return error;
+            }
+
+            using(this.validationState.BeginPropertyValidation(propertyName))
+            {
+                var wasValid = this.IsValid;
+
+                var beforeDetectedProblems = this.ValidationService.ValidationErrors
+                   .Where(ve => ve.Key == propertyName)
+                   .SelectMany(ve => ve.DetectedProblems)
+                   .OrderBy(dp => dp)
+                   .ToArray();
+
+                error = this.ValidationService.Validate(propertyName);
+
+                var afterDetectedProblems = this.ValidationService.ValidationErrors
+                    .Where(ve => ve.Key == propertyName)
+                    .SelectMany(ve => ve.DetectedProblems)
+                    .OrderBy(dp => dp)
+                    .ToArray();
+
+                var validationStatusChanged = !beforeDetectedProblems.SequenceEqual(afterDetectedProblems);
+                if(validationStatusChanged && behavior == ValidationBehavior.TriggerValidationErrorsOnFailure)
+                {
+                    this.OnPropertyChanged(propertyName);
+                    this.OnErrorsChanged(propertyName);
+                }
+
+                if(this.IsValid != wasValid)
+                {
+                    this.OnPropertyChanged(() => this.IsValid);
+                    this.OnPropertyChanged(() => this.HasErrors);
+                }
+            }
+
+            this.OnValidated();
+
+            return error;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is valid.
+        /// </summary>
+        /// <value><c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
+        
+        [SkipPropertyValidation]
+        public virtual Boolean IsValid
+        {
+            get { return this.ValidationService.IsValid; }
+        }
+
+        /// <summary>
+        /// Gets the validation errors if any.
+        /// </summary>
+        /// <value>The validation errors.</value>
+        
+        [SkipPropertyValidation]
+        public virtual ObservableCollection<ValidationError> ValidationErrors
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Validates this instance.
+        /// </summary>
+        /// <returns><c>True</c> if this instance is valid; otherwise <c>false</c>.</returns>
+        public Boolean Validate()
+        {
+            return this.Validate(null, ValidationBehavior.Default);
+        }
+
+        /// <summary>
+        /// Validates this instance.
+        /// </summary>
+        /// <param name="behavior">The behavior.</param>
+        /// <returns>
+        ///   <c>True</c> if this instance is valid; otherwise <c>false</c>.
+        /// </returns>
+        public Boolean Validate(ValidationBehavior behavior)
+        {
+            return this.Validate(null, behavior);
+        }
+
+        /// <summary>
+        /// Validates this instance.
+        /// </summary>
+        /// <param name="ruleSet">The rule set.</param>
+        /// <param name="behavior">The behavior.</param>
+        /// <returns>
+        ///   <c>True</c> if this instance is valid; otherwise <c>false</c>.
+        /// </returns>
+        public virtual Boolean Validate(String ruleSet, ValidationBehavior behavior)
+        {
+            if(this.ValidationService.IsValidationSuspended)
+            {
+                return this.ValidationService.IsValid;
+            }
+
+            var wasValid = this.IsValid;
+
+            this.ValidationService.ValidateRuleSet(ruleSet);
+            this.OnValidated();
+
+            if(behavior == ValidationBehavior.TriggerValidationErrorsOnFailure && !this.ValidationService.IsValid)
+            {
+                this.TriggerValidation();
+            }
+
+            if(this.IsValid != wasValid)
+            {
+                this.OnPropertyChanged(() => this.IsValid);
+                this.OnPropertyChanged(() => this.HasErrors);
+            }
+
+            return this.ValidationService.IsValid;
+        }
+
+        /// <summary>
+        /// Occurs when the validation process terminates.
+        /// </summary>
+        public event EventHandler Validated;
+
+        /// <summary>
+        /// Raises the Validated event.
+        /// </summary>
+        protected virtual void OnValidated()
+        {
+            if(this.Validated != null)
+            {
+                this.Validated(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Triggers the validation.
+        /// </summary>
+        public virtual void TriggerValidation()
+        {
+            if(!this.IsTriggeringValidation)
+            {
+                this.IsTriggeringValidation = true;
+
+                foreach(var invalid in this.ValidationService.GetInvalidProperties())
+                {
+                    this.OnPropertyChanged(invalid);
+                }
+
+                this.IsTriggeringValidation = false;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is triggering validation.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is triggering validation; otherwise, <c>false</c>.
+        /// </value>
+        [SkipPropertyValidation]
+        protected virtual Boolean IsTriggeringValidation
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Called when the <see cref="IChangeTrackingService"/> changes.
         /// </summary>
         /// <param name="newMemento">The new memento service.</param>
-        /// <param name="oldMemmento">The old memmento service.</param>
-        protected override void OnMementoChanged( IChangeTrackingService newMemento, IChangeTrackingService oldMemmento )
+        /// <param name="oldMemento">The old memmento service.</param>
+        protected override void OnMementoChanged(IChangeTrackingService newMemento, IChangeTrackingService oldMemento)
         {
-            base.OnMementoChanged( newMemento, oldMemmento );
+            base.OnMementoChanged(newMemento, oldMemento);
 
-            if( oldMemmento != null )
+            if(oldMemento != null && !oldMemento.IsDisposed)
             {
-                oldMemmento.ChangesAccepted -= new EventHandler( OnChangesAccepted );
-                oldMemmento.ChangesRejected -= new EventHandler( OnChangesRejected );
+                oldMemento.AcceptingChanges -= new EventHandler<CancelEventArgs>(OnAcceptingChanges);
+                oldMemento.RejectingChanges -= new EventHandler<CancelEventArgs>(OnRejectingChanges);
+
+                oldMemento.ChangesAccepted -= new EventHandler(OnChangesAccepted);
+                oldMemento.ChangesRejected -= new EventHandler(OnChangesRejected);
             }
 
-            if( newMemento != null )
+            if(newMemento != null && !newMemento.IsDisposed)
             {
-                newMemento.ChangesAccepted += new EventHandler( OnChangesAccepted );
-                newMemento.ChangesRejected += new EventHandler( OnChangesRejected );
+                newMemento.AcceptingChanges += new EventHandler<CancelEventArgs>(OnAcceptingChanges);
+                newMemento.RejectingChanges += new EventHandler<CancelEventArgs>(OnRejectingChanges);
+
+                newMemento.ChangesAccepted += new EventHandler(OnChangesAccepted);
+                newMemento.ChangesRejected += new EventHandler(OnChangesRejected);
             }
         }
 
-        void OnChangesAccepted( object sender, EventArgs e )
+        void OnAcceptingChanges(object sender, CancelEventArgs e)
+        {
+            this.OnAcceptingChanges(e);
+        }
+
+        void OnRejectingChanges(object sender, CancelEventArgs e)
+        {
+            this.OnRejectingChanges(e);
+        }
+
+        void OnChangesAccepted(object sender, EventArgs e)
         {
             this.OnChangesAccepted();
         }
 
-        void OnChangesRejected( object sender, EventArgs e )
+        void OnChangesRejected(object sender, EventArgs e)
         {
             this.OnChangesRejected();
+        }
+
+        /// <summary>
+        /// Called when the changes are ready to be accepted.
+        /// </summary>
+        /// <param name="e">The <see cref="CancelEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnAcceptingChanges(CancelEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Called when the changes are ready to be rejected.
+        /// </summary>
+        /// <param name="e">The <see cref="CancelEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnRejectingChanges(CancelEventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -306,6 +473,119 @@ namespace Radical.Windows.Presentation
         protected virtual void OnChangesRejected()
         {
 
+        }
+
+        /// <summary>
+        /// Gets or sets the focused element key.
+        /// </summary>
+        /// <value>
+        /// The focused element key.
+        /// </value>
+        [MementoPropertyMetadata(TrackChanges = false)]
+        
+        [SkipPropertyValidation]
+        public String FocusedElementKey
+        {
+            get { return this.GetPropertyValue(() => this.FocusedElementKey); }
+            set { this.SetPropertyValue(() => this.FocusedElementKey, value); }
+        }
+
+        /// <summary>
+        /// Moves the focus to.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        protected virtual void MoveFocusTo<T>(Expression<Func<T>> property)
+        {
+            this.EnsureNotDisposed();
+
+            var propertyName = property.GetMemberName();
+            this.MoveFocusTo(propertyName);
+        }
+
+        /// <summary>
+        /// Moves the focus to.
+        /// </summary>
+        /// <param name="focusedElementKey">The focused element key.</param>
+        protected virtual void MoveFocusTo(String focusedElementKey)
+        {
+            this.EnsureNotDisposed();
+
+            this.FocusedElementKey = focusedElementKey;
+        }
+
+        /// <summary>
+        /// Determines if each time a property changes the validation process should be run. The default value is <c>true</c>.
+        /// </summary>
+        [SkipPropertyValidation]
+        protected Boolean RunValidationOnPropertyChanged { get; set; }
+
+        /// <summary>
+        /// <c>True</c> if the current ValidationService is resetting the validation status; Otherwise <c>false</c>.
+        /// </summary>
+        [SkipPropertyValidation]
+        protected Boolean IsResettingValidation { get; private set; }
+
+
+
+        /// <summary>
+        /// Resets the validation status.
+        /// </summary>
+        public virtual void ResetValidation()
+        {
+            this.IsResettingValidation = true;
+            this.ValidationService.Reset(ValidationResetBehavior.ErrorsOnly);
+            this.IsResettingValidation = false;
+        }
+
+        /// <summary>
+        /// Occurs when errors change.
+        /// </summary>
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        /// <summary>
+        /// Raises the ErrorsChanged event.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        protected void OnErrorsChanged(String propertyName)
+        {
+            var h = this.ErrorsChanged;
+            if(h != null)
+            {
+                h(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+        }
+
+        /// <summary>
+        /// Gets the errors.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns></returns>
+        public System.Collections.IEnumerable GetErrors(string propertyName)
+        {
+            if(String.IsNullOrEmpty(propertyName))
+            {
+                return this.ValidationErrors.ToArray();
+            }
+
+            var temp = this.ValidationErrors.Where(e => e.Key == propertyName).ToArray();
+            return temp;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance has errors.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has errors; otherwise, <c>false</c>.
+        /// </value>
+        
+        [SkipPropertyValidation]
+        public bool HasErrors
+        {
+            get
+            {
+                var hasErrors = !this.IsValid;
+                return hasErrors;
+            }
         }
     }
 }
