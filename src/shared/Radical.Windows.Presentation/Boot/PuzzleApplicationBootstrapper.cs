@@ -16,81 +16,14 @@ using Windows.UI.Xaml;
 
 namespace Radical.Windows.Presentation.Boot
 {
-	public class PuzzleApplicationBootstrapper : ApplicationBootstrapper
+	public class PuzzleApplicationBootstrapper : AbstractApplicationBootstrapper
 	{
-		IPuzzleContainer container;
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WindsorApplicationBootstrapper"/> class.
-		/// </summary>
-		protected PuzzleApplicationBootstrapper()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PuzzleApplicationBootstrapper"/> class.
+        /// </summary>
+        protected PuzzleApplicationBootstrapper()
 		{
 
 		}
-
-		protected override IServiceProvider CreateServiceProvider()
-		{
-			this.container = new PuzzleContainer();
-			var facade = new PuzzleContainerServiceProviderFacade( this.container );
-
-			this.container.Register( EntryBuilder.For<ApplicationBootstrapper>()
-				.UsingInstance( this ) );
-			this.container.Register( EntryBuilder.For<IPuzzleContainer>()
-				.UsingInstance( this.container ) );
-			this.container.Register( EntryBuilder.For<IServiceProvider>()
-				.UsingInstance( facade ) );
-			this.container.Register( EntryBuilder.For<Boot.BootstrapConventions>()
-				.UsingInstance( new Boot.BootstrapConventions() ) );
-
-			var view = CoreApplication.GetCurrentView();
-			var dispatcher = view.CoreWindow.Dispatcher;
-
-			this.container.Register(
-					EntryBuilder.For<CoreDispatcher>()
-						.UsingInstance( dispatcher)
-			);
-
-			this.container.AddFacility<SubscribeToMessageFacility>();
-
-			return facade;
-		}
-
-		[ImportMany]
-		public IEnumerable<IPuzzleSetupDescriptor> Installers { get; set; }
-
-		protected override async Task OnCompositionContainerComposed( CompositionHost container, IServiceProvider serviceProvider )
-		{
-			await base.OnCompositionContainerComposed( container, serviceProvider );
-
-			var toInstall = this.Installers.Where( i => this.ShouldInstall( i ) ).ToArray();
-
-			await this.container.SetupWith( this.BoottimeTypesProvider, toInstall );
-
-            if ( !this.container.IsRegistered<NavigationHost>() && this.Host != null ) 
-            {
-                this.container.Register(
-                    EntryBuilder.For<NavigationHost>()
-                        .UsingInstance( this.Host )
-                        .WithLifestyle( Lifestyle.Singleton )
-                );
-            }
-		}
-
-		protected virtual Boolean ShouldInstall( IPuzzleSetupDescriptor installer )
-		{
-			return true;
-		}
-
-		//protected override void OnBoot( IServiceProvider serviceProvider, global::Windows.ApplicationModel.Activation.LaunchActivatedEventArgs e )
-		//{
-		//	base.OnBoot( serviceProvider, e );
-
-		//	//Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-		//	//Thread.CurrentPrincipal = new WindowsPrincipal( WindowsIdentity.GetCurrent() );
-
-		//	//var broker = serviceProvider.GetService<IMessageBroker>();
-		//	//broker.Subscribe<ApplicationShutdownRequest>( this, InvocationModel.Safe, m => Application.Current.Shutdown() );
-		//}
 	}
 }
