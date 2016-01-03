@@ -11,19 +11,17 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AbstractMementoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AbstractViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ControlLayoutUpdatesBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\FrameworkElementLifecycleNotificationsBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\PageKeyboardMouseNavigationBehavior.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\AbstractApplicationBootstrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\ApplicationBootstrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boot\ApplicationBootstrapper (generic).cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\BootstrapConventions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\InjectViewInRegionFacility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\DefaultDescriptor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\PresentationDescriptor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\ServicesDescriptor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\Installers\___UICompositionInstaller.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper (Generic).cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleApplicationBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boot\PuzzleContainerBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IContainerBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\IConventionsHandler.cs" />

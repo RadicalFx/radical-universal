@@ -9,7 +9,7 @@ namespace Radical.Windows.Presentation.ComponentModel
 {
     public interface IContainerBootstrapper
     {
-        IServiceProvider CreateServiceProvider(AbstractApplicationBootstrapper owner);
+        IServiceProvider CreateServiceProvider(ApplicationBootstrapper owner);
         Task OnCompositionContainerComposed(CompositionHost container, Func<IEnumerable<TypeInfo>> boottimeTypesProvider);
     }
 }

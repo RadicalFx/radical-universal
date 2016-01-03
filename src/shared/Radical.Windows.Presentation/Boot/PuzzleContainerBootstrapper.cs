@@ -16,18 +16,18 @@ namespace Radical.Windows.Presentation.Boot
     class PuzzleContainerBootstrapper : IContainerBootstrapper
     {
         IPuzzleContainer container;
-        AbstractApplicationBootstrapper owner;
+        ApplicationBootstrapper owner;
 
         [ImportMany]
         public IEnumerable<IPuzzleSetupDescriptor> Installers { get; set; }
 
-        public IServiceProvider CreateServiceProvider(AbstractApplicationBootstrapper owner)
+        public IServiceProvider CreateServiceProvider(ApplicationBootstrapper owner)
         {
             this.container = new PuzzleContainer();
             this.owner = owner;
             var facade = new PuzzleContainerServiceProviderFacade(this.container);
 
-            this.container.Register(EntryBuilder.For<AbstractApplicationBootstrapper>()
+            this.container.Register(EntryBuilder.For<ApplicationBootstrapper>()
                 .UsingInstance(owner));
             this.container.Register(EntryBuilder.For<IPuzzleContainer>()
                 .UsingInstance(this.container));

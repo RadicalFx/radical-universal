@@ -29,16 +29,16 @@ namespace Radical.Windows.Presentation.Boot
     /// The application bootstrapper. Provides a way to dramatically simplifly the
     /// application boot process.
     /// </summary>
-    public abstract class AbstractApplicationBootstrapper : IServiceProvider
+    public class ApplicationBootstrapper : IServiceProvider
     {
         IServiceProvider serviceProvider;
         CompositionHost compositionHost;
         Type homeViewType;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbstractApplicationBootstrapper"/> class.
+        /// Initializes a new instance of the <see cref="ApplicationBootstrapper"/> class.
         /// </summary>
-        protected AbstractApplicationBootstrapper()
+        public ApplicationBootstrapper()
         {
             this.BoottimeTypesProvider = () => this.allTypes;
 
@@ -48,6 +48,7 @@ namespace Radical.Windows.Presentation.Boot
             CoreApplication.Suspending += OnSuspending;
             CoreApplication.Resuming += OnResuming;
 
+            this.UsingAsContainerBootstrapper(new PuzzleContainerBootstrapper());
             this.UsingAsNavigationHost(new WindowNavigationHost(Window.Current));
         }
 
@@ -147,7 +148,7 @@ namespace Radical.Windows.Presentation.Boot
 
         Func<IDictionary<String, Assembly>, Task> onGetCompositionAssemblies = null;
 
-        public AbstractApplicationBootstrapper OnGetCompositionAssemblies( Func<IDictionary<String, Assembly>, Task> handler )
+        public ApplicationBootstrapper OnGetCompositionAssemblies( Func<IDictionary<String, Assembly>, Task> handler )
         {
             this.onGetCompositionAssemblies = handler;
 
@@ -330,7 +331,7 @@ namespace Radical.Windows.Presentation.Boot
 
         Func<IServiceProvider, Task> bootHandler;
 
-        public AbstractApplicationBootstrapper OnBoot( Func<IServiceProvider, Task> bootHandler )
+        public ApplicationBootstrapper OnBoot( Func<IServiceProvider, Task> bootHandler )
         {
             this.bootHandler = bootHandler;
 
@@ -426,7 +427,7 @@ namespace Radical.Windows.Presentation.Boot
 
         public NavigationHost Host { get; private set; }
 
-        public virtual AbstractApplicationBootstrapper UsingAsNavigationHost(NavigationHost host)
+        public virtual ApplicationBootstrapper UsingAsNavigationHost(NavigationHost host)
         {
             this.Host = host;
 
@@ -435,7 +436,7 @@ namespace Radical.Windows.Presentation.Boot
 
         public IContainerBootstrapper ContainerBootstrapper { get; private set; }
 
-        public virtual AbstractApplicationBootstrapper UsingAsContainerBootstrapper(IContainerBootstrapper containerBootstrapper)
+        public virtual ApplicationBootstrapper UsingAsContainerBootstrapper(IContainerBootstrapper containerBootstrapper)
         {
             this.ContainerBootstrapper = containerBootstrapper;
 
@@ -498,7 +499,7 @@ namespace Radical.Windows.Presentation.Boot
 
         Action<Boot.BootstrapConventions> onBeforeInstall;
 
-        public AbstractApplicationBootstrapper OnBeforeInstall( Action<Boot.BootstrapConventions> onBeforeInstall )
+        public ApplicationBootstrapper OnBeforeInstall( Action<Boot.BootstrapConventions> onBeforeInstall )
         {
             this.onBeforeInstall = onBeforeInstall;
 
@@ -534,7 +535,7 @@ namespace Radical.Windows.Presentation.Boot
 
         Func<IServiceProvider, Task> onBootCompletedHandler;
 
-        public AbstractApplicationBootstrapper OnBootCompleted( Func<IServiceProvider, Task> onBootCompletedHandler ) 
+        public ApplicationBootstrapper OnBootCompleted( Func<IServiceProvider, Task> onBootCompletedHandler ) 
         {
             this.onBootCompletedHandler = onBootCompletedHandler;
 
