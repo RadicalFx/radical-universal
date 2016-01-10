@@ -99,9 +99,16 @@
     <Compile Include="Tests\AbstractMementoViewModelTests.cs" />
     <Compile Include="Tests\AbstractValidationServiceTests.cs" />
     <Compile Include="Tests\AbstractViewModelTests.cs" />
+    <Compile Include="Tests\ChangeTracking\Service\AtomicChangesChangeTrackingServiceTests.cs" />
+    <Compile Include="Tests\ChangeTracking\Service\CollectionChangeTrackingServiceTests.cs" />
+    <Compile Include="Tests\ChangeTracking\Service\EntityChangeTrackingServiceTests.cs" />
+    <Compile Include="Tests\ChangeTracking\Test Model\HackedPropertyValueChange.cs" />
+    <Compile Include="Tests\ChangeTracking\Test Model\Person.cs" />
+    <Compile Include="Tests\ChangeTracking\Test Model\PersonCollection.cs" />
     <Compile Include="Tests\ContractAttributeTest.cs" />
     <Compile Include="Tests\DelegateCommandBuilderTests.cs" />
     <Compile Include="Tests\DelegateCommandTests.cs" />
+    <Compile Include="Tests\Extensions\EnumerableExtensionTest.cs" />
     <Compile Include="Tests\Messaging\MessageBrokerTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityMementoTests.cs" />
     <Compile Include="Tests\Model\Entity\EntityMementoTrackingFeaturesTests.cs" />
