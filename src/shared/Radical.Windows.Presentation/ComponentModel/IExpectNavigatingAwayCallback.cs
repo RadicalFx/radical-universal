@@ -1,8 +1,8 @@
 ﻿
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface IExpectNavigatingAwayCallback
-	{
-		void OnNavigatingAway( NavigatingAwayEventArgs e );
-	}
+    public interface IExpectNavigatingAwayCallback
+    {
+        void OnNavigatingAway( NavigatingAwayEventArgs e );
+    }
 }

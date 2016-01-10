@@ -7,47 +7,47 @@ using Windows.ApplicationModel.Core;
 namespace RadicalTests.Windows.Messaging
 {
     [TestClass]
-	public class MessageBrokerTests
-	{
-		class PocoTestMessage
-		{
+    public class MessageBrokerTests
+    {
+        class PocoTestMessage
+        {
 
-		}
+        }
 
-		class PocoMessageDerivedFromTestMessage : PocoTestMessage
-		{
+        class PocoMessageDerivedFromTestMessage : PocoTestMessage
+        {
 
-		}
+        }
 
-		class AnotherPocoTestMessage
-		{
+        class AnotherPocoTestMessage
+        {
 
-		}
+        }
 
-		[TestMethod]
-		[TestCategory( "MessageBroker" )]
-		public async Task messageBroker_POCO_unsubscribe_specific_subscriber_should_remove_only_subscriptions_for_that_subscriber()
-		{
-			const int expected = 1;
-			var actual = 0;
+        [TestMethod]
+        [TestCategory( "MessageBroker" )]
+        public async Task messageBroker_POCO_unsubscribe_specific_subscriber_should_remove_only_subscriptions_for_that_subscriber()
+        {
+            const int expected = 1;
+            var actual = 0;
 
             var target = new MessageBroker(CoreApplication.CreateNewView().CoreWindow.Dispatcher);
 
-			var subscriber1 = new Object();
-			var subscriber2 = new Object();
+            var subscriber1 = new Object();
+            var subscriber2 = new Object();
 
-			target.Subscribe<PocoTestMessage>( subscriber1, ( s, msg ) => { actual++; } );
-			target.Subscribe<PocoTestMessage>( subscriber1, ( s, msg ) => { actual++; } );
-			target.Subscribe<PocoTestMessage>( subscriber1, ( s, msg ) => { actual++; } );
+            target.Subscribe<PocoTestMessage>( subscriber1, ( s, msg ) => { actual++; } );
+            target.Subscribe<PocoTestMessage>( subscriber1, ( s, msg ) => { actual++; } );
+            target.Subscribe<PocoTestMessage>( subscriber1, ( s, msg ) => { actual++; } );
 
-			target.Subscribe<PocoTestMessage>( subscriber2, ( s, msg ) => { actual++; } );
+            target.Subscribe<PocoTestMessage>( subscriber2, ( s, msg ) => { actual++; } );
 
-			target.Unsubscribe( subscriber1 );
+            target.Unsubscribe( subscriber1 );
 
-			await target.DispatchAsync( this, new PocoTestMessage() );
+            await target.DispatchAsync( this, new PocoTestMessage() );
 
-			Assert.AreEqual(expected, actual);
-		}
+            Assert.AreEqual(expected, actual);
+        }
 
         [TestMethod]
         [TestCategory("MessageBroker")]

@@ -213,7 +213,7 @@ namespace Radical
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>
         /// <returns>
-        /// 	<c>true</c> if the given service type is registered; otherwise, <c>false</c>.
+        ///     <c>true</c> if the given service type is registered; otherwise, <c>false</c>.
         /// </returns>
         public Boolean IsRegistered<TService>()
         {
@@ -225,7 +225,7 @@ namespace Radical
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>
-        /// 	<c>true</c> if the specified type is registered; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified type is registered; otherwise, <c>false</c>.
         /// </returns>
         public Boolean IsRegistered( TypeInfo type )
         {
@@ -331,8 +331,8 @@ namespace Radical
 
                                 //return
                                 //(
-                                //	entry.Parameters.ContainsKey( y.Name ) &&
-                                //	y.ParameterType.GetTypeInfo().IsAssignableFrom( entry.Parameters[ y.Name ].GetType().GetTypeInfo() )
+                                //    entry.Parameters.ContainsKey( y.Name ) &&
+                                //    y.ParameterType.GetTypeInfo().IsAssignableFrom( entry.Parameters[ y.Name ].GetType().GetTypeInfo() )
                                 //) || this.IsRegistered( y.ParameterType.GetTypeInfo() );
                             } );
                     } );

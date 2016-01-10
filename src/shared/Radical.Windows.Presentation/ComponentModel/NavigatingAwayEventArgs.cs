@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public class NavigatingAwayEventArgs
-	{
-		public NavigatingAwayEventArgs( NavigationMode mode, INavigationScopedStorage storage )
-		{
-			this.Mode = mode;
-			this.Storage = storage;
-		}
+    public class NavigatingAwayEventArgs
+    {
+        public NavigatingAwayEventArgs( NavigationMode mode, INavigationScopedStorage storage )
+        {
+            this.Mode = mode;
+            this.Storage = storage;
+        }
 
-		public NavigationMode Mode { get; private set; }
-		public INavigationScopedStorage Storage { get; private set; }
-		public Boolean Cancel { get; set; }
-	}
+        public NavigationMode Mode { get; private set; }
+        public INavigationScopedStorage Storage { get; private set; }
+        public Boolean Cancel { get; set; }
+    }
 }

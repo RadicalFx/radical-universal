@@ -9,9 +9,9 @@ using Windows.ApplicationModel.Search;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface ISearchRequestHandler
-	{
-		Task OnSearchRequest( ISearchActivatedEventArgs e );
+    public interface ISearchRequestHandler
+    {
+        Task OnSearchRequest( ISearchActivatedEventArgs e );
 
         Task OnSearchSuggestionsRequest( SearchPane searchPane, SearchPaneSuggestionsRequestedEventArgs e );
     }

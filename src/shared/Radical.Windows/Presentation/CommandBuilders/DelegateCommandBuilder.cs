@@ -39,13 +39,13 @@ namespace Radical.Windows.CommandBuilders
 
         //static Object GetNestedContextIfAny( Object context, String path )
         //{
-        //	var segements = path.Split( new[] { '.' }, StringSplitOptions.RemoveEmptyEntries );
-        //	if ( context != null && segements.Length > 1 )
-        //	{
+        //    var segements = path.Split( new[] { '.' }, StringSplitOptions.RemoveEmptyEntries );
+        //    if ( context != null && segements.Length > 1 )
+        //    {
 
-        //	}
+        //    }
 
-        //	return context;
+        //    return context;
         //}
 
         /// <summary>
@@ -101,12 +101,12 @@ namespace Radical.Windows.CommandBuilders
 
                         //Fact = properties.Where( pi =>
                         //{
-                        //	return pi.PropertyType == typeof( Fact ) && pi.Name.Equals( factName );
+                        //    return pi.PropertyType == typeof( Fact ) && pi.Name.Equals( factName );
                         //} )
                         //.Select( pi =>
                         //{
-                        //	var fact = ( Fact )pi.GetValue( dataContext, null );
-                        //	return fact;
+                        //    var fact = ( Fact )pi.GetValue( dataContext, null );
+                        //    return fact;
                         //} )
                         //.SingleOrDefault(),
 

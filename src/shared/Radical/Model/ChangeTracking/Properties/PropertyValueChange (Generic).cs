@@ -17,7 +17,7 @@
         /// <param name="propertyName">Name of the property.</param>
         /// <param name="value">The value.</param>
         /// <param name="restoreCallback">The restore callback.</param>
-		public PropertyValueChange(Object owner, String propertyName, T value, RejectCallback<T> restoreCallback)
+        public PropertyValueChange(Object owner, String propertyName, T value, RejectCallback<T> restoreCallback)
             : this(owner, propertyName, value, restoreCallback, null, String.Empty)
         {
 

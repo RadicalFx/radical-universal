@@ -8,10 +8,10 @@ using Radical.Windows.Presentation.ComponentModel;
 
 namespace Radical.Windows.Presentation.Messaging
 {
-	public class ApplicationResumed
-	{
-		public ApplicationResumed( ISuspensionManager sender )
-		{
+    public class ApplicationResumed
+    {
+        public ApplicationResumed( ISuspensionManager sender )
+        {
             this.SuspentionManager = sender;
         }
 
@@ -20,5 +20,5 @@ namespace Radical.Windows.Presentation.Messaging
             get;
             private set;
         }
-	}
+    }
 }

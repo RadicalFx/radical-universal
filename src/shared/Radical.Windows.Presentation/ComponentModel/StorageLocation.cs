@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public enum StorageLocation 
-	{
-		Roaming,
-		Local,
-	}
+    public enum StorageLocation 
+    {
+        Roaming,
+        Local,
+    }
 }

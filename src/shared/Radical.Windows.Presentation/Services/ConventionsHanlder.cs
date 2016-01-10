@@ -48,8 +48,8 @@ namespace Radical.Windows.Presentation.Services
 
             //this.FindHostingWindowOf = vm =>
             //{
-            //	var view = this.GetViewOfViewModel( vm );
-            //	return view.FindWindow();
+            //    var view = this.GetViewOfViewModel( vm );
+            //    return view.FindWindow();
             //};
 
             this.ViewHasDataContext = view =>
@@ -75,48 +75,48 @@ namespace Radical.Windows.Presentation.Services
                 }
             };
 
-            //			this.TryHookClosedEventOfHostOf = ( view, closedCallback ) =>
-            //			{
-            //				//dobbiamo anche cercare una IClosableView oltre che una Window
-            //				var window = view.FindWindow();
+            //            this.TryHookClosedEventOfHostOf = ( view, closedCallback ) =>
+            //            {
+            //                //dobbiamo anche cercare una IClosableView oltre che una Window
+            //                var window = view.FindWindow();
 
-            //				if( window != null )
-            //				{
+            //                if( window != null )
+            //                {
             //#if SILVERLIGHT
-            //					EventHandler<System.ComponentModel.ClosingEventArgs> closing = null;
-            //					closing = ( s, e ) =>
-            //					{
-            //						try
-            //						{
-            //							closedCallback( window );
-            //						}
-            //						finally
-            //						{
-            //							window.Closing -= closing;
-            //						}
-            //					};
+            //                    EventHandler<System.ComponentModel.ClosingEventArgs> closing = null;
+            //                    closing = ( s, e ) =>
+            //                    {
+            //                        try
+            //                        {
+            //                            closedCallback( window );
+            //                        }
+            //                        finally
+            //                        {
+            //                            window.Closing -= closing;
+            //                        }
+            //                    };
 
-            //					window.Closing += closing;
+            //                    window.Closing += closing;
             //#else
-            //					EventHandler closed = null;
-            //					closed = ( s, e ) =>
-            //					{
-            //						try
-            //						{
-            //							closedCallback( window );
-            //						}
-            //						finally
-            //						{
-            //							window.Closed -= closed;
-            //						}
-            //					};
+            //                    EventHandler closed = null;
+            //                    closed = ( s, e ) =>
+            //                    {
+            //                        try
+            //                        {
+            //                            closedCallback( window );
+            //                        }
+            //                        finally
+            //                        {
+            //                            window.Closed -= closed;
+            //                        }
+            //                    };
 
-            //					window.Closed += closed;
+            //                    window.Closed += closed;
             //#endif
-            //				}
+            //                }
 
-            //				return window;
-            //			};
+            //                return window;
+            //            };
 
             this.IsHostingView = fe => fe.GetType().Name.EndsWith( "View" );
 

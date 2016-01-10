@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface INavigationScopedStorage
-	{
-		Object GetData( String key );
+    public interface INavigationScopedStorage
+    {
+        Object GetData( String key );
 
-		T GetData<T>( String key );
+        T GetData<T>( String key );
 
-		void SetData( String key, Object data, StorageLocation location );
+        void SetData( String key, Object data, StorageLocation location );
 
-		void RemoveData( String key );
+        void RemoveData( String key );
 
-		Boolean Contains( String key );
+        Boolean Contains( String key );
 
-		void Clear();
-	}
+        void Clear();
+    }
 }

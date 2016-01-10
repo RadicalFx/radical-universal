@@ -4,17 +4,17 @@ using Windows.UI.Xaml;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	/// <summary>
-	/// Resolves views.
-	/// </summary>
-	public interface IViewResolver
-	{
-		/// <summary>
-		/// Gets the view.
-		/// </summary>
-		/// <typeparam name="T">The type of the view.</typeparam>
-		/// <returns>The view instance.</returns>
-		T GetView<T>() where T : FrameworkElement;
+    /// <summary>
+    /// Resolves views.
+    /// </summary>
+    public interface IViewResolver
+    {
+        /// <summary>
+        /// Gets the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <returns>The view instance.</returns>
+        T GetView<T>() where T : FrameworkElement;
 
         /// <summary>
         /// Gets the view.
@@ -34,10 +34,10 @@ namespace Radical.Windows.Presentation.ComponentModel
         TView GetView<TView, TViewModel>( Action<TViewModel> viewModelInterceptor )
             where TView : FrameworkElement;
 
-		/// <summary>
-		/// Gets the view of the given type.
-		/// </summary>
-		/// <returns>The view instance.</returns>
+        /// <summary>
+        /// Gets the view of the given type.
+        /// </summary>
+        /// <returns>The view instance.</returns>
         FrameworkElement GetView( Type viewType );
 
         /// <summary>
@@ -47,5 +47,5 @@ namespace Radical.Windows.Presentation.ComponentModel
         /// <param name="viewModelInterceptor">The view model interceptor.</param>
         /// <returns></returns>
         FrameworkElement GetView( Type viewType, Action<Object> viewModelInterceptor );
-	}
+    }
 }

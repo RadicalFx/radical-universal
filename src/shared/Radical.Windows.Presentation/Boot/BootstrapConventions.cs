@@ -54,25 +54,25 @@ namespace Radical.Windows.Presentation.Boot
 
             this.SelectViewContract = type => type;
 
-			//this.GetInterestedRegionNameIfAny = type =>
-			//{
-			//	if ( this.IsView( type ) )
-			//	{
-			//		var attributes = type.GetCustomAttributes<InjectViewInRegionAttribute>();
-			//		if ( attributes.Any() )
-			//		{
-			//			return attributes.First().Named;
-			//		}
+            //this.GetInterestedRegionNameIfAny = type =>
+            //{
+            //    if ( this.IsView( type ) )
+            //    {
+            //        var attributes = type.GetCustomAttributes<InjectViewInRegionAttribute>();
+            //        if ( attributes.Any() )
+            //        {
+            //            return attributes.First().Named;
+            //        }
 
-			//		if ( type.Namespace.IsLike( "*.Presentation.Partial.*" ) )
-			//		{
-			//			var regionName = type.Namespace.Split( '.' ).Last();
-			//			return regionName;
-			//		}
-			//	}
+            //        if ( type.Namespace.IsLike( "*.Presentation.Partial.*" ) )
+            //        {
+            //            var regionName = type.Namespace.Split( '.' ).Last();
+            //            return regionName;
+            //        }
+            //    }
 
-			//	return null;
-			//};
+            //    return null;
+            //};
 
             this.IsExcluded = t => false;
         }
@@ -99,7 +99,7 @@ namespace Radical.Windows.Presentation.Boot
 
         public Func<TypeInfo, TypeInfo> SelectViewModelContract { get; set; }
 
-		//public Func<TypeInfo, String> GetInterestedRegionNameIfAny { get; set; }
+        //public Func<TypeInfo, String> GetInterestedRegionNameIfAny { get; set; }
 
         public Func<TypeInfo, Boolean> IsExcluded { get; set; }
     }

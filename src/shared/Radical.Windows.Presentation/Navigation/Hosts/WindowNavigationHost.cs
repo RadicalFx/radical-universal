@@ -7,19 +7,19 @@ using Windows.UI.Xaml;
 
 namespace Radical.Windows.Presentation.Navigation.Hosts
 {
-	public class WindowNavigationHost : NavigationHost
-	{
-		readonly Window window;
+    public class WindowNavigationHost : NavigationHost
+    {
+        readonly Window window;
 
-		public WindowNavigationHost( Window window )
-		{
-			this.window = window;
-		}
+        public WindowNavigationHost( Window window )
+        {
+            this.window = window;
+        }
 
-		public override DependencyObject Content
-		{
-			get { return this.window.Content; }
-			set { this.window.Content = ( UIElement )value; }
-		}
-	}
+        public override DependencyObject Content
+        {
+            get { return this.window.Content; }
+            set { this.window.Content = ( UIElement )value; }
+        }
+    }
 }

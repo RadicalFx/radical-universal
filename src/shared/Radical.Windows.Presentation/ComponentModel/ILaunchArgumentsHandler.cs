@@ -7,8 +7,8 @@ using Windows.ApplicationModel.Activation;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface ILaunchArgumentsHandler
-	{
-		Task OnLaunch( ILaunchActivatedEventArgs args );
-	}
+    public interface ILaunchArgumentsHandler
+    {
+        Task OnLaunch( ILaunchActivatedEventArgs args );
+    }
 }

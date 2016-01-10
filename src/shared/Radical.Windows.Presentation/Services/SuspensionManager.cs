@@ -32,9 +32,9 @@ namespace Radical.Windows.Presentation.Services
 
             //var kt = new Type[] 
             //{ 
-            //	this.storage.GetType(),
-            //	typeof( StorageLocation ), 
-            //	typeof( StorageItem ) 
+            //    this.storage.GetType(),
+            //    typeof( StorageLocation ), 
+            //    typeof( StorageItem ) 
             //};
 
             //this.knownTypes.Add .AddRange( kt );

@@ -351,8 +351,8 @@
             /*
              * Siamo in grado di fare la revert:
              * - se il bookmark è valido e...;
-             *		* se la posizione del bookmark è diversa dall'ultima modifica nel backwardChangesStack
-             *		* oppure se nel bookmark ci sono delle entity registrate transient dopo la creazione del bookmark stesso
+             *        * se la posizione del bookmark è diversa dall'ultima modifica nel backwardChangesStack
+             *        * oppure se nel bookmark ci sono delle entity registrate transient dopo la creazione del bookmark stesso
              */
             lock (SyncRoot)
             {
@@ -722,7 +722,7 @@
         /// Gets a value indicating whether this instance has transient entities.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance has transient entities; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance has transient entities; otherwise, <c>false</c>.
         /// </value>
         public Boolean HasTransientEntities
         {
@@ -1061,7 +1061,7 @@
         /// Gets a value indicating whether this instance is suspended.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance is suspended; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance is suspended; otherwise, <c>false</c>.
         /// </value>
         public Boolean IsSuspended
         {

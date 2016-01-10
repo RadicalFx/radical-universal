@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface ISuspensionManager
-	{
-		Object GetValue( String key );
+    public interface ISuspensionManager
+    {
+        Object GetValue( String key );
 
-		T GetValue<T>( String key );
+        T GetValue<T>( String key );
 
-		void SetValue( String key, Object data, StorageLocation location );
+        void SetValue( String key, Object data, StorageLocation location );
 
-		void Remove( String key );
+        void Remove( String key );
 
-		Boolean Contains( String key );
+        Boolean Contains( String key );
 
-		Task SuspendAsync();
+        Task SuspendAsync();
 
-		Task ResumeAsync();
-	}
+        Task ResumeAsync();
+    }
 }

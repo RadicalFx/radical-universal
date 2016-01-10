@@ -166,18 +166,18 @@ namespace Radical.Validation
         /// <param name="validatorSpecificMessage">The validator specific message.</param>
         /// <returns>The error message.</returns>
         public String GetFullErrorMessage(String validatorSpecificMessage)
-		{
-			var fullErrorMessage = String.Format
-			(
-				fullErrorMessageFormat,
-				Environment.NewLine,
+        {
+            var fullErrorMessage = String.Format
+            (
+                fullErrorMessageFormat,
+                Environment.NewLine,
                 validatorSpecificMessage,
                 this.Name ?? "<no-name-supplied>",
-            	this.UserErrorMessage ?? "--"	
-			);
+                this.UserErrorMessage ?? "--"    
+            );
 
-			return fullErrorMessage;
-		}
+            return fullErrorMessage;
+        }
 
         /// <summary>
         /// Gets the full error message.

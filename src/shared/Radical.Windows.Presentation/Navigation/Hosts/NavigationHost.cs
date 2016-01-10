@@ -7,8 +7,8 @@ using Windows.UI.Xaml;
 
 namespace Radical.Windows.Presentation.Navigation.Hosts
 {
-	public abstract class NavigationHost
-	{
-		public abstract DependencyObject Content { get; set; }
-	}
+    public abstract class NavigationHost
+    {
+        public abstract DependencyObject Content { get; set; }
+    }
 }

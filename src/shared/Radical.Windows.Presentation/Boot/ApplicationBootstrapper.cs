@@ -111,7 +111,7 @@ namespace Radical.Windows.Presentation.Boot
                     break;
 
 #if WINDOWS_PHONE_APP
-				case ActivationKind.Search:
+                case ActivationKind.Search:
 #endif
                 case ActivationKind.CachedFileUpdater:
                 case ActivationKind.CameraSettings:
@@ -350,10 +350,10 @@ namespace Radical.Windows.Presentation.Boot
             }
 
 #if DEBUG
-			if( System.Diagnostics.Debugger.IsAttached )
-			{
-				Application.Current.DebugSettings.EnableFrameRateCounter = true;
-			}
+            if( System.Diagnostics.Debugger.IsAttached )
+            {
+                Application.Current.DebugSettings.EnableFrameRateCounter = true;
+            }
 #endif
 
             if ( !String.IsNullOrWhiteSpace( args.Arguments ) )
@@ -519,19 +519,19 @@ namespace Radical.Windows.Presentation.Boot
 
         //void OnShutdownCore()
         //{
-        //	//this.catalog.Dispose();
-        //	this.compositionContainer.Dispose();
-        //	if( this.serviceProvider is IDisposable )
-        //	{
-        //		( ( IDisposable )this.serviceProvider ).Dispose();
-        //	}
+        //    //this.catalog.Dispose();
+        //    this.compositionContainer.Dispose();
+        //    if( this.serviceProvider is IDisposable )
+        //    {
+        //        ( ( IDisposable )this.serviceProvider ).Dispose();
+        //    }
 
-        //	//this.catalog = null;
-        //	this.compositionContainer = null;
-        //	this.serviceProvider = null;
+        //    //this.catalog = null;
+        //    this.compositionContainer = null;
+        //    this.serviceProvider = null;
 
-        //	//RegionService.CurrentService = null;
-        //	//RegionService.Conventions = null;
+        //    //RegionService.CurrentService = null;
+        //    //RegionService.Conventions = null;
         //}
 
         ///// <summary>
@@ -540,7 +540,7 @@ namespace Radical.Windows.Presentation.Boot
         ///// <param name="e">The <see cref="System.Windows.ExitEventArgs"/> instance containing the event data.</param>
         //protected virtual void OnShutdown()
         //{
-        //	this.OnShutdownCore();
+        //    this.OnShutdownCore();
         //}
 
         /// <summary>

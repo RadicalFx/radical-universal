@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Radical.ComponentModel
 {
-	public interface IPuzzleSetupDescriptor
-	{
-		Task Setup( IPuzzleContainer container, Func<IEnumerable<TypeInfo>> knownTypesProvider );
-	}
+    public interface IPuzzleSetupDescriptor
+    {
+        Task Setup( IPuzzleContainer container, Func<IEnumerable<TypeInfo>> knownTypesProvider );
+    }
 }

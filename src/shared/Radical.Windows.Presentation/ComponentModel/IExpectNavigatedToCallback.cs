@@ -1,8 +1,8 @@
 ﻿
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface IExpectNavigatedToCallback
-	{
-		void OnNavigatedTo( NavigationEventArgs e );
-	}
+    public interface IExpectNavigatedToCallback
+    {
+        void OnNavigatedTo( NavigationEventArgs e );
+    }
 }

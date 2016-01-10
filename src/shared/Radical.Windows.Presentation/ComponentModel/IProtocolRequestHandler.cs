@@ -7,8 +7,8 @@ using Windows.ApplicationModel.Activation;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface IProtocolRequestHandler
-	{
-		Task OnProtocolRequest( IProtocolActivatedEventArgs e );
-	}
+    public interface IProtocolRequestHandler
+    {
+        Task OnProtocolRequest( IProtocolActivatedEventArgs e );
+    }
 }

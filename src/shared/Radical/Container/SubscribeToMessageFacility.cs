@@ -58,8 +58,8 @@ namespace Radical
 
             //logger.Verbose
             //(
-            //	"\tSubscribing to message: {0}",
-            //	messageType.ToString( "SN" )
+            //    "\tSubscribing to message: {0}",
+            //    messageType.ToString( "SN" )
             //);
 
             broker.Subscribe(this, messageType, invocationModel, (sender, msg) =>
@@ -68,9 +68,9 @@ namespace Radical
 
                 //logger.Verbose
                 //(
-                //	"Dispatching message {0} to IMessageHandler {1}",
-                //	msg.GetType().ToString( "SN" ),
-                //	handler.GetType().ToString( "SN" )
+                //    "Dispatching message {0} to IMessageHandler {1}",
+                //    msg.GetType().ToString( "SN" ),
+                //    handler.GetType().ToString( "SN" )
                 //);
 
                 if(handler.ShouldHandle(sender, msg))
@@ -113,9 +113,9 @@ namespace Radical
                     {
                         //logger.Verbose
                         //(
-                        //	"Registered component is IMessageHandler: {0}/{1}, but no broker yet registered. buffering...",
-                        //	h.Service.ToString( "SN" ),
-                        //	h.ComponentModel.Implementation.ToString( "SN" )
+                        //    "Registered component is IMessageHandler: {0}/{1}, but no broker yet registered. buffering...",
+                        //    h.Service.ToString( "SN" ),
+                        //    h.ComponentModel.Implementation.ToString( "SN" )
                         //);
 
                         this.buffer.Add(new Tuple<String, IContainerEntry>(e.Entry.Key, e.Entry));
@@ -124,9 +124,9 @@ namespace Radical
                     {
                         //logger.Verbose
                         //(
-                        //	"Registered component is IMessageHandler: {0}/{1}",
-                        //	h.Service.ToString( "SN" ),
-                        //	h.ComponentModel.Implementation.ToString( "SN" )
+                        //    "Registered component is IMessageHandler: {0}/{1}",
+                        //    h.Service.ToString( "SN" ),
+                        //    h.ComponentModel.Implementation.ToString( "SN" )
                         //);
 
                         this.Attach(container, e.Entry.Key, e.Entry);

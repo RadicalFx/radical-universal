@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	[DataContract]
-	class StorageItem
-	{
-		[DataMember]
-		public StorageLocation Location { get; set; }
+    [DataContract]
+    class StorageItem
+    {
+        [DataMember]
+        public StorageLocation Location { get; set; }
 
-		[DataMember]
-		public Object Data { get; set; }
-	}
+        [DataMember]
+        public Object Data { get; set; }
+    }
 }

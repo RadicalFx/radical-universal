@@ -16,43 +16,43 @@ using Radical.Linq;
 
 namespace Radical.Windows.Presentation.Boot.Installers
 {
-	[Export( typeof( IPuzzleSetupDescriptor ) )]
-	public class DefaultDescriptor : IPuzzleSetupDescriptor
-	{
-		public async Task Setup( IPuzzleContainer container, Func<IEnumerable<TypeInfo>> knownTypesProvider )
-		{
-			await Task.Run( () => 
-			{
-				var conventions = container.Resolve<BootstrapConventions>();
-				var allTypes = knownTypesProvider();
+    [Export( typeof( IPuzzleSetupDescriptor ) )]
+    public class DefaultDescriptor : IPuzzleSetupDescriptor
+    {
+        public async Task Setup( IPuzzleContainer container, Func<IEnumerable<TypeInfo>> knownTypesProvider )
+        {
+            await Task.Run( () => 
+            {
+                var conventions = container.Resolve<BootstrapConventions>();
+                var allTypes = knownTypesProvider();
 
                 allTypes.Where( t => conventions.IsMessageHandler( t ) && !conventions.IsExcluded( t ) )
-					.Select( t => new
-					{
-						Contract = conventions.SelectMessageHandlerContract( t ),
-						Implementation = t
-					} )
-					.ForEach( descriptor =>
-					{
-						container.Register(
-							EntryBuilder.For( descriptor.Contract )
-								.ImplementedBy( descriptor.Implementation )
-						);
-					} );
+                    .Select( t => new
+                    {
+                        Contract = conventions.SelectMessageHandlerContract( t ),
+                        Implementation = t
+                    } )
+                    .ForEach( descriptor =>
+                    {
+                        container.Register(
+                            EntryBuilder.For( descriptor.Contract )
+                                .ImplementedBy( descriptor.Implementation )
+                        );
+                    } );
 
-				container.Register(
-					EntryBuilder.For<Application>()
-						.UsingFactory( () => Application.Current )
-						.WithLifestyle( Lifestyle.Singleton )
-				);
+                container.Register(
+                    EntryBuilder.For<Application>()
+                        .UsingFactory( () => Application.Current )
+                        .WithLifestyle( Lifestyle.Singleton )
+                );
 
-				container.Register(
-					EntryBuilder.For<IMessageBroker>()
-						.ImplementedBy<MessageBroker>()
-						.WithLifestyle( Lifestyle.Singleton )
+                container.Register(
+                    EntryBuilder.For<IMessageBroker>()
+                        .ImplementedBy<MessageBroker>()
+                        .WithLifestyle( Lifestyle.Singleton )
                         .Overridable()
-				);
-			} );
-		}
-	}
+                );
+            } );
+        }
+    }
 }

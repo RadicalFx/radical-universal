@@ -17,7 +17,7 @@ namespace Radical.Reflection
         /// <typeparam name="T">The type (System.Type) of the attribute to search for.</typeparam>
         /// <param name="memberInfo">The MemberInfo to invastigate.</param>
         /// <returns>
-        /// 	<c>true</c> if the attribute is defined; otherwise, <c>false</c>.
+        ///     <c>true</c> if the attribute is defined; otherwise, <c>false</c>.
         /// </returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static Boolean IsAttributeDefined<T>(this MemberInfo memberInfo) where T : Attribute

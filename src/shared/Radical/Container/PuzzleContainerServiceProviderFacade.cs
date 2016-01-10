@@ -8,23 +8,23 @@ using Radical.ComponentModel;
 
 namespace Radical
 {
-	public class PuzzleContainerServiceProviderFacade : IServiceProvider
-	{
-		readonly IPuzzleContainer container;
+    public class PuzzleContainerServiceProviderFacade : IServiceProvider
+    {
+        readonly IPuzzleContainer container;
 
-		public PuzzleContainerServiceProviderFacade( IPuzzleContainer container )
-		{
-			this.container = container;
-		}
+        public PuzzleContainerServiceProviderFacade( IPuzzleContainer container )
+        {
+            this.container = container;
+        }
 
-		public object GetService( Type serviceType )
-		{
-			if( this.container.IsRegistered( serviceType.GetTypeInfo() ) )
-			{
-				return this.container.Resolve( serviceType.GetTypeInfo() );
-			}
+        public object GetService( Type serviceType )
+        {
+            if( this.container.IsRegistered( serviceType.GetTypeInfo() ) )
+            {
+                return this.container.Resolve( serviceType.GetTypeInfo() );
+            }
 
-			return null;
-		}
-	}
+            return null;
+        }
+    }
 }

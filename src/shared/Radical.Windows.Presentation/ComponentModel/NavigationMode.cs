@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public enum NavigationMode
-	{
+    public enum NavigationMode
+    {
         None = 0,
-		New,
-		Back,
+        New,
+        Back,
         Forward,
-		Resume,
-	}
+        Resume,
+    }
 }

@@ -7,8 +7,8 @@ using Windows.ApplicationModel.Activation;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface IShareRequestHandler
-	{
-		Task OnShareRequest( IShareTargetActivatedEventArgs e );
-	}
+    public interface IShareRequestHandler
+    {
+        Task OnShareRequest( IShareTargetActivatedEventArgs e );
+    }
 }

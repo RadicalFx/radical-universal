@@ -91,7 +91,7 @@
         /// Gets a value indicating whether this instance has transient entities.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance has transient entities; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance has transient entities; otherwise, <c>false</c>.
         /// </value>
         Boolean HasTransientEntities { get; }
 
@@ -191,7 +191,7 @@
         /// Gets a value indicating whether this instance is suspended.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance is suspended; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance is suspended; otherwise, <c>false</c>.
         /// </value>
         Boolean IsSuspended { get; }
 

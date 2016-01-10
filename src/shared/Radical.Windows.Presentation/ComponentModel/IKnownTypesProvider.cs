@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Radical.Windows.Presentation.ComponentModel
 {
-	public interface IKnownTypesProvider
-	{
-		IEnumerable<Type> GetKnownTypes();
-	}
+    public interface IKnownTypesProvider
+    {
+        IEnumerable<Type> GetKnownTypes();
+    }
 }

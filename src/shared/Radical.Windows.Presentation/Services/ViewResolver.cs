@@ -5,52 +5,52 @@ using Windows.UI.Xaml;
 
 namespace Radical.Windows.Presentation.Services
 {
-	/// <summary>
-	/// Resolves view automatically attaching view models by convention.
-	/// </summary>
-	class ViewResolver : IViewResolver
-	{
-		readonly IServiceProvider container;
-		readonly IConventionsHandler conventions;
+    /// <summary>
+    /// Resolves view automatically attaching view models by convention.
+    /// </summary>
+    class ViewResolver : IViewResolver
+    {
+        readonly IServiceProvider container;
+        readonly IConventionsHandler conventions;
         readonly Action<object> emptyInterceptor = vm => { };
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="ViewResolver"/> class.
-		/// </summary>
-		/// <param name="container">The container.</param>
-		/// <param name="conventions">The conventions.</param>
-		public ViewResolver( IServiceProvider container, IConventionsHandler conventions )
-		{
-			Ensure.That( container ).Named( () => container ).IsNotNull();
-			Ensure.That( conventions ).Named( () => conventions ).IsNotNull();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewResolver"/> class.
+        /// </summary>
+        /// <param name="container">The container.</param>
+        /// <param name="conventions">The conventions.</param>
+        public ViewResolver( IServiceProvider container, IConventionsHandler conventions )
+        {
+            Ensure.That( container ).Named( () => container ).IsNotNull();
+            Ensure.That( conventions ).Named( () => conventions ).IsNotNull();
 
-			this.container = container;
-			this.conventions = conventions;
-		}
+            this.container = container;
+            this.conventions = conventions;
+        }
 
-		/// <summary>
-		/// Gets the view of the given type.
-		/// </summary>
-		/// <param name="viewType"></param>
-		/// <returns>
-		/// The view instance.
-		/// </returns>
+        /// <summary>
+        /// Gets the view of the given type.
+        /// </summary>
+        /// <param name="viewType"></param>
+        /// <returns>
+        /// The view instance.
+        /// </returns>
         public FrameworkElement GetView( Type viewType )
-		{
+        {
             return this.GetView( viewType, this.emptyInterceptor );
-		}
+        }
 
-		/// <summary>
-		/// Gets the view.
-		/// </summary>
-		/// <typeparam name="T">The type of the view.</typeparam>
-		/// <returns>
-		/// The view instance.
-		/// </returns>
+        /// <summary>
+        /// Gets the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <returns>
+        /// The view instance.
+        /// </returns>
         public T GetView<T>() where T : FrameworkElement
-		{
-			return ( T )this.GetView( typeof( T ), this.emptyInterceptor );
-		}
+        {
+            return ( T )this.GetView( typeof( T ), this.emptyInterceptor );
+        }
 
 
         /// <summary>
