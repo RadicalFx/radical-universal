@@ -1,241 +1,241 @@
 ﻿namespace RadicalTests.ChangeTracking
 {
-	using System;
-	using System.Linq;
-	using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-	
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	using Topics.Radical.ChangeTracking;
+    using System;
+    using System.Linq;
+    using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-	[TestClass]
-	public class AtomicChangesChangeTrackingServiceTests
-	{
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_beginAtomicOperation_normal_should_create_valid_atomic_operation()
-		{
-			var target = new ChangeTrackingService();
-			var actual = target.BeginAtomicOperation();
+    using Radical.ComponentModel.ChangeTracking;
+    using Radical.ChangeTracking;
 
-			actual.Should().Not.Be.Null();
-		}
+    [TestClass]
+    public class AtomicChangesChangeTrackingServiceTests
+    {
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_beginAtomicOperation_normal_should_create_valid_atomic_operation()
+        {
+            var target = new ChangeTrackingService();
+            var actual = target.BeginAtomicOperation();
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_should_set_is_changed_only_on_operation_completed()
-		{
-			var target = new ChangeTrackingService();
+            Assert.IsNotNull(actual);
+        }
 
-			var person = new Person( target );
-			var list = new PersonCollection( target );
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_should_set_is_changed_only_on_operation_completed()
+        {
+            var target = new ChangeTrackingService();
 
-			using( var actual = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+            var person = new Person(target);
+            var list = new PersonCollection(target);
 
-				target.IsChanged.Should().Be.False();
+            using(var actual = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-				actual.Complete();
-			}
+                Assert.IsFalse(target.IsChanged);
 
-			target.IsChanged.Should().Be.True();
-		}
+                actual.Complete();
+            }
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_atomicOperation_after_operation_complete_entityState_should_be_changed()
-		{
-			var target = new ChangeTrackingService();
+            Assert.IsTrue(target.IsChanged);
+        }
 
-			var person = new Person( target );
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_atomicOperation_after_operation_complete_entityState_should_be_changed()
+        {
+            var target = new ChangeTrackingService();
 
-			target.AcceptChanges();
-			
-			using( var op = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
+            var person = new Person(target);
 
-				op.Complete();
-			}
+            target.AcceptChanges();
 
-			var state = target.GetEntityState( person );
+            using(var op = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
 
-			var actual = (state & EntityTrackingStates.HasBackwardChanges ) == EntityTrackingStates.HasBackwardChanges;
-			actual.Should().Be.True();
-		}
+                op.Complete();
+            }
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_should_fully_rollback_on_single_undo()
-		{
-			var target = new ChangeTrackingService();
+            var state = target.GetEntityState(person);
 
-			var person = new Person( target );
-			var list = new PersonCollection( target );
+            var actual = (state & EntityTrackingStates.HasBackwardChanges) == EntityTrackingStates.HasBackwardChanges;
+            Assert.IsTrue(actual);
+        }
 
-			using( var actual = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_should_fully_rollback_on_single_undo()
+        {
+            var target = new ChangeTrackingService();
 
-				actual.Complete();
-			}
+            var person = new Person(target);
+            var list = new PersonCollection(target);
 
-			target.Undo();
+            using(var actual = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-			list.Count.Should().Be.EqualTo( 0 );
-			person.Name.Should().Be.EqualTo( String.Empty );
-		}
+                actual.Complete();
+            }
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_redo_should_reapply_all_changes_with_one_pass()
-		{
-			var target = new ChangeTrackingService();
+            target.Undo();
 
-			var person = new Person( target );
-			var list = new PersonCollection( target );
+            Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(String.Empty, person.Name);
+        }
 
-			using( var actual = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_redo_should_reapply_all_changes_with_one_pass()
+        {
+            var target = new ChangeTrackingService();
 
-				actual.Complete();
-			}
+            var person = new Person(target);
+            var list = new PersonCollection(target);
 
-			target.Undo();
-			target.Redo();
+            using(var actual = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-			list.Count.Should().Be.EqualTo( 1 );
-			person.Name.Should().Be.EqualTo( "Mauro Servienti" );
-		}
+                actual.Complete();
+            }
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_undo_redo_should_restore_in_one_pass()
-		{
-			var target = new ChangeTrackingService();
+            target.Undo();
+            target.Redo();
 
-			var person = new Person( target );
-			var list = new PersonCollection( target );
+            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual("Mauro Servienti", person.Name);
+        }
 
-			using( var actual = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_undo_redo_should_restore_in_one_pass()
+        {
+            var target = new ChangeTrackingService();
 
-				actual.Complete();
-			}
+            var person = new Person(target);
+            var list = new PersonCollection(target);
 
-			target.Undo();
-			target.Redo();
-			target.Undo();
+            using(var actual = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-			list.Count.Should().Be.EqualTo( 0 );
-			person.Name.Should().Be.EqualTo( String.Empty );
-		}
+                actual.Complete();
+            }
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_getEntityState_should_return_valid_entity_state()
-		{
-			var target = new ChangeTrackingService();
+            target.Undo();
+            target.Redo();
+            target.Undo();
 
-			var person = new Person( target );
-			var list = new PersonCollection( target );
+            Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(String.Empty, person.Name);
+        }
 
-			using( var op = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_getEntityState_should_return_valid_entity_state()
+        {
+            var expected = EntityTrackingStates.HasBackwardChanges | EntityTrackingStates.IsTransient | EntityTrackingStates.AutoRemove;
+            var target = new ChangeTrackingService();
 
-				op.Complete();
-			}
+            var person = new Person(target);
+            var list = new PersonCollection(target);
 
-			var actual = target.GetEntityState( person );
-			actual.Should().Be.EqualTo( EntityTrackingStates.HasBackwardChanges | EntityTrackingStates.IsTransient | EntityTrackingStates.AutoRemove );
-		}
+            using(var op = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_getEntities_should_return_all_changed_entities()
-		{
-			var target = new ChangeTrackingService();
+                op.Complete();
+            }
 
-			var person = new Person( target );
-			var list = new PersonCollection( target );
+            var actual = target.GetEntityState(person);
+            Assert.AreEqual(expected, actual);
+        }
 
-			using( var op = target.BeginAtomicOperation() )
-			{
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_getEntities_should_return_all_changed_entities()
+        {
+            var target = new ChangeTrackingService();
 
-				op.Complete();
-			}
+            var person = new Person(target);
+            var list = new PersonCollection(target);
 
-			var actual = target.GetEntities( EntityTrackingStates.HasBackwardChanges, false );
+            using(var op = target.BeginAtomicOperation())
+            {
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-			/*
-			 * Non funziona perchè non funziona GetEntityState()
-			 */
+                op.Complete();
+            }
 
-			actual.Contains( person ).Should().Be.True();
-		}
+            var actual = target.GetEntities(EntityTrackingStates.HasBackwardChanges, false);
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_getEntities_should_return_all_transient_entities()
-		{
-			var target = new ChangeTrackingService();
+            /*
+             * Non funziona perchè non funziona GetEntityState()
+             */
 
-			var list = new PersonCollection( target );
-			var person = new Person( target, false );
+            Assert.IsTrue(actual.Contains(person));
+        }
 
-			using( var op = target.BeginAtomicOperation() )
-			{
-				target.RegisterTransient( person );
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_getEntities_should_return_all_transient_entities()
+        {
+            var target = new ChangeTrackingService();
 
-				op.Complete();
-			}
+            var list = new PersonCollection(target);
+            var person = new Person(target, false);
 
-			var actual = target.GetEntities( EntityTrackingStates.IsTransient, false );
+            using(var op = target.BeginAtomicOperation())
+            {
+                target.RegisterTransient(person);
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-			actual.Contains( person ).Should().Be.True();
-		}
+                op.Complete();
+            }
 
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeTrackingService_using_beginAtomicOperation_hasTransientEntities_should_return_true_even_for_entities_created_in_the_atomic_operation()
-		{
-			var target = new ChangeTrackingService();
+            var actual = target.GetEntities(EntityTrackingStates.IsTransient, false);
 
-			var list = new PersonCollection( target );
-			var person = new Person( target, false );
+            Assert.IsTrue(actual.Contains(person));
+        }
 
-			using( var op = target.BeginAtomicOperation() )
-			{
-				target.RegisterTransient( person );
-				person.Name = "Mauro";
-				list.Add( person );
-				person.Name = "Mauro Servienti";
+        [TestMethod]
+        [TestCategory("ChangeTracking")]
+        public void changeTrackingService_using_beginAtomicOperation_hasTransientEntities_should_return_true_even_for_entities_created_in_the_atomic_operation()
+        {
+            var target = new ChangeTrackingService();
 
-				op.Complete();
-			}
+            var list = new PersonCollection(target);
+            var person = new Person(target, false);
 
-			var actual = target.HasTransientEntities;
+            using(var op = target.BeginAtomicOperation())
+            {
+                target.RegisterTransient(person);
+                person.Name = "Mauro";
+                list.Add(person);
+                person.Name = "Mauro Servienti";
 
-			actual.Should().Be.True();
-		}
-	}
+                op.Complete();
+            }
+
+
+            Assert.IsTrue(target.HasTransientEntities);
+        }
+    }
 }

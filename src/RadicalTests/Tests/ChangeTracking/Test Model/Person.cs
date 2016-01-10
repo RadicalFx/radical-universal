@@ -1,12 +1,10 @@
-﻿//extern alias tpx;
-
-namespace RadicalTests.ChangeTracking
+﻿namespace RadicalTests.ChangeTracking
 {
     using Radical.ComponentModel.ChangeTracking;
     using Radical.Model;
     using System;
-
-    class Person : MementoEntity, IDisposable
+    using System.ComponentModel;
+    class Person : MementoEntity, IComponent
 	{
 		protected override void Dispose( bool disposing )
 		{
@@ -14,10 +12,7 @@ namespace RadicalTests.ChangeTracking
 
 			if( disposing )
 			{
-				//if( this.Site != null && this.Site.Container != null )
-				//{
-				//    this.Site.Container.Remove( this );
-				//}
+				
 			}
 
 			this.OnDisposed();
@@ -31,11 +26,8 @@ namespace RadicalTests.ChangeTracking
 
 		protected virtual void OnDisposed()
 		{
-			if( this.Disposed != null )
-			{
-				this.Disposed( this, EventArgs.Empty );
-			}
-		}
+            this.Disposed?.Invoke(this, EventArgs.Empty);
+        }
 
 		public Person( IChangeTrackingService memento )
 			: this( memento, true )

@@ -1,6 +1,4 @@
-﻿//extern alias tpx;
-
-namespace RadicalTests.ChangeTracking
+﻿namespace RadicalTests.ChangeTracking
 {
     using Radical.ChangeTracking.Specialized;
     using Radical.ComponentModel.ChangeTracking;
