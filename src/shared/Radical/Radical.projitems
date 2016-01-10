@@ -139,6 +139,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Observers\MementoObserver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Observers\PropertyObserver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ComponentModel\EventHandlerList.Universal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ComponentModel\IComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\ArrayEnsureExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\ComparableEnsureExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\Ensure\Ensure (Generic).cs" />
