@@ -39,7 +39,7 @@
         List<IChange> backwardChangesStack = new List<IChange>();
         List<IChange> forwardChangesStack = new List<IChange>();
         Dictionary<Object, Boolean> transientEntities = new Dictionary<Object, Boolean>();
-        //List<IComponent> iComponentEntities = new List<IComponent>();
+        List<IComponent> iComponentEntities = new List<IComponent>();
 
         #region IDisposable Members
 
@@ -76,18 +76,18 @@
                     this.backwardChangesStack.ForEach(c => this.OnUnwire(c));
                     this.forwardChangesStack.ForEach(c => this.OnUnwire(c));
 
-                    //this.iComponentEntities.ForEach(ic =>
-                    //{
-                    //    if(ic != null)
-                    //    {
-                    //        ic.Disposed -= this.onComponentDisposed;
-                    //    }
-                    //});
+                    this.iComponentEntities.ForEach(ic =>
+                    {
+                        if(ic != null)
+                        {
+                            ic.Disposed -= this.onComponentDisposed;
+                        }
+                    });
 
                     this.backwardChangesStack.Clear();
                     this.forwardChangesStack.Clear();
                     this.transientEntities.Clear();
-                    //this.iComponentEntities.Clear();
+                    this.iComponentEntities.Clear();
 
                     if(this._events != null)
                     {
@@ -105,7 +105,7 @@
                 this.backwardChangesStack = null;
                 this.forwardChangesStack = null;
                 this.transientEntities = null;
-                //this.iComponentEntities = null;
+                this.iComponentEntities = null;
 
                 this.IsDisposed = true;
             }
@@ -467,7 +467,7 @@
             }
             else
             {
-                //this.OnWire(entity as IComponent);
+                this.OnWire(entity as IComponent);
                 this.transientEntities.Add(entity, autoRemove);
             }
         }
@@ -881,24 +881,24 @@
             change.Committed += this.onChangeCommitted;
             change.Rejected += this.onChangeRejected;
 
-            //this.OnWire(change.Owner as IComponent);
+            this.OnWire(change.Owner as IComponent);
         }
 
-        ///// <summary>
-        ///// Called when the change tracking service needs to add handlers to the <c>IComponent</c> supplied as parameter.
-        ///// </summary>
-        ///// <param name="entity">The entity to wire to.</param>
-        //protected virtual void OnWire(IComponent entity)
-        //{
-        //    if(entity != null)
-        //    {
-        //        if(!this.iComponentEntities.Contains(entity))
-        //        {
-        //            entity.Disposed += this.onComponentDisposed;
-        //            this.iComponentEntities.Add(entity);
-        //        }
-        //    }
-        //}
+        /// <summary>
+        /// Called when the change tracking service needs to add handlers to the <c>IComponent</c> supplied as parameter.
+        /// </summary>
+        /// <param name="entity">The entity to wire to.</param>
+        protected virtual void OnWire(IComponent entity)
+        {
+            if(entity != null)
+            {
+                if(!this.iComponentEntities.Contains(entity))
+                {
+                    entity.Disposed += this.onComponentDisposed;
+                    this.iComponentEntities.Add(entity);
+                }
+            }
+        }
 
         /// <summary>
         /// Called when the change tracking service needs to remove handlers from the <c>IChange</c> supplied as parameter.

@@ -225,8 +225,7 @@ namespace Radical.Linq
 				return tmp.AsReadOnly();
 			}
 
-			var retVal = list as IReadOnlyCollection<T> ?? new ReadOnlyCollection<T>( list );
-			return retVal;
+			return new ReadOnlyCollection<T>(list);
 		}
 
 		/// <summary>

@@ -1,7 +1,8 @@
 ﻿namespace Radical.ChangeTracking
 {
 	using System;
-	using System.Collections;
+    using System.Linq;
+    using System.Collections;
 	using System.Collections.Generic;
 	using Radical.ComponentModel.ChangeTracking;
 	using Radical.Validation;
@@ -62,16 +63,19 @@
 			IEnumerable transientEntities = svc.GetEntities( EntityTrackingStates.IsTransient, true );
 			foreach( Object te in transientEntities )
 			{
-				/*
-				 * Non abbiamo bisogno di eseguire controlli per determinare 
-				 * se una advised action sia già stata inserita per l'elemento
-				 * corrente perchè la richiesta che facciamo al tracking service
-				 * è di avere le sole entity "pure" transient cioè che sono registrate
-				 * come transient ma poi non hanno subito modifiche, dato che abbiamo
-				 * le sole "pure" transient siamo già certi che non siano già state
-				 * gestite dal sistema di costruzione delle "distinct change"
-				 */
-				var advisedAction = this.OnCreateAdvisedAction( te, ProposedActions.Create );
+                if(result.Any(a => a.Target == te))
+                {
+                    /*
+                     * An entity is created as Transient+Persistable, then is added to
+                     * a MementoEntityCollection that tracks a change as "item-added" thus
+                     * the advisory adds that entity (that is not AutoRemove) as something that
+                     * must be created. so if we arrive here and we already have the transient
+                     * entity in the advisory we skip it.
+                     */
+                    continue;
+                }
+
+                var advisedAction = this.OnCreateAdvisedAction( te, ProposedActions.Create );
 				result.Add( advisedAction );
 			}
 
