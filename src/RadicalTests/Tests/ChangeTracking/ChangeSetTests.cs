@@ -1,38 +1,58 @@
 ﻿namespace RadicalTests.ChangeTracking
 {
-	using System;
-	using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-	using Rhino.Mocks;
-	using Topics.Radical.ChangeTracking;
-	using Topics.Radical.ComponentModel.ChangeTracking;
-	
+    using System;
+    using System.Linq;
+    using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+    using Radical.ChangeTracking;
+    using Radical.ComponentModel.ChangeTracking;
+    
 
-	[TestClass]
-	public class ChangeSetTests
-	{
-		[TestMethod]
-		[TestCategory( "ChangeTracking" )]
-		public void changeSet_ctor()
-		{
-			var expected = new IChange[] 
-			{
-				MockRepository.GenerateStub<IChange>(),
-				MockRepository.GenerateStub<IChange>(),
-				MockRepository.GenerateStub<IChange>()
-			};
+    [TestClass]
+    public class ChangeSetTests
+    {
+        class FakeChange<T> : Change<T>
+        {
+            public FakeChange(Object owner, T valueToCache, RejectCallback<T> rejectCallback, CommitCallback<T> commitCallback, String description = "")
+                : base(owner, valueToCache, rejectCallback, commitCallback, description)
+            {
+            }
+            public override IChange Clone()
+            {
+                throw new NotImplementedException();
+            }
 
-			var actual = new ChangeSet( expected );
+            public override ProposedActions GetAdvisedAction(object changedItem)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-			actual.Count.Should().Be.EqualTo( 3 );
-			actual.Should().Have.SameSequenceAs( expected );
-		}
+        [TestMethod]
+        [TestCategory( "ChangeTracking" )]
+        public void changeSet_ctor()
+        {
+            var expected = new IChange[] 
+            {
+                new FakeChange<String>(this,"",v=> { },v=> { }),
+                new FakeChange<String>(this,"",v=> { },v=> { }),
+                new FakeChange<String>(this,"",v=> { },v=> { }),
+                new FakeChange<String>(this,"",v=> { },v=> { })
+            };
 
-		[TestMethod]
-		[ExpectedException( typeof( ArgumentNullException ) )]
-		[TestCategory( "ChangeTracking" )]
-		public void changeSet_ctor_null_reference()
-		{
-			var actual = new ChangeSet( null );
-		}
-	}
+            var actual = new ChangeSet( expected );
+
+            Assert.AreEqual(4, actual.Count);
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
+        }
+
+        [TestMethod]
+        [TestCategory( "ChangeTracking" )]
+        public void changeSet_ctor_null_reference()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => 
+            {
+                var actual = new ChangeSet(null);
+            });
+        }
+    }
 }

@@ -102,6 +102,8 @@
     <Compile Include="Tests\ChangeArgsTests.cs" />
     <Compile Include="Tests\ChangeCommittedArgsTests.cs" />
     <Compile Include="Tests\ChangeRejectedArgsTests.cs" />
+    <Compile Include="Tests\ChangeTracking\ChangeSetDistinctVisitorTest.cs" />
+    <Compile Include="Tests\ChangeTracking\ChangeSetTests.cs" />
     <Compile Include="Tests\ChangeTracking\Service\AtomicChangesChangeTrackingServiceTests.cs" />
     <Compile Include="Tests\ChangeTracking\Service\CollectionChangeTrackingServiceTests.cs" />
     <Compile Include="Tests\ChangeTracking\Service\EntityChangeTrackingServiceTests.cs" />

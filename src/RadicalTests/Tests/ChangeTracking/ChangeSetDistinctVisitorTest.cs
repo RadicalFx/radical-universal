@@ -1,43 +1,69 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using Rhino.Mocks;
-using Topics.Radical.ChangeTracking;
-using Topics.Radical.ComponentModel.ChangeTracking;
+using Radical.ChangeTracking;
+using Radical.ComponentModel.ChangeTracking;
 
 
 namespace RadicalTests.ChangeTracking
 {
-	[TestClass]
-	public class ChangeSetDistinctVisitorTests
-	{
-		[TestMethod()]
-		[TestCategory( "ChangeTracking" )]
-		public void changeSetDistinctVisitor_visit()
-		{
-			ChangeSetDistinctVisitor target = new ChangeSetDistinctVisitor();
+    [TestClass]
+    public class ChangeSetDistinctVisitorTests
+    {
+        class FakeChange<T> : Change<T>
+        {
+            public FakeChange(Object owner, T valueToCache, RejectCallback<T> rejectCallback, CommitCallback<T> commitCallback, String description = "")
+                : base(owner, valueToCache, rejectCallback, commitCallback, description)
+            {
+            }
+            public override IChange Clone()
+            {
+                throw new NotImplementedException();
+            }
 
-			var entities = new Object[] { new Object() };
-			var c1 = MockRepository.GenerateStub<IChange>();
-			c1.Expect( obj => obj.GetChangedEntities() ).Return( entities );
+            public override ProposedActions GetAdvisedAction(object changedItem)
+            {
+                throw new NotImplementedException();
+            }
 
-			var c2 = MockRepository.GenerateStub<IChange>();
-			c2.Expect( obj => obj.GetChangedEntities() ).Return( entities );
+            public Func<IEnumerable<Object>> GetChangedEntitiesFunc;
 
-			IChangeSet cSet = new ChangeSet( new IChange[] { c1, c2 } );
+            public override IEnumerable<object> GetChangedEntities()
+            {
+                return this.GetChangedEntitiesFunc();
+            }
+        }
 
-			var result = target.Visit( cSet );
+        [TestMethod()]
+        [TestCategory( "ChangeTracking" )]
+        public void changeSetDistinctVisitor_visit()
+        {
+            ChangeSetDistinctVisitor target = new ChangeSetDistinctVisitor();
 
-			result.Count.Should().Be.EqualTo( 1 );
-			result[ entities[ 0 ] ].Should().Be.EqualTo( c2 );
-		}
+            var entities = new Object[] { new Object() };
+            var c1 = new FakeChange<String>(this,"",v=> { }, v => { });
+            c1.GetChangedEntitiesFunc = ()=> entities;
 
-		[TestMethod()]
-		[ExpectedException( typeof( ArgumentNullException ) )]
-		[TestCategory( "ChangeTracking" )]
-		public void changeSetDistinctVisitor_visit_null_changeSet_reference()
-		{
-			ChangeSetDistinctVisitor target = new ChangeSetDistinctVisitor();
-			target.Visit( null );
-		}
-	}
+            var c2 = new FakeChange<String>(this, "", v => { }, v => { });
+            c2.GetChangedEntitiesFunc = () => entities;
+
+            IChangeSet cSet = new ChangeSet( new IChange[] { c1, c2 } );
+
+            var result = target.Visit( cSet );
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(c2, result[ entities[ 0 ] ]);
+        }
+
+        [TestMethod()]
+        [TestCategory( "ChangeTracking" )]
+        public void changeSetDistinctVisitor_visit_null_changeSet_reference()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => 
+            {
+                ChangeSetDistinctVisitor target = new ChangeSetDistinctVisitor();
+                target.Visit(null);
+            });
+        }
+    }
 }
