@@ -29,7 +29,7 @@ namespace Radical.Windows.Presentation.Boot
     /// The application bootstrapper. Provides a way to dramatically simplifly the
     /// application boot process.
     /// </summary>
-    public abstract class ApplicationBootstrapper : IServiceProvider
+    public class ApplicationBootstrapper : IServiceProvider
     {
         IServiceProvider serviceProvider;
         CompositionHost compositionHost;
@@ -38,7 +38,7 @@ namespace Radical.Windows.Presentation.Boot
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationBootstrapper"/> class.
         /// </summary>
-        protected ApplicationBootstrapper()
+        public ApplicationBootstrapper()
         {
             this.BoottimeTypesProvider = () => this.allTypes;
 
@@ -47,6 +47,9 @@ namespace Radical.Windows.Presentation.Boot
 
             CoreApplication.Suspending += OnSuspending;
             CoreApplication.Resuming += OnResuming;
+
+            this.UsingAsContainerBootstrapper(new PuzzleContainerBootstrapper());
+            this.UsingAsNavigationHost(new WindowNavigationHost(Window.Current));
         }
 
         async void OnResuming( object sender, object e )
@@ -209,6 +212,7 @@ namespace Radical.Windows.Presentation.Boot
                 this.compositionHost = await this.CreateCompositionHost( this.serviceProvider );
 
                 this.compositionHost.SatisfyImports( this );
+                this.compositionHost.SatisfyImports(this.ContainerBootstrapper);
 
                 await this.OnCompositionContainerComposed( this.compositionHost, this.serviceProvider );
                 this.SetupUICompositionEngine( this.serviceProvider );
@@ -421,13 +425,32 @@ namespace Radical.Windows.Presentation.Boot
             ns.Navigate( homeViewType );
         }
 
-        public abstract ApplicationBootstrapper UsingAsNavigationHost( NavigationHost host );
+        public NavigationHost Host { get; private set; }
+
+        public virtual ApplicationBootstrapper UsingAsNavigationHost(NavigationHost host)
+        {
+            this.Host = host;
+
+            return this;
+        }
+
+        public IContainerBootstrapper ContainerBootstrapper { get; private set; }
+
+        public virtual ApplicationBootstrapper UsingAsContainerBootstrapper(IContainerBootstrapper containerBootstrapper)
+        {
+            this.ContainerBootstrapper = containerBootstrapper;
+
+            return this;
+        }
 
         /// <summary>
         /// Creates the IoC service provider.
         /// </summary>
         /// <returns>The IoC service provider.</returns>
-        protected abstract IServiceProvider CreateServiceProvider();
+        protected virtual IServiceProvider CreateServiceProvider()
+        {
+            return this.ContainerBootstrapper.CreateServiceProvider(this);
+        }
 
         /// <summary>
         /// Creates the composition container.
@@ -470,6 +493,8 @@ namespace Radical.Windows.Presentation.Boot
                 var conventions = serviceProvider.GetService<Boot.BootstrapConventions>();
                 this.onBeforeInstall( conventions );
             }
+
+            await this.ContainerBootstrapper.OnCompositionContainerComposed(container, this.BoottimeTypesProvider);
         }
 
         Action<Boot.BootstrapConventions> onBeforeInstall;

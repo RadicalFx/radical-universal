@@ -1,4 +1,4 @@
-﻿using Radical.Windows.Presentation.Boot;
+﻿using Radical;
 using Windows.UI.Xaml;
 
 namespace UniversalSample
@@ -8,13 +8,13 @@ namespace UniversalSample
     /// </summary>
     sealed partial class App : Application
     {
-        PuzzleApplicationBootstrapper<Presentation.MainView> bootstrapper;
+        ApplicationBootstrapper<Presentation.MainView> bootstrapper;
 
         public App()
         {
             this.InitializeComponent();
 
-            this.bootstrapper = new PuzzleApplicationBootstrapper<Presentation.MainView>();
+            this.bootstrapper = new ApplicationBootstrapper<Presentation.MainView>();
         }
     }
 }
